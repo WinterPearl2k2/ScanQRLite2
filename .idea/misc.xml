@@ -3,9 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable-v24/cus_btn_scan2.xml" value="0.121" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable-v24/cus_checked_nav_history.xml" value="0.121" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable-v24/cus_checked_nav_setting.xml" value="0.121" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable-v24/cus_text_nav.xml" value="0.1625" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable-v24/ic_img_scan_frame.xml" value="0.121" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/cus_background_scan.xml" value="0.12" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/cus_btn_scan.xml" value="0.12" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/cus_checked_nav_create.xml" value="0.1625" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/cus_checked_nav_scan.xml" value="0.1625" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/cus_item_background.xml" value="0.1625" />
@@ -13,7 +17,7 @@
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/fragment_create.xml" value="0.25" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/fragment_history.xml" value="0.25" />
-        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/fragment_scan.xml" value="0.25" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/fragment_scan.xml" value="0.32329084588644263" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/fragment_setting.xml" value="0.25" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/menu/menu_bottom_nav.xml" value="0.25" />
       </map>

@@ -1,15 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Scan.Scan"
     android:background="@color/black">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true">
+            <androidx.camera.view.PreviewView
+                android:id="@+id/cameraPreviewView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/frame_top"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@id/frame_mid"
+                    android:background="#80000000" />
 
-</FrameLayout>
+                <TextView
+                    android:id="@+id/frame_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/frame_mid"
+                    android:background="#80000000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@id/frame_mid"
+                    android:layout_above="@id/frame_bottom"
+                    android:layout_below="@id/frame_top"
+                    android:background="#80000000"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/frame_mid"
+                    android:layout_above="@id/frame_bottom"
+                    android:layout_below="@id/frame_top"
+                    android:background="#80000000"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/img_csan_frame"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="35dp"
+                    android:text="Focus barcode into area"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/frame_mid"
+                    android:layout_width="279dp"
+                    android:layout_height="279dp"
+                    android:background="@null"
+                    android:layout_centerInParent="true"/>
+
+                <ImageView
+                    android:id="@+id/img_csan_frame"
+                    android:layout_width="284dp"
+                    android:layout_height="284dp"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_img_scan_frame" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:background="@drawable/cus_background_scan">
+
+                <TextView
+                    android:id="@+id/btn_gallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="55dp"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginBottom="35dp"
+                    android:background="@drawable/cus_btn_scan2"
+                    android:gravity="center"
+                    android:minWidth="130dp"
+                    android:paddingLeft="35dp"
+                    android:paddingRight="35dp"
+                    android:text="Gallery"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+
+                <androidx.appcompat.widget.AppCompatCheckBox
+                    android:id="@+id/btn_fash"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginRight="55dp"
+                    android:layout_marginBottom="35dp"
+                    android:background="@drawable/cus_btn_scan"
+                    android:button="@android:color/transparent"
+                    android:gravity="center"
+                    android:minWidth="130dp"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:text="Flash on"
+                    android:textColor="@color/cus_text"
+                    android:textSize="20sp" />
+
+            </RelativeLayout>
+        </FrameLayout>
+
+</RelativeLayout>

@@ -13,4 +13,5 @@
     <color name="primaryTextColor">#442C2E</color>
     <color name="primaryIcon">#CE7C7C</color>
     <color name="secondaryShrinePink32">#BFFEEAE6</color>
+    <color name="grey">#DBDBDB</color>
 </resources>
