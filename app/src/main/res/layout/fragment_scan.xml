@@ -6,6 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Scan.Scan">
         <FrameLayout
+            android:id="@+id/layout_scan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true">
@@ -112,13 +113,14 @@
                     android:minWidth="130dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Flash on"
+                    android:text="Flash off"
                     android:textColor="@color/cus_text"
                     android:textSize="20sp" />
             </RelativeLayout>
         </FrameLayout>
 
         <RelativeLayout
+            android:id="@+id/layout_permisson"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"

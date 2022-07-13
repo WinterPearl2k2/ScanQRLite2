@@ -7,7 +7,6 @@ import android.view.WindowManager;
 
 public class FullScreen {
     Activity activity;
-    int type;
 
     public FullScreen(Activity activity) {
         this.activity = activity;
