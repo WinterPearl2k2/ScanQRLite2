@@ -10,7 +10,7 @@
         android:id="@+id/history_recycleview_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background=""
+        android:background="@drawable/cus_history_recyclerview"
         android:layout_alignParentLeft="true">
         <androidx.cardview.widget.CardView
             android:id="@+id/container_img_qr_history"
@@ -38,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:orientation="vertical"
+            android:layout_marginTop="7dp"
             android:layout_toRightOf="@+id/container_img_qr_history"
             android:layout_alignParentRight="true">
 
