@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Scan.Scan"
-    android:background="@color/black">
+    tools:context=".Scan.Scan">
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -90,13 +89,13 @@
                     android:layout_marginLeft="55dp"
                     android:layout_marginTop="35dp"
                     android:layout_marginBottom="35dp"
-                    android:background="@drawable/cus_btn_scan2"
+                    android:background="@drawable/cus_btn_scan"
                     android:gravity="center"
                     android:minWidth="130dp"
-                    android:paddingLeft="35dp"
-                    android:paddingRight="35dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
                     android:text="Gallery"
-                    android:textColor="@color/white"
+                    android:textColor="@color/cus_text"
                     android:textSize="20sp" />
 
                 <androidx.appcompat.widget.AppCompatCheckBox
@@ -111,13 +110,44 @@
                     android:button="@android:color/transparent"
                     android:gravity="center"
                     android:minWidth="130dp"
-                    android:paddingLeft="30dp"
-                    android:paddingRight="30dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
                     android:text="Flash on"
                     android:textColor="@color/cus_text"
                     android:textSize="20sp" />
-
             </RelativeLayout>
         </FrameLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            android:background="@drawable/cus_background_scan">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/btn_permisson"
+                android:layout_marginBottom="120dp"
+                android:paddingLeft="60dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/img_permission" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_permisson"
+                android:layout_width="320dp"
+                android:layout_height="48dp"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="120dp"
+                android:background="@drawable/cus_btn_permission"
+                android:letterSpacing="0.1"
+                android:stateListAnimator="@null"
+                android:text="Allow permission"
+                android:textColor="@color/white"
+                android:textAllCaps="true"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
 </RelativeLayout>

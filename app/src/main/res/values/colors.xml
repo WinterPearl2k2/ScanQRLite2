@@ -9,9 +9,13 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="secondaryShrinePink">#FEEAE6</color>
-    <color name="primaryShrinePink">#FEDBD0</color>
-    <color name="primaryTextColor">#442C2E</color>
-    <color name="primaryIcon">#CE7C7C</color>
+    <color name="primaryShrinePink">#BBE8FD</color>
+    <color name="primaryBackground">#e5f6fe</color>
+    <color name="primaryButton">#5BA5C8</color>
+    <color name="frame">#76BFFF</color>
+    <color name="primaryIcon">#3F5E80</color>
+    <color name="blueLight">#20C3D1</color>
+    <color name="skyBlueLight">#E6F6FE</color>
     <color name="secondaryShrinePink32">#BFFEEAE6</color>
     <color name="grey">#DBDBDB</color>
 </resources>
