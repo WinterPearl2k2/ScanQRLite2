@@ -3,17 +3,46 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable-v24/cus_btn_scan2.xml" value="0.121" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable-v24/cus_checked_nav_history.xml" value="0.121" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable-v24/cus_checked_nav_setting.xml" value="0.121" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable-v24/cus_text_nav.xml" value="0.1625" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable-v24/ic_img_scan_frame.xml" value="0.25" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.218" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/cus_background_scan.xml" value="0.12" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/cus_btn_create.xml" value="0.1925" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/cus_btn_create_allow.xml" value="0.218" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/cus_btn_permission.xml" value="0.218" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/cus_btn_scan.xml" value="0.12" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/cus_checked_nav_create.xml" value="0.1625" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/cus_checked_nav_scan.xml" value="0.1625" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/cus_create.xml" value="0.1925" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/cus_edt_text.xml" value="0.1925" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/cus_item_background.xml" value="0.1625" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/ic_back.xml" value="0.1935" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/ic_create_checked.xml" value="0.1625" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/ic_create_unchecked.xml" value="0.218" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/ic_history_checked.xml" value="0.1625" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/ic_history_unchecked.xml" value="0.218" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/ic_img_permission.xml" value="0.1625" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/ic_img_text.xml" value="0.1935" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/ic_img_url.xml" value="0.1935" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/ic_launcher_background.xml" value="0.218" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/ic_rdb_checked.xml" value="0.1935" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/ic_rdb_unchecked.xml" value="0.1935" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/ic_scan_checked.xml" value="0.1625" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/ic_scan_unchecked.xml" value="0.218" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/ic_setting_checked.xml" value="0.1625" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/ic_setting_unchecked.xml" value="0.218" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/ic_union.xml" value="0.1625" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/img_permission.xml" value="0.218" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/fragment_create.xml" value="0.25" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/activity_text.xml" value="0.33" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/activity_url.xml" value="0.3625" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/activity_wifi.xml" value="0.25" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/fragment_create.xml" value="0.33" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/fragment_history.xml" value="0.25" />
-        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/fragment_scan.xml" value="0.25" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/fragment_scan.xml" value="0.29278887923544744" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/fragment_setting.xml" value="0.25" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/menu/menu_bottom_nav.xml" value="0.25" />
       </map>
