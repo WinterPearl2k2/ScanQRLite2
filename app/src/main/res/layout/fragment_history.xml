@@ -8,20 +8,30 @@
     android:background="@color/primaryBackground"
     tools:context=".History.History">
 
-    <TextView
+    <RelativeLayout
         android:id="@+id/title_history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/skyBlueLight"
-        android:fontFamily="@font/firasansextracondensed_black"
-        android:paddingLeft="20dp"
-        android:paddingTop="8dp"
-        android:paddingRight="20dp"
-        android:paddingBottom="8dp"
-        android:text="History"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:elevation="5dp"
+        android:paddingTop="30dp"
+        android:background="@color/primaryShrinePink">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/skyBlueLight"
+            android:elevation="5dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            android:text="History"
+            android:textColor="@color/black"
+            android:textSize="25dp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_container"

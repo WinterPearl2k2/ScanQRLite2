@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
@@ -52,6 +54,8 @@ import com.google.mlkit.vision.barcode.BarcodeScanning;
 import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.common.InputImage;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -223,6 +227,8 @@ public class Scan extends Fragment {
     }
 
     private void flashSwitch(Camera camera) {
+        camera.getCameraControl().enableTorch(false);
+        btnFlash.setText("Flash off");
         btnFlash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -265,7 +271,7 @@ public class Scan extends Fragment {
     }
 
     @SuppressLint("NewApi")
-    private void readerBarcodeData(List<Barcode> barcodes) {
+    private boolean readerBarcodeData(List<Barcode> barcodes) {
         for (Barcode barcode : barcodes) {
             String value = barcode.getRawValue();
             int valueType = barcode.getValueType();
@@ -325,7 +331,7 @@ public class Scan extends Fragment {
                                 + barcode.getGeoPoint().getLng(), Toast.LENGTH_SHORT).show();
                         break;
                     default:
-                        return;
+                        return false;
                 }
             } else {
                 switch (barcodeType) {
@@ -351,12 +357,13 @@ public class Scan extends Fragment {
                         Toast.makeText(getActivity(), value, Toast.LENGTH_SHORT).show();
                         break;
                     default:
-                        return;
+                        return false;
                 }
             }
             onPause();
             break;
         }
+        return true;
     }
 
     private String month(int numMonth) {
@@ -409,6 +416,23 @@ public class Scan extends Fragment {
         switch (requestCode) {
             case 102:
                 btnGallery.setEnabled(true);
+                if(data == null || data.getData() == null) {
+                    return;
+                }
+
+                Uri uri = data.getData();
+                InputStream inputStream = null;
+
+                try {
+                    inputStream = getActivity().getContentResolver().openInputStream(uri);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
+
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                InputImage inputImage = InputImage.fromBitmap(bitmap, 0);
+                scanBarcodeGallery(inputImage);
+
                 break;
             case 103:
                 if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)
@@ -416,6 +440,29 @@ public class Scan extends Fragment {
                 break;
 
         }
+    }
+
+    private void scanBarcodeGallery(InputImage inputImage) {
+        BarcodeScannerOptions options = new BarcodeScannerOptions.Builder()
+                .setBarcodeFormats(Barcode.FORMAT_QR_CODE,
+                        Barcode.FORMAT_AZTEC,
+                        Barcode.FORMAT_CODE_128,
+                        Barcode.FORMAT_CODE_93,Barcode.FORMAT_EAN_8,Barcode.FORMAT_EAN_13
+                        ,Barcode.FORMAT_CODE_39,Barcode.FORMAT_ALL_FORMATS
+                        ,Barcode.FORMAT_CODABAR,Barcode.FORMAT_ITF,Barcode.FORMAT_UPC_A,Barcode.FORMAT_UPC_E).build();
+        BarcodeScanner scanner = BarcodeScanning.getClient(options);
+        Task<List<Barcode>> result = scanner.process(inputImage)
+                .addOnSuccessListener(new OnSuccessListener<List<Barcode>>() {
+                    @Override
+                    public void onSuccess(List<Barcode> barcodes) {
+                        if(barcodes.isEmpty()) {
+                            Toast.makeText(getActivity(), "hihi", Toast.LENGTH_SHORT).show();
+                        } else {
+                            if(!readerBarcodeData(barcodes))
+                                Toast.makeText(getActivity(), "hihi", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     private void changeLayout(int num) {
@@ -462,10 +509,8 @@ public class Scan extends Fragment {
         btnGallery = view.findViewById(R.id.btn_gallery);
         btnFlash = view.findViewById(R.id.btn_fash);
         previewView = view.findViewById(R.id.cameraPreviewView);
-
         layoutScan = view.findViewById(R.id.layout_scan);
         layoutPermisson = view.findViewById(R.id.layout_permisson);
-
         btnPermisson = view.findViewById(R.id.btn_permisson);
     }
 }
