@@ -16,11 +16,12 @@
     <color name="primaryIcon">#3F5E80</color>
     <color name="blueLight">#20C3D1</color>
     <color name="primaryTextColor">#E5F6FE</color>
->>>>>>> Stashed changes
+
     <color name="skyBlueLight">#E6F6FE</color>
     <color name="secondaryShrinePink32">#BFFEEAE6</color>
     <color name="grey">#DBDBDB</color>
     <color name="brown">#9AA5B8</color>
     <color name="switch_color">#54CAFF</color>
     <color name="text_color">#181D28</color>
+    <color name="text_color_1">#616F85</color>
 </resources>
