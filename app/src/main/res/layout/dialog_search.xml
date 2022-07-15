@@ -3,17 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <RadioGroup
-        android:id="@+id/list_item_language"
+        android:id="@+id/list_item_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <RadioButton
-            android:id="@+id/item_enlish"
+            android:id="@+id/item_google"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/cus_item_language"
             android:button="@android:color/transparent"
-
             android:letterSpacing="0.03"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
@@ -23,7 +22,7 @@
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/item_germany"
+            android:id="@+id/item_bing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Bing"
@@ -37,7 +36,7 @@
             android:background="@drawable/cus_item_language"/>
 
         <RadioButton
-            android:id="@+id/item_china"
+            android:id="@+id/item_yahoo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Yahoo"
@@ -51,7 +50,7 @@
             android:background="@drawable/cus_item_language"/>
 
         <RadioButton
-            android:id="@+id/item_korea"
+            android:id="@+id/item_coccoc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/cus_item_language"
@@ -59,13 +58,13 @@
             android:letterSpacing="0.03"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:text="Coc Coc"
+            android:text="CocCoc"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/item_vietnam"
+            android:id="@+id/item_duckduckgo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/cus_item_language"
@@ -80,12 +79,11 @@
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/item_thailand"
+            android:id="@+id/item_yandex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/cus_item_language"
             android:button="@android:color/transparent"
-
             android:letterSpacing="0.03"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
