@@ -13,7 +13,6 @@
         android:id="@+id/title_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:background="@color/skyBlueLight"
         android:elevation="5dp"
         android:gravity="center_vertical">
@@ -74,139 +73,215 @@
         android:id="@+id/layout_result"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/title_result">
+        android:layout_below="@id/title_result"
+        android:nestedScrollingEnabled="true"
+        android:layout_alignParentBottom="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="30dp">
+            android:layout_height="match_parent">
 
             <ScrollView
                 android:id="@+id/frame_content_result"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:elevation="10dp">
+                android:elevation="10dp"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical">
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <LinearLayout
-                        android:layout_below="@+id/img_result"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="-30dp"
-                        android:orientation="vertical"
+                        android:layout_below="@+id/img_result"
                         android:layout_marginLeft="20dp"
+                        android:layout_marginTop="-50dp"
                         android:layout_marginRight="20dp"
                         android:layout_marginBottom="10dp"
+                        android:background="@drawable/background_edit_text_while"
                         android:elevation="5dp"
-                        android:background="@drawable/background_edit_text_while">
+                        android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/txt_title_result"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="30dp"
-                            android:text="Wifi"
-                            android:textStyle="bold"
-                            android:textSize="20sp"
-                            android:textColor="@color/black"
+                            android:layout_marginTop="40dp"
+                            android:gravity="center"
                             android:letterSpacing="0.1"
-                            android:gravity="center"/>
+                            android:text="Wifi"
+                            android:textColor="@color/black"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
 
                         <LinearLayout
-                            android:id="@+id/frame_content"
+                            android:id="@+id/frame_content_wifi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:paddingTop="10dp"
+                                android:paddingBottom="5dp">
+
+                                <TextView
+                                    android:id="@+id/title_name"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Network name"
+                                    android:textColor="@color/brown"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:id="@+id/content_name"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="2dp"
+                                    android:gravity="right"
+                                    android:text="content"
+                                    android:textColor="#000000"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/container_content_pass"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp">
+
+                                <TextView
+                                    android:id="@+id/title_pass"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Password"
+                                    android:textColor="@color/brown"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:id="@+id/content_pass"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="2dp"
+                                    android:gravity="right"
+                                    android:text="content"
+                                    android:textColor="#000000"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/container_content_security"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginRight="20dp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="20dp">
+
+                                <TextView
+                                    android:id="@+id/title_security"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Encryption"
+                                    android:textColor="@color/brown"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:id="@+id/content_security"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="2dp"
+                                    android:gravity="right"
+                                    android:text="content"
+                                    android:textColor="#000000"
+                                    android:textSize="16sp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/frame_content_url"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
-                            android:paddingTop="10dp"
-                            android:paddingBottom="5dp">
+                            android:orientation="vertical"
+                            android:paddingTop="20dp"
+                            android:paddingBottom="30dp"
+                            android:visibility="gone">
 
                             <TextView
-                                android:id="@+id/title_name"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Network name"
-                                android:textColor="@color/brown"
-                                android:textSize="16sp" />
-
-                            <TextView
-                                android:id="@+id/content_name"
+                                android:id="@+id/content_url"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2dp"
-                                android:textColor="#000000"
-                                android:gravity="right"
+                                android:gravity="center"
                                 android:text="content"
+                                android:textColor="#000000"
                                 android:textSize="16sp" />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/container_content_pass"
+                            android:id="@+id/frame_content_text"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="5dp">
+                            android:orientation="vertical"
+                            android:paddingTop="20dp"
+                            android:paddingBottom="30dp"
+                            android:visibility="gone">
 
                             <TextView
-                                android:id="@+id/title_pass"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Password"
-                                android:textColor="@color/brown"
-                                android:textSize="16sp" />
-
-                            <TextView
-                                android:id="@+id/content_pass"
+                                android:id="@+id/content_text"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2dp"
-                                android:textColor="#000000"
-                                android:gravity="right"
+                                android:gravity="center"
                                 android:text="content"
+                                android:textColor="#000000"
                                 android:textSize="16sp" />
                         </LinearLayout>
 
                         <LinearLayout
-                            android:id="@+id/container_content_security"
+                            android:id="@+id/frame_content_product"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
                             android:layout_marginRight="20dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="20dp">
+                            android:orientation="vertical"
+                            android:paddingTop="20dp"
+                            android:paddingBottom="30dp"
+                            android:visibility="gone">
 
                             <TextView
-                                android:id="@+id/title_security"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Encryption"
-                                android:textColor="@color/brown"
-                                android:textSize="16sp" />
-
-                            <TextView
-                                android:id="@+id/content_security"
+                                android:id="@+id/content_product"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="2dp"
-                                android:textColor="#000000"
-                                android:gravity="right"
+                                android:gravity="center"
                                 android:text="content"
+                                android:textColor="#000000"
                                 android:textSize="16sp" />
                         </LinearLayout>
+
                     </LinearLayout>
 
                     <ImageView
                         android:id="@+id/img_result"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
                         android:layout_centerHorizontal="true"
-                        android:src="@drawable/logo_text"
-                        android:elevation="10dp"/>
+                        android:elevation="10dp"
+                        android:src="@drawable/logo_text" />
                 </RelativeLayout>
             </ScrollView>
 
@@ -226,8 +301,8 @@
                     android:layout_width="52dp"
                     android:layout_height="52dp"
                     android:layout_margin="5dp"
-                    app:cardCornerRadius="10dp"
-                    ads:cardBackgroundColor="@color/white">
+                    ads:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
@@ -244,14 +319,14 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="5dp"
-                    app:cardCornerRadius="10dp"
-                    ads:cardBackgroundColor="@color/white">
+                    ads:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_search"/>
+                        android:src="@drawable/ic_search" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -259,14 +334,14 @@
                     android:layout_width="52dp"
                     android:layout_height="52dp"
                     android:layout_margin="5dp"
-                    app:cardCornerRadius="10dp"
-                    ads:cardBackgroundColor="@color/white">
+                    ads:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_save"/>
+                        android:src="@drawable/ic_save" />
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
 
@@ -286,8 +361,8 @@
                     android:id="@+id/image_text"
                     android:layout_width="188dp"
                     android:layout_height="188dp"
-                    android:background="@color/white"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:background="@color/white" />
 
             </androidx.cardview.widget.CardView>
 
@@ -297,6 +372,7 @@
                 android:layout_height="60dp"
                 android:layout_below="@+id/qr_code"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -304,43 +380,63 @@
                 app:layout_constraintTop_toBottomOf="@+id/qr_code">
 
 
-
                 <LinearLayout
                     android:id="@+id/btn_goto_url"
-                    android:layout_width="130dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/background_button_blue"
                     android:gravity="center"
+                    android:minWidth="130dp"
                     android:visibility="gone">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Go to URL"
-                        android:textColor="@color/black"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_search_product"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="30dp"
+                    android:background="@drawable/background_button_blue"
+                    android:gravity="center"
+                    android:minWidth="130dp"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="Search product"
+                        android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/btn_connect_wifi"
-                    android:layout_width="120dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="48dp"
                     android:layout_marginLeft="30dp"
                     android:background="@drawable/background_button_blue"
                     android:gravity="center"
-                    android:visibility="gone">
+                    android:minWidth="130dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Connect"
-                        android:textColor="@color/black"
+                        android:text="Connect wifi"
+                        android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
-
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>
