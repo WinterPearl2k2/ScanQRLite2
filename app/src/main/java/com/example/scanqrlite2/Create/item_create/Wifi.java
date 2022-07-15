@@ -40,31 +40,10 @@ public class Wifi extends AppCompatActivity {
     }
 
     private void createWifi() {
+        rdbWPA.setChecked(true);
         ssid = edtNetworkName.getText().toString().trim();
         password = edtNetworkPass.getText().toString().trim();
         setcurity = getSecurity();
-
-        rdgSecurity.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                switch (i) {
-                    case R.id.rdb_wep:
-                        isNone = true;
-                        edtNetworkPass.setEnabled(true);
-                        break;
-                    case R.id.rdb_wpa:
-                        isNone = true;
-                        edtNetworkPass.setEnabled(true);
-                        break;
-                    case R.id.rdb_none:
-                        isNone = false;
-                        edtNetworkPass.setEnabled(false);
-                        break;
-                }
-                setcurity = getSecurity();
-                handleCreate(isNone);
-            }
-        });
 
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +67,28 @@ public class Wifi extends AppCompatActivity {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 ssid = edtNetworkName.getText().toString().trim();
                 password = edtNetworkPass.getText().toString().trim();
+                rdgSecurity.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                        switch (i) {
+                            case R.id.rdb_wep:
+                                isNone = true;
+                                edtNetworkPass.setEnabled(true);
+                                break;
+                            case R.id.rdb_wpa:
+                                isNone = true;
+                                edtNetworkPass.setEnabled(true);
+                                break;
+                            case R.id.rdb_none:
+                                isNone = false;
+                                edtNetworkPass.setEnabled(false);
+                                break;
+                        }
+                        setcurity = getSecurity();
+                        handleCreate(isNone);
+                    }
+                });
+                handleCreate(isNone);
             }
 
             @Override
