@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".History.History_Menu.History_Scan">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycle_history_create"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
