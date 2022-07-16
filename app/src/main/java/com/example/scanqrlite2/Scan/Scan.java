@@ -2,11 +2,15 @@ package com.example.scanqrlite2.Scan;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.media.AudioManager;
 import android.media.Image;
+import android.media.ToneGenerator;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,12 +31,14 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
+import android.os.Vibrator;
 import android.provider.Settings;
 import android.util.Log;
 import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.JavascriptInterface;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
@@ -354,6 +360,10 @@ public class Scan extends Fragment {
                         return;
                 }
             }
+            if(doCopy())
+                copyTextToClipboard(value);
+            Vibrate();
+            Beep();
             onPause();
             break;
         }
@@ -430,6 +440,52 @@ public class Scan extends Fragment {
     }
 
     ProcessCameraProvider processCameraProvider = null;
+
+    public boolean doCopy(){
+        SharedPreferences coppy ;
+        coppy = getActivity().getSharedPreferences("clipboard",0 );
+        boolean check = coppy.getBoolean("clipboard",false);
+        if(check){
+            return true;
+        }
+        return false;
+    }
+
+    private void copyTextToClipboard(String content) {
+        ClipboardManager clipboardManager = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText("label", content);
+        clipboardManager.setPrimaryClip(clipData);
+        Toast.makeText(getContext(), "Copy Success", Toast.LENGTH_SHORT).show();
+    }
+
+    public void Beep(){
+        SharedPreferences beep;
+        beep = getContext().getSharedPreferences("beep",0);
+        boolean check = beep.getBoolean("beep",false);
+        if(check ==true){
+            final ToneGenerator tg = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, 500);
+            tg.startTone(ToneGenerator.TONE_PROP_BEEP);
+        }
+
+    }
+    public void Vibrate(){
+        SharedPreferences vibrate;
+        vibrate = getContext().getSharedPreferences("vibrate",0);
+        boolean check = vibrate.getBoolean("vibrate", false);
+        if(check == true){
+            Viber(getContext(),"on");
+        }
+        else
+            Viber(getContext(),"off");
+    }
+
+    @JavascriptInterface
+    public void Viber(Context ct, String value){
+        if(value.equals("on")) {
+            Vibrator v = (Vibrator) ct.getSystemService(Context.VIBRATOR_SERVICE);
+            v.vibrate(300);
+        }
+    }
 
     @Override
     public void onPause() {

@@ -14,7 +14,7 @@
         android:layout_toLeftOf="@id/clickX_btn"
         android:text="Ratings to boost your app rankings on the app market."
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="17sp"
         android:fontFamily="@font/font_regular"
         android:textStyle="normal" />
 

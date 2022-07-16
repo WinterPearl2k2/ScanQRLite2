@@ -72,7 +72,7 @@
                     android:layout_marginBottom="5dp"
                     android:text="Website (URL)"
                     android:textSize="16sp"
-                    android:textColor="@color/primaryTextColor"
+                    android:textColor="@color/brown"
                     />
 
                 <androidx.appcompat.widget.AppCompatEditText
@@ -86,7 +86,7 @@
                     android:hint="Add a link"
                     android:inputType="textWebEditText"
                     android:padding="15dp"
-                    android:textColorHint="@color/secondaryTextColor" />
+                    android:textColorHint="@color/text_color_1" />
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -102,7 +102,7 @@
                 android:stateListAnimator="@null"
                 android:text="Create"
                 android:textAllCaps="false"
-                android:textColor="@color/primaryTextColor"
+                android:textColor="@color/brown"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </RelativeLayout>

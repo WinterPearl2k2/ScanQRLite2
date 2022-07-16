@@ -18,7 +18,7 @@
             android:paddingRight="30dp"
             android:text="English"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <RadioButton
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Japanese"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:letterSpacing="0.03"
@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Chinese"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:letterSpacing="0.03"
@@ -60,7 +60,7 @@
             android:paddingRight="30dp"
             android:text="Korean"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <RadioButton
@@ -74,7 +74,7 @@
             android:paddingRight="30dp"
             android:text="Vietnamese"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <RadioButton
@@ -88,7 +88,7 @@
             android:paddingRight="30dp"
             android:text="Thai"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
 

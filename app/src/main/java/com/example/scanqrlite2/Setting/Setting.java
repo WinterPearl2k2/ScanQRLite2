@@ -480,7 +480,7 @@ public class Setting extends Fragment {
 
     private void HandleFeedback(Dialog dialog) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            txtContentFeedback.setText("Many questions have been answered in Question and answer.\nIf possible, take or attach a barcode or screenshot.\n");
+            txtContentFeedback.setText("Thank you for using the software.\nIf you have any further questions, please let us know.\n");
         }
         btnFeedbackNo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -517,7 +517,7 @@ public class Setting extends Fragment {
         try{
             startActivityForResult(Intent.createChooser(emailIntent,"Send Email"), REQUEST_CODE);
         } catch (android.content.ActivityNotFoundException ex){
-            Toast.makeText(getActivity(), "Emai not installed" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Email not installed" , Toast.LENGTH_SHORT).show();
         }
 
 

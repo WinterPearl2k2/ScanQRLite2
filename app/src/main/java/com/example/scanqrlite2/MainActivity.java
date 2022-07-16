@@ -16,10 +16,13 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView navigationView;
     static ViewPager2 viewPager;
     AdapterBottomNav adapterBottomNav;
+    Language language;
     FullScreen fullScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        language = new Language(this);
+        language.Language();
         if(getSupportActionBar() != null)
             getSupportActionBar().hide();
         getChangeFullScr();

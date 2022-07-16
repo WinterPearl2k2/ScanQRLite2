@@ -70,9 +70,9 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="25dp"
                     android:layout_marginBottom="5dp"
-                    android:text="Netword name (SSID)"
+                    android:text="Network name (SSID)"
                     android:textSize="16sp"
-                    android:textColor="@color/primaryTextColor"
+                    android:textColor="@color/brown"
                     />
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edt_network_name"
@@ -84,7 +84,7 @@
                     android:padding="15dp"
                     android:hint="Add a name"
                     android:inputType="text"
-                    android:textColorHint="@color/secondaryTextColor"
+                    android:textColorHint="@color/text_color_1"
                     android:background="@drawable/cus_edt_text"/>
                 <TextView
                     android:layout_width="match_parent"
@@ -95,7 +95,7 @@
                     android:layout_marginBottom="5dp"
                     android:text="Security mode"
                     android:textSize="16sp"
-                    android:textColor="@color/primaryTextColor"
+                    android:textColor="@color/brown"
                     />
 
                 <RadioGroup
@@ -145,7 +145,7 @@
                     android:layout_marginBottom="5dp"
                     android:text="Password"
                     android:textSize="16sp"
-                    android:textColor="@color/primaryTextColor"
+                    android:textColor="@color/brown"
                     />
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edt_network_pass"
@@ -157,7 +157,7 @@
                     android:padding="15dp"
                     android:inputType="textVisiblePassword"
                     android:hint="Add a password"
-                    android:textColorHint="@color/secondaryTextColor"
+                    android:textColorHint="@color/text_color_1"
                     android:background="@drawable/cus_edt_text"/>
             </LinearLayout>
 
@@ -174,7 +174,7 @@
                 android:stateListAnimator="@null"
                 android:text="Create"
                 android:textAllCaps="false"
-                android:textColor="@color/primaryTextColor"
+                android:textColor="@color/brown"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </RelativeLayout>
