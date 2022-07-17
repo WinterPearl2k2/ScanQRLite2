@@ -11,7 +11,11 @@
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/cus_item_background.xml" value="0.1625" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/ic_search.xml" value="0.164" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/ic_union.xml" value="0.1625" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/drawable/logo_url.xml" value="0.1935" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/activity_text.xml" value="0.25" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/activity_url.xml" value="0.25" />
+        <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/activity_wifi.xml" value="0.25" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/fragment_create.xml" value="0.4016477857878476" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/fragment_history.xml" value="0.25" />
         <entry key="..\:/Lap trinh/ScanQRLite22/app/src/main/res/layout/fragment_result_generator.xml" value="0.25" />

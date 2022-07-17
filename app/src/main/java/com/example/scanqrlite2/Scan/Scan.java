@@ -43,6 +43,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.scanqrlite2.R;
+import com.example.scanqrlite2.Result;
 import com.example.scanqrlite2.Setting.Setting;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -63,7 +64,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class Scan extends Fragment {
+public class Scan extends Fragment{
     TextView btnGallery;
     CheckBox btnFlash;
     PreviewView previewView;
@@ -270,100 +271,145 @@ public class Scan extends Fragment {
                 });
     }
 
+    String content;
+    String ssid, password, type;
+    int security;
+
     @SuppressLint("NewApi")
     private boolean readerBarcodeData(List<Barcode> barcodes) {
         for (Barcode barcode : barcodes) {
             String value = barcode.getRawValue();
             int valueType = barcode.getValueType();
             int barcodeType = barcode.getFormat();
-
+            String typeQR;
             if(barcodeType == barcode.FORMAT_QR_CODE) {
+                typeQR = "QRCode";
                 switch (valueType) {
                     case Barcode.TYPE_TEXT:
-                        Toast.makeText(getActivity(), value, Toast.LENGTH_SHORT).show();
+                        content = value;
+                        type = "Text";
                         break;
                     case Barcode.TYPE_URL:
-                        Toast.makeText(getActivity(), value, Toast.LENGTH_SHORT).show();
+                        content = value;
+                        type = "URL";
                         break;
                     case Barcode.TYPE_WIFI:
-                        Toast.makeText(getActivity(), barcode.getWifi().getSsid() + "\n" + barcode.getWifi().getPassword() + "\n"
-                                + barcode.getWifi().getEncryptionType(), Toast.LENGTH_SHORT).show();
+                        content = value;
+                        ssid = barcode.getWifi().getSsid();
+                        password = barcode.getWifi().getPassword();
+                        security = barcode.getWifi().getEncryptionType();
+                        type = "Wifi";
                         break;
-                    case Barcode.TYPE_PHONE:
-                        Toast.makeText(getActivity(), barcode.getPhone().getNumber(), Toast.LENGTH_SHORT).show();
-                        break;
-                    case Barcode.TYPE_EMAIL:
-                        Toast.makeText(getActivity(), barcode.getEmail().getAddress()
-                                + "\n" + barcode.getEmail().getSubject()
-                                + "\n" + barcode.getEmail().getBody(), Toast.LENGTH_SHORT).show();
-                        break;
-                    case Barcode.TYPE_SMS:
-                        Toast.makeText(getActivity(), barcode.getSms().getPhoneNumber() + "\n"
-                                + barcode.getSms().getMessage(), Toast.LENGTH_SHORT).show();
-                        break;
-                    case Barcode.TYPE_CALENDAR_EVENT:
-                        Toast.makeText(getActivity(), barcode.getCalendarEvent().getSummary()
-                                + "\n" + barcode.getCalendarEvent().getStart().getHours() + ":"
-                                 + barcode.getCalendarEvent().getStart().getMinutes() + ", "
-                                + barcode.getCalendarEvent().getStart().getDay() + " / "
-                                + month(barcode.getCalendarEvent().getStart().getMonth()) + " / "
-                                 + barcode.getCalendarEvent().getStart().getYear()
-                                + "\n" + barcode.getCalendarEvent().getEnd().getHours() + ":"
-                                + barcode.getCalendarEvent().getEnd().getMinutes() + ", "
-                                 + barcode.getCalendarEvent().getEnd().getDay() + " / "
-                                 + month(barcode.getCalendarEvent().getEnd().getMonth()) + " / "
-                                 + barcode.getCalendarEvent().getEnd().getYear()
-                                + "\n" + barcode.getCalendarEvent().getLocation()
-                                + "\n" + barcode.getCalendarEvent().getDescription(), Toast.LENGTH_SHORT).show();
-                        break;
-                    case Barcode.TYPE_CONTACT_INFO:
-                        Toast.makeText(getActivity(), barcode.getContactInfo().getName().getFormattedName()
-                                + "\n" + barcode.getContactInfo().getPhones().get(1).getNumber()
-                                + "\n" + barcode.getContactInfo().getPhones().get(0).getNumber()
-                                + "\n" + barcode.getContactInfo().getPhones().get(2).getNumber()
-                                + "\n" + barcode.getContactInfo().getEmails().get(0).getAddress()
-                                + "\n" + barcode.getContactInfo().getUrls().get(0)
-                                + "\n" + barcode.getContactInfo().getTitle()
-                                + "\n" + Arrays.toString(barcode.getContactInfo().getAddresses().get(0).getAddressLines().clone()), Toast.LENGTH_SHORT).show();
-                        break;
-                    case Barcode.TYPE_GEO:
-                        Toast.makeText(getActivity(), barcode.getGeoPoint().getLat() + "\n"
-                                + barcode.getGeoPoint().getLng(), Toast.LENGTH_SHORT).show();
-                        break;
+//                    case Barcode.TYPE_PHONE:
+//                        Toast.makeText(getActivity(), barcode.getPhone().getNumber(), Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case Barcode.TYPE_EMAIL:
+//                        Toast.makeText(getActivity(), barcode.getEmail().getAddress()
+//                                + "\n" + barcode.getEmail().getSubject()
+//                                + "\n" + barcode.getEmail().getBody(), Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case Barcode.TYPE_SMS:
+//                        Toast.makeText(getActivity(), barcode.getSms().getPhoneNumber() + "\n"
+//                                + barcode.getSms().getMessage(), Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case Barcode.TYPE_CALENDAR_EVENT:
+//                        Toast.makeText(getActivity(), barcode.getCalendarEvent().getSummary()
+//                                + "\n" + barcode.getCalendarEvent().getStart().getHours() + ":"
+//                                 + barcode.getCalendarEvent().getStart().getMinutes() + ", "
+//                                + barcode.getCalendarEvent().getStart().getDay() + " / "
+//                                + month(barcode.getCalendarEvent().getStart().getMonth()) + " / "
+//                                 + barcode.getCalendarEvent().getStart().getYear()
+//                                + "\n" + barcode.getCalendarEvent().getEnd().getHours() + ":"
+//                                + barcode.getCalendarEvent().getEnd().getMinutes() + ", "
+//                                 + barcode.getCalendarEvent().getEnd().getDay() + " / "
+//                                 + month(barcode.getCalendarEvent().getEnd().getMonth()) + " / "
+//                                 + barcode.getCalendarEvent().getEnd().getYear()
+//                                + "\n" + barcode.getCalendarEvent().getLocation()
+//                                + "\n" + barcode.getCalendarEvent().getDescription(), Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case Barcode.TYPE_CONTACT_INFO:
+//                        Toast.makeText(getActivity(), barcode.getContactInfo().getName().getFormattedName()
+//                                + "\n" + barcode.getContactInfo().getPhones().get(1).getNumber()
+//                                + "\n" + barcode.getContactInfo().getPhones().get(0).getNumber()
+//                                + "\n" + barcode.getContactInfo().getPhones().get(2).getNumber()
+//                                + "\n" + barcode.getContactInfo().getEmails().get(0).getAddress()
+//                                + "\n" + barcode.getContactInfo().getUrls().get(0)
+//                                + "\n" + barcode.getContactInfo().getTitle()
+//                                + "\n" + Arrays.toString(barcode.getContactInfo().getAddresses().get(0).getAddressLines().clone()), Toast.LENGTH_SHORT).show();
+//                        break;
+//                    case Barcode.TYPE_GEO:
+//                        Toast.makeText(getActivity(), barcode.getGeoPoint().getLat() + "\n"
+//                                + barcode.getGeoPoint().getLng(), Toast.LENGTH_SHORT).show();
+//                        break;
                     default:
                         return false;
                 }
             } else {
                 switch (barcodeType) {
                     case Barcode.FORMAT_CODE_128:
-                        Toast.makeText(getActivity(), value, Toast.LENGTH_SHORT).show();
+                        typeQR = "Code_128";
+                        content = value;
+                        type = "Text";
                         break;
                     case Barcode.FORMAT_CODE_39:
-                        Toast.makeText(getActivity(), value, Toast.LENGTH_SHORT).show();
-                        break;
-                    case Barcode.FORMAT_EAN_13:
-                        Toast.makeText(getActivity(), value, Toast.LENGTH_SHORT).show();
-                        break;
-                    case Barcode.FORMAT_EAN_8:
-                        Toast.makeText(getActivity(), value, Toast.LENGTH_SHORT).show();
+                        typeQR = "Code_39";
+                        content = value;
+                        type = "Text";
                         break;
                     case Barcode.FORMAT_ITF:
-                        Toast.makeText(getActivity(), value, Toast.LENGTH_SHORT).show();
+                        typeQR = "Code_ITF";
+                        content = value;
+                        type = "Text";
+                        break;
+                    case Barcode.FORMAT_EAN_13:
+                        typeQR = "EAN_13";
+                        content = value;
+                        type = "Text";
+                        break;
+                    case Barcode.FORMAT_EAN_8:
+                        typeQR = "EAN_8";
+                        content = value;
+                        type = "Text";
                         break;
                     case Barcode.FORMAT_UPC_A:
-                        Toast.makeText(getActivity(), value, Toast.LENGTH_SHORT).show();
+                        typeQR = "UPC_A";
+                        content = value;
+                        type = "Text";
                         break;
                     case Barcode.FORMAT_UPC_E:
-                        Toast.makeText(getActivity(), value, Toast.LENGTH_SHORT).show();
+                        typeQR = "UPC_E";
+                        content = value;
+                        type = "Product";
                         break;
                     default:
                         return false;
                 }
             }
+            toResult(type, content, typeQR);
             onPause();
             break;
         }
         return true;
+    }
+
+    private void toResult(String mType, String mContent, String mTypeQR) {
+        Intent result = new Intent(getContext(), Result.class);
+
+        if(mType.equals("Product")) {
+            result.putExtra("value", mContent);
+        } else if(mType.equals("Text")) {
+            result.putExtra("value", mContent);
+        } else if (mType.equals("URL")) {
+            result.putExtra("value", mContent);
+        } else if (mType.equals("Wifi")) {
+            result.putExtra("value", mContent);
+            result.putExtra("ssid", ssid);
+            result.putExtra("password", password);
+            result.putExtra("security", security);
+        }
+        result.putExtra("type", mType);
+        result.putExtra("type_qr", mTypeQR);
+        startActivity(result);
     }
 
     private String month(int numMonth) {

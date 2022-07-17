@@ -2,19 +2,23 @@ package com.example.scanqrlite2.Create.item_create;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.example.scanqrlite2.FullScreen;
+import com.example.scanqrlite2.HideKeyboard;
 import com.example.scanqrlite2.R;
+import com.example.scanqrlite2.Result;
 
 public class Wifi extends AppCompatActivity {
     FullScreen screen;
@@ -24,7 +28,8 @@ public class Wifi extends AppCompatActivity {
     RadioGroup rdgSecurity;
     RadioButton rdbWPA, rdbWEP, rdbNone;
 
-    String ssid, password, setcurity, value;
+    String ssid, password, value;
+    int security;
     boolean isNone = true;
 
     @Override
@@ -39,11 +44,20 @@ public class Wifi extends AppCompatActivity {
         createWifi();
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (getCurrentFocus() != null) {
+            HideKeyboard hideKeyboard = new HideKeyboard(this);
+            hideKeyboard.closeKeyboard();
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
     private void createWifi() {
         rdbWPA.setChecked(true);
         ssid = edtNetworkName.getText().toString().trim();
         password = edtNetworkPass.getText().toString().trim();
-        setcurity = getSecurity();
+        security = getSecurity();
 
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,10 +98,11 @@ public class Wifi extends AppCompatActivity {
                                 edtNetworkPass.setEnabled(false);
                                 break;
                         }
-                        setcurity = getSecurity();
+                        security = getSecurity();
                         handleCreate(isNone);
                     }
                 });
+                security = getSecurity();
                 handleCreate(isNone);
             }
 
@@ -100,7 +115,7 @@ public class Wifi extends AppCompatActivity {
 
     private void handleCreate(boolean isNone) {
         if(isNone) {
-            value = "WIFI:T:" + setcurity + ";S:" + ssid + ";P:" + password + ";H:false";
+            value = "WIFI:T:" + security + ";S:" + ssid + ";P:" + password + ";H:false";
             if(checkIsEmpty() != 0) {
                 btnCreate.setTextColor(getResources().getColor(R.color.primaryTextColor));
                 btnCreate.setBackgroundResource(R.drawable.cus_create);
@@ -116,12 +131,12 @@ public class Wifi extends AppCompatActivity {
                 btnCreate.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(Wifi.this, "Intent to Reuslt", Toast.LENGTH_SHORT).show();
+                        toResult(isNone);
                     }
                 });
             }
         } else if(!isNone){
-            value = "WIFI:T:" + setcurity + ";S:" + ssid + ";P:;H:false";
+            value = "WIFI:T:" + security + ";S:" + ssid + ";P:;H:false";
             edtNetworkPass.setError(null);
             if(ssid.length() < 1) {
                 btnCreate.setTextColor(getResources().getColor(R.color.primaryTextColor));
@@ -138,11 +153,23 @@ public class Wifi extends AppCompatActivity {
                 btnCreate.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(Wifi.this, "Intent to Reuslt", Toast.LENGTH_SHORT).show();
+                        toResult(isNone);
                     }
                 });
             }
         }
+    }
+
+    private void toResult(boolean isNone) {
+        Intent result = new Intent(Wifi.this, Result.class);
+        result.putExtra("value", value);
+        result.putExtra("ssid", ssid);
+        if(isNone)
+            result.putExtra("password", password);
+        result.putExtra("security", security);
+        result.putExtra("type", "Wifi");
+        result.putExtra("type_qr", "QRCode");
+        startActivity(result);
     }
 
     private void notifyError(int checkIsEmpty) {
@@ -166,13 +193,13 @@ public class Wifi extends AppCompatActivity {
         return 0;
     }
 
-    private String getSecurity() {
+    private int getSecurity() {
         if(rdbWPA.isChecked())
-            return "WPA";
+            return 2;
         else if(rdbWEP.isChecked())
-            return "WEP";
+            return 3;
         else
-            return "nopass";
+            return 1;
     }
 
     private void backLayout() {

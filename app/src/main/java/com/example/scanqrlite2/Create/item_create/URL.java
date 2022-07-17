@@ -2,17 +2,21 @@ package com.example.scanqrlite2.Create.item_create;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
 import com.example.scanqrlite2.FullScreen;
+import com.example.scanqrlite2.HideKeyboard;
 import com.example.scanqrlite2.R;
+import com.example.scanqrlite2.Result;
 
 public class URL extends AppCompatActivity {
     FullScreen screen;
@@ -30,6 +34,15 @@ public class URL extends AppCompatActivity {
         ORM();
         createWifi();
         backLayout();
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (getCurrentFocus() != null) {
+            HideKeyboard hideKeyboard = new HideKeyboard(this);
+            hideKeyboard.closeKeyboard();
+        }
+        return super.dispatchTouchEvent(ev);
     }
 
     private void createWifi() {if(edtURL.getText().toString().trim().length() == 0) {
@@ -66,6 +79,16 @@ public class URL extends AppCompatActivity {
                 } else {
                     btnCreate.setTextColor(getResources().getColor(R.color.white));
                     btnCreate.setBackgroundResource(R.drawable.cus_create_allow);
+                    btnCreate.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent result = new Intent(URL.this, Result.class);
+                            result.putExtra("value", editable.toString());
+                            result.putExtra("type", "URL");
+                            result.putExtra("type_qr", "QRCode");
+                            startActivity(result);
+                        }
+                    });
                 }
             }
         });
