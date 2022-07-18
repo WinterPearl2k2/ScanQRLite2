@@ -28,8 +28,7 @@ public class Wifi extends AppCompatActivity {
     RadioGroup rdgSecurity;
     RadioButton rdbWPA, rdbWEP, rdbNone;
 
-    String ssid, password, value;
-    int security;
+    String ssid, password, value, security;
     boolean isNone = true;
 
     @Override
@@ -193,13 +192,13 @@ public class Wifi extends AppCompatActivity {
         return 0;
     }
 
-    private int getSecurity() {
+    private String getSecurity() {
         if(rdbWPA.isChecked())
-            return 2;
+            return "WPA";
         else if(rdbWEP.isChecked())
-            return 3;
+            return "WEP";
         else
-            return 1;
+            return "nopass";
     }
 
     private void backLayout() {

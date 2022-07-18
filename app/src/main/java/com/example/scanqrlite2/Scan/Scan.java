@@ -272,8 +272,7 @@ public class Scan extends Fragment{
     }
 
     String content;
-    String ssid, password, type;
-    int security;
+    String ssid, password, type, security;
 
     @SuppressLint("NewApi")
     private boolean readerBarcodeData(List<Barcode> barcodes) {
@@ -297,7 +296,7 @@ public class Scan extends Fragment{
                         content = value;
                         ssid = barcode.getWifi().getSsid();
                         password = barcode.getWifi().getPassword();
-                        security = barcode.getWifi().getEncryptionType();
+                        security = getSecurity(barcode.getWifi().getEncryptionType());
                         type = "Wifi";
                         break;
 //                    case Barcode.TYPE_PHONE:
@@ -364,17 +363,17 @@ public class Scan extends Fragment{
                     case Barcode.FORMAT_EAN_13:
                         typeQR = "EAN_13";
                         content = value;
-                        type = "Text";
+                        type = "Product";
                         break;
                     case Barcode.FORMAT_EAN_8:
                         typeQR = "EAN_8";
                         content = value;
-                        type = "Text";
+                        type = "Product";
                         break;
                     case Barcode.FORMAT_UPC_A:
                         typeQR = "UPC_A";
                         content = value;
-                        type = "Text";
+                        type = "Product";
                         break;
                     case Barcode.FORMAT_UPC_E:
                         typeQR = "UPC_E";
@@ -441,6 +440,15 @@ public class Scan extends Fragment{
             default:
                 return "";
         }
+    }
+
+    private String getSecurity(int encryptionType) {
+        if(encryptionType == 2)
+            return "WPA";
+        else if (encryptionType == 3)
+            return "WEP";
+        else
+            return "None";
     }
 
     private void scanByGallery() {

@@ -1,11 +1,29 @@
 package com.example.scanqrlite2;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.net.Uri;
+import android.net.wifi.WifiConfiguration;
+import android.net.wifi.WifiManager;
+import android.net.wifi.WifiNetworkSuggestion;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.provider.Settings;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -21,9 +39,18 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
+import java.io.FileNotFoundException;
+import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
+import java.util.Objects;
+import java.util.Random;
 
 public class Result extends AppCompatActivity {
+    private final int SHARE = 200, SEARCH = 201, SEARCH_PRODUCT = 202, TO_URL = 203, CONNECT_WIFI = 204;
+    private WifiManager wifiManager;
+
     FullScreen screen;
     LinearLayout btnBack, btnToURL, btnConnectWifi, btnSearchProduct, btnShare;
     LinearLayout resultText, resultWifi, resultURL, resultProduct;
@@ -63,7 +90,8 @@ public class Result extends AppCompatActivity {
                 Intent share = new Intent(Intent.ACTION_SEND);
                 share.setType("text/plain");
                 share.putExtra(Intent.EXTRA_TEXT, content);
-                startActivity(share);
+                startActivityForResult(share, SHARE);
+                btnShare.setEnabled(false);
             }
         });
     }
@@ -72,16 +100,64 @@ public class Result extends AppCompatActivity {
         btnSaveImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Result.this, "lolo", Toast.LENGTH_SHORT).show();
+                if(ActivityCompat.checkSelfPermission(Result.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+                    if(getFromPer(Result.this, "ALLOWED")) {
+                        Intent save = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri = Uri.fromParts("pakage", getPackageName(), null);
+                        save.setData(uri);
+                        startActivityForResult(save, 104);
+                    } else {
+                        ActivityCompat.requestPermissions(Result.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 103);
+                    }
+                } else {
+                    handleSaving();
+                }
             }
         });
+    }
+
+    private void handleSaving() {
+        Random generator = new Random();
+        int n = 1000000;
+        n = generator.nextInt(n);
+        String mName = "Image-" + n + ".jpg";
+        OutputStream fos;
+        ContentResolver resolver = Result.this.getContentResolver();
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.MediaColumns.DISPLAY_NAME, mName);
+        values.put(MediaStore.MediaColumns.MIME_TYPE, "image/jpg");
+        Uri uri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+        try {
+            fos = resolver.openOutputStream(uri);
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            Objects.requireNonNull(fos);
+            Toast.makeText(Result.this, "Success", Toast.LENGTH_SHORT).show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean getFromPer(Result result, String allowed) {
+        SharedPreferences preferences = getSharedPreferences("save_img", MODE_PRIVATE);
+        return preferences.getBoolean("save_img", false);
+    }
+
+    public static void saveToPres(Context context, String key, Boolean allowed) {
+        SharedPreferences preferences = context.getSharedPreferences("save_img", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean(key, allowed);
+        editor.commit();
     }
 
     private void searchGoogle() {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Result.this, "koko", Toast.LENGTH_SHORT).show();
+                Intent search = new Intent(Intent.ACTION_VIEW);
+                search.setData(Uri.parse("https://www.google.com/search?q=" + content));
+                startActivityForResult(search, SEARCH);
+                btnSearch.setEnabled(false);
             }
         });
     }
@@ -90,7 +166,10 @@ public class Result extends AppCompatActivity {
         btnCoppy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Result.this, "hoho", Toast.LENGTH_SHORT).show();
+                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                ClipData clipData = ClipData.newPlainText("label", content);
+                clipboardManager.setPrimaryClip(clipData);
+                Toast.makeText(Result.this, "Success", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -99,16 +178,82 @@ public class Result extends AppCompatActivity {
         btnSearchProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Result.this, "kiki", Toast.LENGTH_SHORT).show();
+                Intent search = new Intent(Intent.ACTION_VIEW);
+                search.setData(Uri.parse("https://www.google.com/search?q=" + content));
+                startActivityForResult(search, SEARCH_PRODUCT);
+                btnSearchProduct.setEnabled(false);
             }
         });
     }
 
     private void connectWifi() {
+        Intent wifi = new Intent(Settings.ACTION_WIFI_SETTINGS);
+        wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
         btnConnectWifi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Result.this, "huhu", Toast.LENGTH_SHORT).show();
+                if(Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+                    WifiConfiguration conf = new WifiConfiguration();
+                    conf.SSID = "\"" + ssid  + "\"";
+                    conf.status = WifiConfiguration.Status.DISABLED;
+                    conf.priority = 40;
+                    if(security.equals("None")) {
+                        conf.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
+                        conf.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
+                        conf.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
+                        conf.allowedAuthAlgorithms.clear();
+                        conf.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
+                        conf.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);
+                        conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP40);
+                        conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP104);
+                        conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);
+                        conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
+                    } else if (security.equals("WEP")) {
+                        conf.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.NONE);
+                        conf.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
+                        conf.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
+                        conf.allowedAuthAlgorithms.set(WifiConfiguration.AuthAlgorithm.OPEN);
+                        conf.allowedAuthAlgorithms.set(WifiConfiguration.AuthAlgorithm.SHARED);
+                        conf.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
+                        conf.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);
+                        conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP40);
+                        conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP104);
+                        conf.wepKeys[0] = "\"".concat(password).concat("\"");
+                    } else if (security.equals("WPA")) {
+                        conf.allowedProtocols.set(WifiConfiguration.Protocol.RSN);
+                        conf.allowedProtocols.set(WifiConfiguration.Protocol.WPA);
+                        conf.allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK);
+                        conf.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP);
+                        conf.allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP);
+                        conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP40);
+                        conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.WEP104);
+                        conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP);
+                        conf.allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP);
+
+                        conf.preSharedKey = "\"" + password + "\"";
+                    }
+
+                    int networkID = wifiManager.addNetwork(conf);
+                    wifiManager.disconnect();
+                    wifiManager.enableNetwork(networkID, true);
+                    wifiManager.reconnect();
+                    startActivityForResult(wifi, CONNECT_WIFI);
+
+                    btnConnectWifi.setEnabled(false);
+                } else {
+                    if (password.length() != 0) {
+                        WifiNetworkSuggestion.Builder builder = new WifiNetworkSuggestion.Builder();
+                        builder.setSsid(ssid);
+                        builder.setWpa2Passphrase(password);
+                        WifiNetworkSuggestion suggestion = builder.build();
+                        List<WifiNetworkSuggestion> list = new ArrayList<WifiNetworkSuggestion>();
+                        list.add(suggestion);
+                        wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                        wifiManager.removeNetworkSuggestions(new ArrayList<WifiNetworkSuggestion>());
+                        wifiManager.addNetworkSuggestions(list);
+                    }
+                    startActivity(new Intent("android.settings.panel.action.INTERNET_CONNECTIVITY"));
+                }
             }
         });
     }
@@ -117,9 +262,57 @@ public class Result extends AppCompatActivity {
         btnToURL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Result.this, "hihi", Toast.LENGTH_SHORT).show();
+                Intent toURL = new Intent(Intent.ACTION_VIEW);
+                toURL.setData(Uri.parse(content));
+                startActivityForResult(toURL, TO_URL);
+                btnToURL.setEnabled(false);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        switch (requestCode) {
+            case SHARE:
+                btnShare.setEnabled(true);
+                break;
+            case SEARCH:
+                btnSearch.setEnabled(true);
+                break;
+            case SEARCH_PRODUCT:
+                btnSearchProduct.setEnabled(true);
+                break;
+            case TO_URL:
+                btnToURL.setEnabled(true);
+                break;
+            case CONNECT_WIFI:
+                btnConnectWifi.setEnabled(true);
+                break;
+            case 104:
+                if(ActivityCompat.checkSelfPermission(Result.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+                    handleSaving();
+                break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 103:
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    handleSaving();
+                    break;
+                }
+                String perStorage = permissions[0];
+                if(grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                    boolean per = ActivityCompat.shouldShowRequestPermissionRationale(Result.this, perStorage);
+                    if(!per)
+                        saveToPres(Result.this, "ALLOWED", true);
+                }
+                break;
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     private void showQR() {
@@ -289,12 +482,12 @@ public class Result extends AppCompatActivity {
     private void handleURL() {
         if(content.toLowerCase().startsWith("https://")) {
             content = content.substring(8);
-            content = "https://" + content;
+            content = "https://" + content.trim();
         } else if(content.toLowerCase().startsWith("http://")) {
             content = content.substring(7);
-            content = "http://" + content;
+            content = "http://" + content.trim();
         } else if(!content.startsWith("http://") || !content.startsWith("https://"))
-            content = "https://" + content;
+            content = "https://" + content.trim();
     }
 
     private void getResult() {
@@ -303,17 +496,10 @@ public class Result extends AppCompatActivity {
         typeQR = result.getStringExtra("type_qr");
         ssid = result.getStringExtra("ssid");
         password = result.getStringExtra("password");
-        security = getSecurity();
-        content = result.getStringExtra("value");
-    }
-
-    private String getSecurity() {
-        int typeSecurity = result.getIntExtra("security", -1);
-        if(typeSecurity == 2)
-            return "WPA";
-        else if (typeSecurity == 3)
-            return "WEP";
+        if(result.getStringExtra("security").equals("nopass"))
+            security = "None";
         else
-            return "None";
+            security = result.getStringExtra("security");
+        content = result.getStringExtra("value");
     }
 }
