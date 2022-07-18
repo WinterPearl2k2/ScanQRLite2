@@ -116,7 +116,7 @@ public class Wifi extends AppCompatActivity {
         if(isNone) {
             value = "WIFI:T:" + security + ";S:" + ssid + ";P:" + password + ";H:false";
             if(checkIsEmpty() != 0) {
-                btnCreate.setTextColor(getResources().getColor(R.color.primaryTextColor));
+                btnCreate.setTextColor(getResources().getColor(R.color.brown));
                 btnCreate.setBackgroundResource(R.drawable.cus_create);
                 btnCreate.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -138,7 +138,7 @@ public class Wifi extends AppCompatActivity {
             value = "WIFI:T:" + security + ";S:" + ssid + ";P:;H:false";
             edtNetworkPass.setError(null);
             if(ssid.length() < 1) {
-                btnCreate.setTextColor(getResources().getColor(R.color.primaryTextColor));
+                btnCreate.setTextColor(getResources().getColor(R.color.brown));
                 btnCreate.setBackgroundResource(R.drawable.cus_create);
                 btnCreate.setOnClickListener(new View.OnClickListener() {
                     @Override

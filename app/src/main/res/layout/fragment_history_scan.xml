@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".History.History_Menu.History_Scan">
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycle_history_create"
+        android:id="@+id/recycle_history_scan"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 </LinearLayout>

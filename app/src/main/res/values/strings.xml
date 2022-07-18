@@ -1,5 +1,81 @@
 <resources>
     <string name="app_name">ScanQRLite2</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+<!--    //Tutorial-->
+    <string name="allow_permission">ALLOW PERMISSION</string>
+<!--    // Menu-->
+    <string name="scan">Scan</string>
+    <string name="create">Create</string>
+    <string name="history">History</string>
+    <string name="setting">Setting</string>
+
+<!--    //Scan-->
+    <string name="focus_barcode">Focus barcode into area</string>
+    <string name="gallery">Gallery</string>
+    <string name="flash_off">Flash off</string>
+    <string name="flash_on">Flash on</string>
+
+<!--    //Create-->
+    <string name="create_url">Create URL</string>
+    <string name="website">Website (URL)</string>
+    <string name="Add_a_link">Add a link</string>
+    <string name="please_enter_your_link">Please enter your link</string>
+
+    <string name="create_wifi">Create Wifi</string>
+    <string name="network_name">Network name (SSID)</string>
+    <string name="Add_a_name">Add a name</string>
+    <string name="security">Security mode</string>
+    <string name="password">Password</string>
+    <string name="add_a_password">Add a password</string>
+    <string name="account_not_be_blank">Account not be blank</string>
+    <string name="password_please_enter_more_than_8_character">Password please enter more than 8 character</string>
+
+    <string name="create_text">Create Text</string>
+    <string name="message_text">Message text</string>
+    <string name="Add_a_text">Add a text</string>
+    <string name="Please_enter_your_content">Please enter your content</string>
+
+<!--    Result-->
+    <string name="result">Result</string>
+    <string name="wifi">Wifi</string>
+    <string name="text">Text</string>
+    <string name="url">URL</string>
+    <string name="encryption">Encryption</string>
+    <string name="connect_wifi">Connect Wifi</string>
+    <string name="Go_to_url">Go to URL</string>
+<!--    History-->
+
+<!--    Setting-->
+    <string name="tittle_setting">Settings</string>
+    <string name="general_settings">General settings</string>
+    <string name="beep">Beep</string>
+    <string name="beep_when_the_scan_is_successful">Beep when the scan is successful</string>
+    <string name="vibrate">Vibrate</string>
+    <string name="vibrate_when_the_scan_is_successful">Vibrate when the scan is successful</string>
+    <string name="auto_copy">Auto copy the clipboard</string>
+    <string name="copy_success">Copy Success</string>
+    <string name="search_engine">Search engine</string>
+    <string name="change_language">Change language</string>
+    <string name="english">English</string>
+    <string name="japanese">Japanese</string>
+    <string name="chinese">Chinese</string>
+    <string name="korean">Korean</string>
+    <string name="vietnamese">Vietnamese</string>
+    <string name="thai">Thai</string>
+    <string name="dark_mode">Dark mode</string>
+    <string name="rate_us">Rate us</string>
+    <string name="rating_boost_your_app">Rating to boot your app rankings on the app market </string>
+    <string name="vote">Vote</string>
+    <string name="report_bugs_and_let_us">Report bugs and let us know what needs improvement</string>
+    <string name="Vote_again">Vote again</string>
+    <string name="feedback">Feedback</string>
+    <string name="thank_you">Thank you for voting for the app</string>
+    <string name="open_chplay">Open CHPlay</string>
+    <string name="report_bugs_and_tell_us">Report bugs and tell us to improve</string>
+    <string name="helps">Helps</string>
+    <string name="dialog_feedback">Thank you for using the software.\nIf you have any further questions, please let us know.\n</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="version">"Version: "</string>
+    <string name="search_product">Search product</string>
 </resources>

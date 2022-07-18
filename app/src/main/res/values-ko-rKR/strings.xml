@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ScanQRLite2</string>
+
+    <!--    //Tutorial-->
+    <string name="allow_permission">허용 권한</string>
+    <!-- // 메뉴-->
+    <string name="scan">스캔</string>
+    <string name="create">만들기</string>
+    <string name="history">기록</string>
+    <string name="setting">설정</string>
+
+    <!--    //Scan-->
+    <string name="focus_barcode">영역에 바코드 초점 맞추기</string>
+    <string name="gallery">갤러리</string>
+    <string name="flash_off">플래시 끄기</string>
+    <string name="flash_on">플래시 켜기</string>
+
+    <!--    //Create-->
+    <string name="create_url">URL 생성</string>
+    <string name="website">웹사이트(URL)</string>
+    <string name="Add_a_link">링크 추가</string>
+    <string name="please_enter_your_link">링크를 입력하세요</string>
+
+    <string name="create_wifi">Wifi 생성</string>
+    <string name="network_name">네트워크 이름(SSID)</string>
+    <string name="Add_a_name">이름 추가</string>
+    <string name="security">보안 모드</string>
+    <string name="password">비밀번호</string>
+    <string name="add_a_password">비밀번호 추가</string>
+    <string name="account_not_be_blank">계정은 비워둘 수 없습니다.</string>
+    <string name="password_please_enter_more_than_8_character">비밀번호는 8자 이상 입력하세요.</string>
+
+    <string name="create_text">텍스트 생성</string>
+    <string name="message_text">메시지 텍스트</string>
+    <string name="Add_a_text">텍스트 추가</string>
+    <string name="Please_enter_your_content">콘텐츠를 입력하세요</string>
+
+    <!--    Result-->
+    <string name="result">결과</string>
+    <string name="wifi">와이파이</string>
+    <string name="text">텍스트</string>
+    <string name="url">URL</string>
+    <string name="encryption">암호화</string>
+    <string name="connect_wifi">와이파이 연결</string>
+    <string name="Go_to_url">URL로 이동</string>
+    <!--    History-->
+
+    <!-- Settings-->
+    <string name="tittle_setting">설정</string>
+    <string name="general_settings">일반 설정</string>
+    <string name="beep">삐</string>
+    <string name="beep_when_the_scan_is_successful">스캔 성공 시 경고음</string>
+    <string name="vibrate">진동</string>
+    <string name="vibrate_when_the_scan_is_successful">스캔 성공 시 진동</string>
+    <string name="auto_copy">클립보드 자동 복사</string>
+    <string name="copy_success">복사 성공</string>
+    <string name="search_engine">검색 엔진</string>
+    <string name="change_language">언어 변경</string>
+    <string name="english">영어</string>
+    <string name="japanese">일본어</string>
+    <string name="chinese">중국어</string>
+    <string name="korean">한국어</string>
+    <string name="vietnamese">베트남어</string>
+    <string name="thai">태국어</string>
+    <string name="dark_mode">다크 모드</string>
+    <string name="rate_us">평가하기</string>
+    <string name="rating_boost_your_app">Rating 앱 시장에서 앱 순위 높이기 </string>
+    <string name="vote">투표</string>
+    <string name="report_bugs_and_let_us">버그를 보고하고 개선이 필요한 부분을 알려주세요</string>
+    <string name="Vote_again">다시 투표</string>
+    <string name="feedback">피드백</string>
+    <string name="thank_you">앱에 투표해 주셔서 감사합니다.</string>
+    <string name="open_chplay">CHPlay 열기</string>
+    <string name="report_bugs_and_tell_us">버그를 보고하고 개선 사항을 알려주세요</string>
+    <string name="dialog_feedback">소프트웨어를 사용해 주셔서 감사합니다.\n추가 질문이 있으면 알려주세요.\n</string>
+    <string name="helps">Helps</string>
+    <string name="no">아니요</string>
+    <string name="yes">예</string>
+    <string name="version">"버전: "</string>
+    <string name="search_product">Search product</string>
+</resources>

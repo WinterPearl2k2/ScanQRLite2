@@ -24,7 +24,7 @@
             android:paddingTop="10dp"
             android:paddingRight="20dp"
             android:paddingBottom="10dp"
-            android:text="Create"
+            android:text="@string/create"
             android:textColor="@color/black"
             android:textSize="25dp"
             android:textStyle="bold" />
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="Create URL"
+                android:text="@string/create_url"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -90,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="Create Wifi"
+                android:text="@string/create_wifi"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>
@@ -118,7 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
-                android:text="Create Text"
+                android:text="@string/create_text"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
         </LinearLayout>

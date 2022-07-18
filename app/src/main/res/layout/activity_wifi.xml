@@ -47,7 +47,7 @@
                 android:gravity="center_vertical"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
-                android:text="Create Wifi"
+                android:text="@string/create_wifi"
                 android:textColor="@color/black"
                 android:textSize="25dp"
                 android:textStyle="bold" />
@@ -79,10 +79,10 @@
                     android:layout_marginTop="25dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="5dp"
-                    android:text="Netword name (SSID)"
-                    android:textColor="@color/primaryTextColor"
-                    android:textSize="16sp" />
-
+                    android:text="@string/network_name"
+                    android:textSize="16sp"
+                    android:textColor="@color/brown"
+                    />
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edt_network_name"
                     android:layout_width="match_parent"
@@ -90,12 +90,11 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="10dp"
-                    android:background="@drawable/cus_edt_text"
-                    android:hint="Add a name"
-                    android:inputType="text"
                     android:padding="15dp"
-                    android:textColorHint="@color/secondaryTextColor" />
-
+                    android:hint="@string/Add_a_name"
+                    android:inputType="text"
+                    android:textColorHint="@color/text_color_1"
+                    android:background="@drawable/cus_edt_text"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -103,9 +102,10 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="5dp"
-                    android:text="Security mode"
-                    android:textColor="@color/primaryTextColor"
-                    android:textSize="16sp" />
+                    android:text="@string/security"
+                    android:textSize="16sp"
+                    android:textColor="@color/brown"
+                    />
 
                 <RadioGroup
                     android:id="@+id/rdg_container"
@@ -155,10 +155,10 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="5dp"
-                    android:text="Password"
-                    android:textColor="@color/primaryTextColor"
-                    android:textSize="16sp" />
-
+                    android:text="@string/password"
+                    android:textSize="16sp"
+                    android:textColor="@color/brown"
+                    />
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edt_network_pass"
                     android:layout_width="match_parent"
@@ -166,11 +166,11 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="30dp"
-                    android:background="@drawable/cus_edt_text"
-                    android:hint="Add a password"
-                    android:inputType="textVisiblePassword"
                     android:padding="15dp"
-                    android:textColorHint="@color/secondaryTextColor" />
+                    android:inputType="textVisiblePassword"
+                    android:hint="@string/add_a_password"
+                    android:textColorHint="@color/text_color_1"
+                    android:background="@drawable/cus_edt_text"/>
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
@@ -184,9 +184,9 @@
                 android:paddingLeft="60dp"
                 android:paddingRight="60dp"
                 android:stateListAnimator="@null"
-                android:text="Create"
+                android:text="@string/create"
                 android:textAllCaps="false"
-                android:textColor="@color/primaryTextColor"
+                android:textColor="@color/brown"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </RelativeLayout>

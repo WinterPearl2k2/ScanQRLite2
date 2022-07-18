@@ -1,4 +1,4 @@
 package com.example.scanqrlite2.Adapter;
 
-public class HistoryScanAdapter {
+public class HistoryScanAdaper {
 }

@@ -18,7 +18,7 @@
             android:paddingRight="30dp"
             android:text="Google"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <RadioButton
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Bing"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:letterSpacing="0.03"
@@ -40,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Yahoo"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:letterSpacing="0.03"
@@ -60,7 +60,7 @@
             android:paddingRight="30dp"
             android:text="CocCoc"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <RadioButton
@@ -75,7 +75,7 @@
             android:paddingRight="30dp"
             android:text="DuckDuckGo "
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <RadioButton
@@ -89,7 +89,7 @@
             android:paddingRight="30dp"
             android:text="Yandex"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
 

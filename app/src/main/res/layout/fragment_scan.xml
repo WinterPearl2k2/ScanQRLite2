@@ -54,7 +54,7 @@
                     android:layout_above="@+id/img_csan_frame"
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="35dp"
-                    android:text="Focus barcode into area"
+                    android:text="@string/focus_barcode"
                     android:textColor="@color/white"
                     android:textSize="20sp" />
 
@@ -96,7 +96,7 @@
                     android:minWidth="150dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Gallery"
+                    android:text="@string/gallery"
                     android:textColor="@color/cus_text"
                     android:textSize="20sp" />
 
@@ -115,7 +115,7 @@
                     android:minWidth="150dp"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:text="Flash off"
+                    android:text="@string/flash_off"
                     android:textColor="@color/cus_text"
                     android:textSize="20sp" />
             </LinearLayout>
@@ -148,7 +148,7 @@
                 android:background="@drawable/cus_btn_permission"
                 android:letterSpacing="0.1"
                 android:stateListAnimator="@null"
-                android:text="Allow permission"
+                android:text="@string/allow_permission"
                 android:textColor="@color/white"
                 android:textAllCaps="true"
                 android:textSize="18sp"

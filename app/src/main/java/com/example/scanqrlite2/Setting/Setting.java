@@ -268,27 +268,27 @@ public class Setting extends Fragment {
 
         switch (Language) {
             case "English":
-                txtLanguage.setText("English");
+                txtLanguage.setText(R.string.english);
                 itemEnglish.setChecked(true);
                 break;
             case "Japanese":
-                txtLanguage.setText("Japanese");
+                txtLanguage.setText(R.string.japanese);
                 itemJapanese.setChecked(true);
                 break;
             case "Chinese":
-                txtLanguage.setText("Chinese");
+                txtLanguage.setText(R.string.chinese);
                 itemChinese.setChecked(true);
                 break;
             case "Korean":
-                txtLanguage.setText("Korean");
+                txtLanguage.setText(R.string.korean);
                 itemKorean.setChecked(true);
                 break;
             case "Vietnamese":
-                txtLanguage.setText("Vietnamses");
+                txtLanguage.setText(R.string.vietnamese);
                 itemVietnamese.setChecked(true);
                 break;
             case "Thai":
-                txtLanguage.setText("Thai");
+                txtLanguage.setText(R.string.thai);
                 itemThai.setChecked(true);
                 break;
         }
@@ -314,32 +314,32 @@ public class Setting extends Fragment {
                     case R.id.item_english:
                         editor.putString("language","English");
                         locale = new Locale("en");
-                        txtLanguage.setText("English");
+                        txtLanguage.setText(R.string.english);
                         break;
                     case R.id.item_japanese:
                         editor.putString("language","Japanese");
-                        locale = new Locale("de");
-                        txtLanguage.setText("German");
+                        locale = new Locale("ja");
+                        txtLanguage.setText(R.string.japanese);
                         break;
                     case R.id.item_chinese:
                         editor.putString("language","Chinese");
                         locale = new Locale("zh");
-                        txtLanguage.setText("Chinese");
+                        txtLanguage.setText(R.string.chinese);
                         break;
                     case R.id.item_korean:
                         editor.putString("language","Korean");
                         locale = new Locale("ko");
-                        txtLanguage.setText("Korean");
+                        txtLanguage.setText(R.string.korean);
                         break;
                     case R.id.item_vietnamese:
                         editor.putString("language","Vietnamese");
                         locale = new Locale("vi");
-                        txtLanguage.setText("Vietnamese");
+                        txtLanguage.setText(R.string.vietnamese);
                         break;
                     case R.id.item_thai:
                         editor.putString("language","Thai");
                         locale = new Locale("th");
-                        txtLanguage.setText("Thai");
+                        txtLanguage.setText(R.string.thai);
                 }
                 changeLanguage(locale);
                 editor.commit();
@@ -395,12 +395,12 @@ public class Setting extends Fragment {
             public void onClick(View view) {
                 if(rtRating.getRating() >= 5f) {
                     imgRating.setImageResource(R.drawable.img_love);
-                    txtTitleRating.setText("Thank you for voting for the app");
+                    txtTitleRating.setText(R.string.thank_you);
                     btnRatingClose.setVisibility(View.VISIBLE);
                     btnRatingOpenChplay.setVisibility(View.VISIBLE);
                     btnRatingFeedback.setVisibility(View.GONE);
                     btnRatingVote.setVisibility(View.GONE);
-                    btnRatingOpenChplay.setText("Open CHPlay");
+                    btnRatingOpenChplay.setText(R.string.open_chplay);
                     btnRatingOpenChplay.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -411,7 +411,7 @@ public class Setting extends Fragment {
                     rtRating.setClickable(false);
                 } else if(rtRating.getRating() > 0f && rtRating.getRating() <= 4f) {
                     imgRating.setImageResource(R.drawable.icon_cry);
-                    txtTitleRating.setText("Report bugs and let us know what needs improvement.");
+                    txtTitleRating.setText(R.string.report_bugs_and_let_us);
                     btnRatingVoteAgain.setVisibility(View.VISIBLE);
                     btnRatingClose.setVisibility(View.GONE);
                     btnRatingVoteAgain.setOnClickListener(new View.OnClickListener() {
@@ -419,7 +419,7 @@ public class Setting extends Fragment {
                         public void onClick(View view) {
                             rtRating.setRating(rtRating.getRating());
                             imgRating.setImageResource(R.drawable.icon_smile);
-                            txtTitleRating.setText("Ratings to boost your app rankings on the app market.");
+                            txtTitleRating.setText(R.string.rating_boost_your_app);
                             btnRatingVoteAgain.setVisibility(View.GONE);
                             btnRatingClose.setVisibility(View.INVISIBLE);
                             btnRatingVote.setVisibility(View.VISIBLE);
@@ -479,7 +479,7 @@ public class Setting extends Fragment {
 
     private void HandleFeedback(Dialog dialog) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            txtContentFeedback.setText("Many questions have been answered in Question and answer.\nIf possible, take or attach a barcode or screenshot.\n");
+            txtContentFeedback.setText(R.string.dialog_feedback);
         }
         btnFeedbackNo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -516,13 +516,14 @@ public class Setting extends Fragment {
         try{
             startActivityForResult(Intent.createChooser(emailIntent,"Send Email"), REQUEST_CODE);
         } catch (android.content.ActivityNotFoundException ex){
-            Toast.makeText(getActivity(), "Emai not installed" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Email not installed" , Toast.LENGTH_SHORT).show();
         }
 
 
     }
     private void Version() {
-        txtVersion.setText( "Version: " + BuildConfig.VERSION_NAME);
+
+        txtVersion.setText( getText(R.string.version) + BuildConfig.VERSION_NAME);
     }
     private void ORM(View view){
         btnBeep = view.findViewById(R.id.btn_sw_beep);

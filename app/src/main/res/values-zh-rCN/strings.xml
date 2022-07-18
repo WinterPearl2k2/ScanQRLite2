@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ScanQRLite2</string>
+
+<!--    //Tutorial-->
+    <string name="allow_permission">允许权限</string>
+<!--    // Menu-->
+    <string name="scan">扫描</string>
+    <string name="create">创建</string>
+    <string name="history">历史</string>
+    <string name="setting">设置</string>
+<!--    //Scan-->
+    <string name="focus_barcode">聚焦条码到区域</string>
+    <string name="gallery">画廊</string>
+    <string name="flash_off">闪光关闭</string>
+    <string name="flash_on">闪光开</string>
+
+<!--    //Create-->
+    <string name="create_url">创建网址</string>
+    <string name="website">网站（URL）</string>
+    <string name="Add_a_link">添加链接</string>
+    <string name="please_enter_your_link">请输入您的链接</string>
+
+    <string name="create_wifi">创建无线网络</string>
+    <string name="network_name">网络名称（SSID）</string>
+    <string name="Add_a_name">添加名称</string>
+    <string name="security">安全模式</string>
+    <string name="password">密码</string>
+    <string name="add_a_password">添加密码</string>
+    <string name="account_not_be_blank">账户不能为空</string>
+    <string name="password_please_enter_more_than_8_character">密码请输入超过8个字符</string>
+
+    <string name="create_text">创建文本</string>
+    <string name="message_text">消息文本</string>
+    <string name="Add_a_text">添加文本</string>
+    <string name="Please_enter_your_content">请输入您的内容</string>
+
+<!--    Result-->
+    <string name="result">结果</string>
+    <string name="wifi">无线网络</string>
+    <string name="text">文本</string>
+    <string name="url">网址</string>
+    <string name="encryption">加密</string>
+    <string name="connect_wifi">连接无线网络</string>
+    <string name="Go_to_url">转到网址</string>
+<!--    History-->
+
+<!--    Setting-->
+    <string name="tittle_setting">设置</string>
+    <string name="general_settings">常规设置</string>
+    <string name="beep">哔声</string>
+    <string name="beep_when_the_scan_is_successful">扫描成功时发出哔声</string>
+    <string name="vibrate">振动</string>
+    <string name="vibrate_when_the_scan_is_successful">扫描成功时振动</string>
+    <string name="auto_copy">自动复制剪贴板</string>
+    <string name="copy_success">复制成功</string>
+    <string name="search_engine">搜索引擎</string>
+    <string name="change_language">更改语言</string>
+    <string name="english">英语</string>
+    <string name="japanese">日语</string>
+    <string name="chinese">中文</string>
+    <string name="korean">韩语</string>
+    <string name="vietnamese">越南语</string>
+    <string name="thai">泰语</string>
+    <string name="dark_mode">黑暗模式</string>
+    <string name="rate_us">评价我们</string>
+    <string name="rating_boost_your_app">Rating 提升你的应用在应用市场的排名</string>
+    <string name="vote">投票</string>
+    <string name="report_bugs_and_let_us">报告错误并让我们知道需要改进的地方</string>
+    <string name="Vote_again">再次投票</string>
+    <string name="feedback">反馈</string>
+    <string name="thank_you">感谢您为应用投票</string>
+    <string name="open_chplay">打开频道播放</string>
+    <string name="report_bugs_and_tell_us">报告错误并告诉我们改进</string>
+    <string name="dialog_feedback">感谢您使用该软件。\n如果您还有任何问题，请告诉我们。\n</string>
+    <string name="helps">Helps</string>
+    <string name="no">否</string>
+    <string name="yes">是</string>
+    <string name="version">"版本: "</string>
+    <string name="search_product">Search product</string>
+</resources>

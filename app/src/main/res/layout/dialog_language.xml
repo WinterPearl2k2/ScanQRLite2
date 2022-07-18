@@ -16,17 +16,17 @@
             android:letterSpacing="0.03"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:text="English"
+            android:text="@string/english"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/item_japanese"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Japanese"
-            android:textSize="24sp"
+            android:text="@string/japanese"
+            android:textSize="20sp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:letterSpacing="0.03"
@@ -39,8 +39,8 @@
             android:id="@+id/item_chinese"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Chinese"
-            android:textSize="24sp"
+            android:text="@string/chinese"
+            android:textSize="20sp"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:letterSpacing="0.03"
@@ -58,9 +58,9 @@
             android:letterSpacing="0.03"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:text="Korean"
+            android:text="@string/korean"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <RadioButton
@@ -72,9 +72,9 @@
             android:letterSpacing="0.03"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:text="Vietnamese"
+            android:text="@string/vietnamese"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <RadioButton
@@ -86,9 +86,9 @@
             android:letterSpacing="0.03"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:text="Thai"
+            android:text="@string/thai"
             android:textColor="@color/black"
-            android:textSize="24sp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
 
