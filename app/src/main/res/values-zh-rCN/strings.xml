@@ -78,4 +78,5 @@
     <string name="yes">是</string>
     <string name="version">"版本: "</string>
     <string name="search_product">Search product</string>
+    <string name="save_success">保存成功</string>
 </resources>

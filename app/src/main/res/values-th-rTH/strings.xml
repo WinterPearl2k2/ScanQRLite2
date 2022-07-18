@@ -79,4 +79,5 @@
     <string name="yes">ใช่</string>
     <string name="version">"เวอร์ชัน: "</string>
     <string name="search_product">Search product</string>
+    <string name="save_success">บันทึกความสำเร็จ</string>
 </resources>

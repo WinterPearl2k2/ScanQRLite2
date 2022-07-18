@@ -32,6 +32,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.scanqrlite2.Language;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -59,12 +60,14 @@ public class Result extends AppCompatActivity {
     TextView txtTitleResult;
     TextView txtContentText, txtContentURL, txtContentProduct, txtSSID, txtPass, txtSecurity;
     Bitmap bitmap;
-
     Intent result;
+    Language language;
     String ssid, password, security, content, type, typeQR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        language = new Language(this);
+        language.Language();
         getSupportActionBar().hide();
         screen = new FullScreen(Result.this);
         screen.changeFullScreen(1);
@@ -132,7 +135,7 @@ public class Result extends AppCompatActivity {
             fos = resolver.openOutputStream(uri);
             bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
             Objects.requireNonNull(fos);
-            Toast.makeText(Result.this, "Success", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Result.this, R.string.save_success, Toast.LENGTH_SHORT).show();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -169,7 +172,7 @@ public class Result extends AppCompatActivity {
                 ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
                 ClipData clipData = ClipData.newPlainText("label", content);
                 clipboardManager.setPrimaryClip(clipData);
-                Toast.makeText(Result.this, "Success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Result.this, R.string.copy_success, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -434,6 +437,12 @@ public class Result extends AppCompatActivity {
                         break;
                     case "Wifi":
                         txtTitleResult.setText("Wifi");
+                        ssid = result.getStringExtra("ssid");
+                        password = result.getStringExtra("password");
+                        if(result.getStringExtra("security").equals("nopass"))
+                            security = "None";
+                        else
+                            security = result.getStringExtra("security");
                         imgResult.setImageResource(R.drawable.logo_wifi);
                         getShowResult(type);
                         break;
@@ -494,12 +503,6 @@ public class Result extends AppCompatActivity {
         result = getIntent();
         type = result.getStringExtra("type");
         typeQR = result.getStringExtra("type_qr");
-        ssid = result.getStringExtra("ssid");
-        password = result.getStringExtra("password");
-        if(result.getStringExtra("security").equals("nopass"))
-            security = "None";
-        else
-            security = result.getStringExtra("security");
         content = result.getStringExtra("value");
     }
 }

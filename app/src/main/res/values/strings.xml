@@ -78,4 +78,5 @@
     <string name="yes">Yes</string>
     <string name="version">"Version: "</string>
     <string name="search_product">Search product</string>
+    <string name="save_success">Save success</string>
 </resources>

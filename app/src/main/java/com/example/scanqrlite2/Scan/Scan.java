@@ -26,6 +26,8 @@ import androidx.camera.core.ImageAnalysis;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageProxy;
 import androidx.camera.core.Preview;
+import com.example.scanqrlite2.History.History_Menu.HistoryScanItem;
+import com.example.scanqrlite2.History.History_Menu.database.ScanDatabase;
 import androidx.camera.lifecycle.ProcessCameraProvider;
 import androidx.camera.view.PreviewView;
 import androidx.core.app.ActivityCompat;
@@ -35,6 +37,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.os.Vibrator;
 import android.provider.Settings;
+import com.example.scanqrlite2.Language;
 import android.util.Log;
 import android.util.Size;
 import android.view.LayoutInflater;
@@ -235,7 +238,7 @@ public class Scan extends Fragment{
 
     private void flashSwitch(Camera camera) {
         camera.getCameraControl().enableTorch(false);
-        btnFlash.setText("Flash off");
+        btnFlash.setText(R.string.flash_off);
         btnFlash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -519,6 +522,8 @@ public class Scan extends Fragment{
                 .addOnSuccessListener(new OnSuccessListener<List<Barcode>>() {
                     @Override
                     public void onSuccess(List<Barcode> barcodes) {
+                        Language language = new Language(getContext());
+                        language.Language();
                         if(barcodes.isEmpty()) {
                             Toast.makeText(getActivity(), "hihi", Toast.LENGTH_SHORT).show();
                         } else {
