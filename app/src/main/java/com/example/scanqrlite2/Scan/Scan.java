@@ -234,10 +234,10 @@ public class Scan extends Fragment {
             public void onClick(View view) {
                 if(btnFlash.isChecked()) {
                     camera.getCameraControl().enableTorch(true);
-                    btnFlash.setText("Flash on");
+                    btnFlash.setText(R.string.flash_on);
                 } else {
                     camera.getCameraControl().enableTorch(false);
-                    btnFlash.setText("Flash off");
+                    btnFlash.setText(R.string.flash_off);
                 }
             }
         });
@@ -455,7 +455,7 @@ public class Scan extends Fragment {
         ClipboardManager clipboardManager = (ClipboardManager) getActivity().getSystemService(Context.CLIPBOARD_SERVICE);
         ClipData clipData = ClipData.newPlainText("label", content);
         clipboardManager.setPrimaryClip(clipData);
-        Toast.makeText(getContext(), "Copy Success", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), R.string.copy_success, Toast.LENGTH_SHORT).show();
     }
 
     public void Beep(){

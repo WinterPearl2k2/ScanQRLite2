@@ -42,7 +42,7 @@
             android:gravity="center_vertical"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:text="Create Text"
+            android:text="@string/create_text"
             android:textColor="@color/black"
             android:textSize="25dp"
             android:textStyle="bold" />
@@ -70,7 +70,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="25dp"
                     android:layout_marginBottom="5dp"
-                    android:text="Message text"
+                    android:text="@string/message_text"
                     android:textSize="16sp"
                     android:textColor="@color/brown"
                     />
@@ -83,7 +83,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="30dp"
                     android:background="@drawable/cus_edt_text"
-                    android:hint="Add a text"
+                    android:hint="@string/Add_a_text"
                     android:inputType="textMultiLine"
                     android:padding="15dp"
                     android:textColorHint="@color/text_color_1" />
@@ -100,7 +100,7 @@
                 android:paddingLeft="60dp"
                 android:paddingRight="60dp"
                 android:stateListAnimator="@null"
-                android:text="Create"
+                android:text="@string/create"
                 android:textAllCaps="false"
                 android:textColor="@color/brown"
                 android:textSize="20sp"

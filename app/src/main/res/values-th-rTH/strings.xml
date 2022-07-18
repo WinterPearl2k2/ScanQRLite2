@@ -1,2 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">ScanQRLite2</string>
+
+    <!-- Tutorial-->
+    <string name="allow_permission">อนุญาต</string>
+    <!-- Menu-->
+    <string name="scan">สแกน</string>
+    <string name="create">สร้าง</string>
+    <string name="history">ประวัติ</string>
+    <string name="setting">ตั้งค่า</string>
+
+    <!-- Scan-->
+    <string name="focus_barcode">โฟกัสบาร์โค้ดลงในพื้นที่</string>
+    <string name="gallery">แกลเลอรี่</string>
+    <string name="flash_off">ปิดแฟลช</string>
+    <string name="flash_on">เปิดแฟลช</string>
+
+    <!-- Create-->
+    <string name="create_url">สร้าง URL</string>
+    <string name="website">เว็บไซต์ (URL)</string>
+    <string name="Add_a_link">เพิ่มลิงค์</string>
+    <string name="please_enter_your_link">โปรดป้อนลิงก์ของคุณ</string>
+
+    <string name="create_wifi">สร้าง Wifi</string>
+    <string name="network_name">ชื่อเครือข่าย (SSID)</string>
+    <string name="Add_a_name">เพิ่มชื่อ</string>
+    <string name="security">โหมดความปลอดภัย</string>
+    <string name="password">รหัสผ่าน</string>
+    <string name="add_a_password">เพิ่มรหัสผ่าน</string>
+    <string name="account_not_be_blank">ต้องระบุบัญชี</string>
+    <string name="password_please_enter_more_than_8_character">กรุณาใส่รหัสผ่านมากกว่า 8 ตัวอักษร</string>
+
+    <string name="create_text">สร้างข้อความ</string>
+    <string name="message_text">ข้อความ</string>
+    <string name="Add_a_text">เพิ่มข้อความ</string>
+    <string name="Please_enter_your_content">โปรดป้อนเนื้อหาของคุณ</string>
+
+    <!-- Result-->
+    <string name="result">ผลลัพธ์</string>
+    <string name="wifi">Wifi</string>
+    <string name="text">ข้อความ</string>
+    <string name="url">URL</string>
+    <string name="encryption">การเข้ารหัส</string>
+    <string name="connect_wifi">เชื่อมต่อ Wifi</string>
+    <string name="Go_to_url">ไปที่ URL</string>
+    <!-- History-->
+
+    <!-- Settings-->
+    <string name="tittle_setting">การตั้งค่า</string>
+    <string name="general_settings">การตั้งค่าทั่วไป</string>
+    <string name="beep">บี๊บ</string>
+    <string name="beep_when_the_scan_is_successful">ส่งเสียงบี๊บเมื่อการสแกนสำเร็จ</string>
+    <string name="vibrate">สั่น</string>
+    <string name="vibrate_when_the_scan_is_successful">สั่นเมื่อสแกนสำเร็จ</string>
+    <string name="auto_copy">คัดลอกคลิปบอร์ดโดยอัตโนมัติ</string>
+    <string name="copy_success">คัดลอกสำเร็จ</string>
+    <string name="search_engine">เครื่องมือค้นหา</string>
+    <string name="change_language">เปลี่ยนภาษา</string>
+    <string name="english">ภาษาอังกฤษ</string>
+    <string name="japanese">ภาษาญี่ปุ่น</string>
+    <string name="chinese">จีน</string>
+    <string name="korean">เกาหลี</string>
+    <string name="vietnamese">เวียดนาม</string>
+    <string name="thai">ไทย</string>
+    <string name="dark_mode">โหมดมืด</string>
+    <string name="rate_us">ให้คะแนนเรา</string>
+    <string name="rating_boost_your_app">การให้คะแนนเพิ่มอันดับแอปของคุณในตลาดแอป </string>
+    <string name="vote">โหวต</string>
+    <string name="report_bugs_and_let_us">รายงานจุดบกพร่องและแจ้งให้เราทราบว่าต้องปรับปรุงอะไร</string>
+    <string name="Vote_again">โหวตอีกครั้ง</string>
+    <string name="feedback">คำติชม</string>
+    <string name="thank_you">ขอขอบคุณสำหรับการโหวตแอป</string>
+    <string name="open_chplay">เปิด CHPlay</string>
+    <string name="report_bugs_and_tell_us">รายงานจุดบกพร่องและแจ้งให้เราปรับปรุง</string>
+    <string name="helps">Helps</string>
+    <string name="dialog_feedback">ขอขอบคุณที่ใช้ซอฟต์แวร์นี้\nหากคุณมีคำถามเพิ่มเติม โปรดแจ้งให้เราทราบ\n</string>
+    <string name="no">ไม่</string>
+    <string name="yes">ใช่</string>
+    <string name="version">"เวอร์ชัน: "</string>
+    <string name="search_product">Search product</string>
+</resources>

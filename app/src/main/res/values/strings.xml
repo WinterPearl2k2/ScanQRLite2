@@ -64,7 +64,7 @@
     <string name="thai">Thai</string>
     <string name="dark_mode">Dark mode</string>
     <string name="rate_us">Rate us</string>
-    <string name="rating_boost_your_app">Rating Boost your app rankings on the app market </string>
+    <string name="rating_boost_your_app">Rating to boot your app rankings on the app market </string>
     <string name="vote">Vote</string>
     <string name="report_bugs_and_let_us">Report bugs and let us know what needs improvement</string>
     <string name="Vote_again">Vote again</string>
@@ -72,8 +72,10 @@
     <string name="thank_you">Thank you for voting for the app</string>
     <string name="open_chplay">Open CHPlay</string>
     <string name="report_bugs_and_tell_us">Report bugs and tell us to improve</string>
+    <string name="helps">Helps</string>
     <string name="dialog_feedback">Thank you for using the software.\nIf you have any further questions, please let us know.\n</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
-    <string name="version">Version</string>
+    <string name="version">"Version: "</string>
+    <string name="search_product">Search product</string>
 </resources>

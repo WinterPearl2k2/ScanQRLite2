@@ -1,2 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name = "app_name"> ScanQRLite2 </string>
+
+<!--    //Tutorial-->
+    <string name="allow_permission">許可を許可する</string>
+<!--    // Menu-->
+    <string name="scan">スキャン</string>
+    <string name="create">作成</string>
+    <string name="history">履歴</string>
+    <string name="setting">設定</string>
+
+<!--    //Scan-->
+    <string name="focus_barcode">バーコードを領域に集中させる</string>
+    <string name="gallery">ギャラリー</string>
+    <string name="flash_off">フラッシュオフ</string>
+    <string name="flash_on">フラッシュオン</string>
+
+<!--    //Create-->
+    <string name ="create_url">URLを作成</string>
+    <string name = "website">ウェブサイト（URL）</string>
+    <string name="Add_a_link">リンクを追加</string>
+    <string name="please_enter_your_link">リンクを入力してください</string>
+
+    <string name ="create_wifi">Wifiを作成</string>
+    <string name = "network_name">ネットワーク名（SSID）</string>
+    <string name="Add_a_name">名前を追加</string>
+    <string name="security">セキュリティモード</string>
+    <string name="password">パスワード</string>
+    <string name="add_a_password">パスワードを追加</string>
+    <string name="account_not_be_blank">アカウントは空白ではありません</string>
+    <string name="password_please_enter_more_than_8_character">パスワードは8文字以上入力してください</string>
+
+    <string name="create_text">テキストを作成</string>
+    <string name="message_text">メッセージテキスト</string>
+    <string name="Add_a_text">テキストを追加</string>
+    <string name="Please_enter_your_content">コンテンツを入力してください</string>
+
+<!--    Result-->
+    <string name="result">結果</string>
+    <string name = "wifi"> Wifi </string>
+    <string name="text">テキスト</string>
+    <string name = "url"> URL </string>
+    <string name="encryption">暗号化</string>
+    <string name ="connect_wifi">Wi-Fiに接続</string>
+    <string name ="Go_to_url">URLに移動</string>
+<!--    History-->
+
+<!--    Setting-->
+    <string name="tittle_setting">設定</string>
+    <string name="general_settings">一般設定</string>
+    <string name="beep">ビープ音</string>
+    <string name="beep_when_the_scan_is_successful">スキャンが成功したときにビープ音を鳴らします</string>
+    <string name="vibrate">バイブレーション</string>
+    <string name="vibrate_when_the_scan_is_successful">スキャンが成功したらバイブレーション</string>
+    <string name="auto_copy">クリップボードの自動コピー</string>
+    <string name="copy_success">コピー成功</string>
+    <string name="search_engine">検索エンジン</string>
+    <string name="change_language">言語を変更する</string>
+    <string name="english">英語</string>
+    <string name="japanese">日本語</string>
+    <string name="chinese">中国語</string>
+    <string name="korean">韓国語</string>
+    <string name="vietnamese">ベトナム語</string>
+    <string name="thai">タイ語</string>
+    <string name="dark_mode">ダークモード</string>
+    <string name="rate_us">評価</string>
+    <string name="rating_boost_your_app">評価アプリ市場でのアプリのランキングを上げる</string>
+    <string name="vote">投票</string>
+    <string name = "report_bugs_and_let_us">バグを報告し、改善が必要な点をお知らせください</string>
+    <string name="Vote_again">もう一度投票</string>
+    <string name="feedback">フィードバック</string>
+    <string name="thank_you">アプリに投票していただきありがとうございます</string>
+    <string name="open_chplay">CHPlayを開く</string>
+    <string name = "report_bugs_and_tell_us">バグを報告し、改善するように指示してください</string>
+    <string name="helps">Helps</string>
+    <string name ="dialog_feedback">ソフトウェアをご利用いただきありがとうございます。\nご不明な点がございましたら、お気軽にお問い合わせください。\ n </string>
+    <string name="no">いいえ</string>
+    <string name="yes">はい</string>
+    <string name="version">"バージョン: "</string>
+    <string name="search_product">Search product</string>
+</resources>

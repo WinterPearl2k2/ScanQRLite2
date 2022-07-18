@@ -18,7 +18,7 @@
         android:paddingTop="8dp"
         android:paddingRight="20dp"
         android:paddingBottom="8dp"
-        android:text="History"
+        android:text="@string/history"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold" />
@@ -37,13 +37,13 @@
             android:id="@+id/tab_scan"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Scan" />
+            android:text="@string/scan" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tab_create"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Create" />
+            android:text="@string/create" />
     </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager2.widget.ViewPager2

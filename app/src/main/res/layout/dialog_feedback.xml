@@ -19,7 +19,7 @@
             android:id="@+id/btn_feedback_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No"
+            android:text="@string/no"
             android:textSize="20sp"
             android:paddingRight="15dp"
             android:paddingBottom="10dp"
@@ -38,7 +38,7 @@
             android:paddingLeft="15dp"
             android:paddingRight="10dp"
             android:paddingBottom="10dp"
-            android:text="Yes"
+            android:text="@string/yes"
             android:textColor="@color/primaryButton"
             android:textSize="20sp" />
     </RelativeLayout>

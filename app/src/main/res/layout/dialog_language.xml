@@ -16,7 +16,7 @@
             android:letterSpacing="0.03"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:text="English"
+            android:text="@string/english"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -25,7 +25,7 @@
             android:id="@+id/item_japanese"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Japanese"
+            android:text="@string/japanese"
             android:textSize="20sp"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -39,7 +39,7 @@
             android:id="@+id/item_chinese"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Chinese"
+            android:text="@string/chinese"
             android:textSize="20sp"
             android:textColor="@color/black"
             android:textStyle="bold"
@@ -58,7 +58,7 @@
             android:letterSpacing="0.03"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:text="Korean"
+            android:text="@string/korean"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -72,7 +72,7 @@
             android:letterSpacing="0.03"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:text="Vietnamese"
+            android:text="@string/vietnamese"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -86,7 +86,7 @@
             android:letterSpacing="0.03"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:text="Thai"
+            android:text="@string/thai"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold" />

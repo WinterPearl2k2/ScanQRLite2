@@ -22,14 +22,13 @@ public class Language{
     public void Language(){
         SharedPreferences sp_language = context.getSharedPreferences("language", Context.MODE_PRIVATE );
         String check = sp_language.getString("language", "English");
-        Log.e("TAG@:",check);
         switch (check) {
             case "English":
                 locale = new Locale("en");
                 ChangeLanguage(locale);
                 break;
-            case "German":
-                locale = new Locale("de");
+            case "Japanese":
+                locale = new Locale("ja");
                 ChangeLanguage(locale);
                 break;
             case "Chinese":
@@ -44,6 +43,9 @@ public class Language{
                 locale = new Locale("vi");
                 ChangeLanguage(locale);
                 break;
+            case "Thai":
+                locale = new Locale("th");
+                ChangeLanguage(locale);
         }
 
     }
