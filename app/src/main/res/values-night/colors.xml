@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FFFFFFFF</color>
+    <color name="white">#FF000000</color>
+    <color name="au_white">#FFFFFFFF</color>
+
+    <color name="btnNav">#0089ff</color>
+    <color name="itemBtnNav">#50AEFF</color>
+    <color name="txtNav">#0089ff</color>
+    <color name="unTxtNav">#9AA5B8</color>
+    <color name="unBtnNav">#9AA5B8</color>
+
+    <color name="create">#1B3D63</color>
+
+
+    <color name="secondaryShrinePink">#BBE8FD</color>
+    <color name="primaryShrinePink">#2d3341</color>
+    <color name="primaryBackground">#1E2129</color>
+    <color name="primaryButton">#5BA5C8</color>
+    <color name="frame">#0089ff</color>
+    <color name="primaryIcon">#2F6FB6</color>
+    <color name="blueLight">#20C3D1</color>
+    <color name="primaryTextColor">#E5F6FE</color>
+
+    <color name="btnCreate">#2d3341</color>
+    <color name="item_list">#50AEFF</color>
+
+    <color name="skyBlueLight">#1E2129</color>
+    <color name="secondaryShrinePink32">#BFFEEAE6</color>
+    <color name="grey">#DBDBDB</color>
+    <color name="secondaryTextColor">#616F85</color>
+    <color name="brown">#9AA5B8</color>
+    <color name="switch_color">#54CAFF</color>
+    <color name="text_color">#181D28</color>
+    <color name="text_color_1">#616F85</color>
+</resources>

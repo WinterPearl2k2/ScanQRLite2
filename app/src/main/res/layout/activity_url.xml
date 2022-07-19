@@ -56,19 +56,20 @@
     </RelativeLayout>
 
     <ScrollView
-        android:layout_below="@+id/title_create_url"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title_create_url">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <LinearLayout
-                android:layout_marginTop="20dp"
                 android:id="@+id/container_wifi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/cus_btn_create"
                 android:orientation="vertical">
@@ -81,9 +82,8 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="5dp"
                     android:text="@string/website"
-                    android:textSize="16sp"
                     android:textColor="@color/brown"
-                    />
+                    android:textSize="16sp" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/edt_url"

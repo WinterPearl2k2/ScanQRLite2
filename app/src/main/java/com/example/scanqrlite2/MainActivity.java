@@ -2,6 +2,7 @@ package com.example.scanqrlite2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.SharedPreferences;
@@ -31,6 +32,19 @@ public class MainActivity extends AppCompatActivity {
         ORM();
         SetUpLayout();
         SetUpView();
+        darkMode();
+    }
+
+    private boolean darkMode() {
+        SharedPreferences darkMode = getSharedPreferences("dark_mode", MODE_PRIVATE);
+        boolean check = darkMode.getBoolean("dark_mode", false);
+        if(check) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            return true;
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            return false;
+        }
     }
 
     private void getChangeFullScr() {
@@ -38,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         int type = preferences.getInt("fullscr", 0);
         fullScreen = new FullScreen(MainActivity.this);
         fullScreen.changeFullScreen(type);
-
     }
 
     private void SetUpLayout() {
@@ -81,15 +94,24 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 1:
                         navigationView.getMenu().findItem(R.id.nav_create).setChecked(true);
-                        type = 1;
+                        if(darkMode())
+                            type = 0;
+                        else
+                            type = 1;
                         break;
                     case 2:
                         navigationView.getMenu().findItem(R.id.nav_history).setChecked(true);
-                        type = 1;
+                        if(darkMode())
+                            type = 0;
+                        else
+                            type = 1;
                         break;
                     case 3:
                         navigationView.getMenu().findItem(R.id.nav_setting).setChecked(true);
-                        type = 1;
+                        if(darkMode())
+                            type = 0;
+                        else
+                            type = 1;
                         break;
                     default:
                         navigationView.getMenu().findItem(R.id.nav_scan).setChecked(true);

@@ -48,15 +48,14 @@ public class Text extends AppCompatActivity {
     }
 
     private void createText() {
-
-        btnCreate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(edtText.toString().trim().length() < 1)
+        if(edtText.getText().toString().trim().length() == 0) {
+            btnCreate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
                     edtText.setError("Please enter your content");
-            }
-        });
-
+                }
+            });
+        }
 
         edtText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -72,7 +71,7 @@ public class Text extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 if(editable.toString().trim().length() < 1) {
-                    btnCreate.setTextColor(getResources().getColor(R.color.primaryTextColor));
+                    btnCreate.setTextColor(getResources().getColor(R.color.brown));
                     btnCreate.setBackgroundResource(R.drawable.cus_create);
                     btnCreate.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -81,7 +80,7 @@ public class Text extends AppCompatActivity {
                         }
                     });
                 } else {
-                    btnCreate.setTextColor(getResources().getColor(R.color.white));
+                    btnCreate.setTextColor(getResources().getColor(R.color.au_white));
                     btnCreate.setBackgroundResource(R.drawable.cus_create_allow);
                     btnCreate.setOnClickListener(new View.OnClickListener() {
                         @Override

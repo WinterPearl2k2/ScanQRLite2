@@ -458,7 +458,7 @@ public class Scan extends Fragment{
         else if (encryptionType == 3)
             return "WEP";
         else
-            return "None";
+            return "nopass";
     }
 
     private void scanByGallery() {

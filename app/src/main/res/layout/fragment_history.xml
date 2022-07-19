@@ -38,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/title_history"
-        android:background="@color/white"
+        android:background="@color/btnCreate"
         app:tabIndicatorColor="@color/primaryButton"
         app:tabTextAppearance="@style/MyCustomTextAppearance"
         app:tabTextColor="@color/black">

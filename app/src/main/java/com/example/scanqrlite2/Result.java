@@ -2,6 +2,7 @@ package com.example.scanqrlite2;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
@@ -12,6 +13,7 @@ import android.content.ClipboardManager;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -78,7 +80,7 @@ public class Result extends AppCompatActivity {
         toURL();
         coppyToClipboard();
         searchProduct();
-        searchGoogle();
+        search();
         saveImage();
         shareContent();
     }
@@ -150,16 +152,41 @@ public class Result extends AppCompatActivity {
         editor.commit();
     }
 
-    private void searchGoogle() {
+    private void search() {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent search = new Intent(Intent.ACTION_VIEW);
-                search.setData(Uri.parse("https://www.google.com/search?q=" + content));
+                handleSearch(search);
                 startActivityForResult(search, SEARCH);
                 btnSearch.setEnabled(false);
             }
         });
+    }
+
+    private void handleSearch(Intent search) {
+        SharedPreferences prefSearch = getSharedPreferences("search", MODE_PRIVATE);
+        String typeSearch = prefSearch.getString("search", "Google");
+        switch (typeSearch) {
+            case "Google":
+                search.setData(Uri.parse("https://www.google.com/search?q=" + content));
+                break;
+            case "Yandex":
+                search.setData(Uri.parse("https://yandex.com/search/?text=" + content));
+                break;
+            case "CocCoc":
+                search.setData(Uri.parse("https://coccoc.com/search?query=" + content));
+                break;
+            case "Yahoo":
+                search.setData(Uri.parse("https://www.search.yahoo.com/search?p=" + content));
+                break;
+            case "Bing":
+                search.setData(Uri.parse("https://www.bing.com/search?q=" + content));
+                break;
+            case "DuckDuckGo":
+                search.setData(Uri.parse("https://duckduckgo.com/?q=" + content));
+                break;
+        }
     }
 
     private void coppyToClipboard() {
@@ -178,9 +205,9 @@ public class Result extends AppCompatActivity {
         btnSearchProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent search = new Intent(Intent.ACTION_VIEW);
-                search.setData(Uri.parse("https://www.google.com/search?q=" + content));
-                startActivityForResult(search, SEARCH_PRODUCT);
+                Intent searchProduct = new Intent(Intent.ACTION_VIEW);
+                handleSearch(searchProduct);
+                startActivityForResult(searchProduct, SEARCH_PRODUCT);
                 btnSearchProduct.setEnabled(false);
             }
         });
@@ -240,7 +267,7 @@ public class Result extends AppCompatActivity {
                     startActivityForResult(wifi, CONNECT_WIFI);
 
                     btnConnectWifi.setEnabled(false);
-                } else {
+                } else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q){
                     if (password.length() != 0) {
                         WifiNetworkSuggestion.Builder builder = new WifiNetworkSuggestion.Builder();
                         builder.setSsid(ssid);
@@ -253,6 +280,22 @@ public class Result extends AppCompatActivity {
                         wifiManager.addNetworkSuggestions(list);
                     }
                     startActivity(new Intent("android.settings.panel.action.INTERNET_CONNECTIVITY"));
+                } else {
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(Result.this);
+                    alertDialog.setTitle("Các thiết bị Android 10 cần kết nối Wifi một cách thủ công")
+                            .setMessage("Chuyển hướng đến mạng wifi \n Mật khẩu của bạn đã được sao chép, ấn OK để chuyển hướng đến Wifi")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    coppyToClipboard();
+                                    startActivity(new Intent("android.settings.panel.action.INTERNET_CONNECTIVITY"));
+                                }
+                            }).setNegativeButton("Huỷ", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            }).show();
                 }
             }
         });
@@ -434,6 +477,12 @@ public class Result extends AppCompatActivity {
                         break;
                     case "Wifi":
                         txtTitleResult.setText("Wifi");
+                        ssid = result.getStringExtra("ssid");
+                        password = result.getStringExtra("password");
+                        if(result.getStringExtra("security").equals("nopass"))
+                            security = "None";
+                        else
+                            security = result.getStringExtra("security");
                         imgResult.setImageResource(R.drawable.logo_wifi);
                         getShowResult(type);
                         break;
@@ -494,12 +543,6 @@ public class Result extends AppCompatActivity {
         result = getIntent();
         type = result.getStringExtra("type");
         typeQR = result.getStringExtra("type_qr");
-        ssid = result.getStringExtra("ssid");
-        password = result.getStringExtra("password");
-        if(result.getStringExtra("security").equals("nopass"))
-            security = "None";
-        else
-            security = result.getStringExtra("security");
         content = result.getStringExtra("value");
     }
 }

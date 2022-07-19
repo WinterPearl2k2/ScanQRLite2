@@ -55,7 +55,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginBottom="35dp"
                     android:text="@string/focus_barcode"
-                    android:textColor="@color/white"
+                    android:textColor="#fff"
                     android:textSize="20sp" />
 
                 <TextView
