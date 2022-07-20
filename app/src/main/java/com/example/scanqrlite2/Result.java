@@ -471,6 +471,12 @@ public class Result extends AppCompatActivity {
             txtSSID.setText(ssid != null ? ssid : "");
             txtPass.setText(password != null ? password : "");
             txtSecurity.setText(security);
+            ssid = result.getStringExtra("ssid");
+            password = result.getStringExtra("password");
+            if(result.getStringExtra("security").equals("nopass"))
+                security = "None";
+            else
+                security = result.getStringExtra("security");
             btnConnectWifi.setVisibility(View.VISIBLE);
         } else if(type.equals("Product")) {
             resultProduct.setVisibility(View.VISIBLE);
@@ -494,12 +500,6 @@ public class Result extends AppCompatActivity {
         result = getIntent();
         type = result.getStringExtra("type");
         typeQR = result.getStringExtra("type_qr");
-        ssid = result.getStringExtra("ssid");
-        password = result.getStringExtra("password");
-        if(result.getStringExtra("security").equals("nopass"))
-            security = "None";
-        else
-            security = result.getStringExtra("security");
         content = result.getStringExtra("value");
     }
 }

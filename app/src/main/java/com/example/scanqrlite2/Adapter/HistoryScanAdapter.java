@@ -1,55 +1,37 @@
 package com.example.scanqrlite2.Adapter;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Build;
-import android.util.Log;
-import android.view.ContentInfo;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.scanqrlite2.R;
 import com.example.scanqrlite2.History.History_Menu.HistoryScanItem;
+import com.example.scanqrlite2.R;
 import com.example.scanqrlite2.Result;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
-import com.skydoves.powermenu.CircularEffect;
-import com.skydoves.powermenu.OnMenuItemClickListener;
-import com.skydoves.powermenu.PowerMenu;
-import com.skydoves.powermenu.PowerMenuItem;
 
-import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
 
-public class HistoryScanAdaper extends RecyclerView.Adapter <HistoryScanAdaper.ScanViewHolder> {
+public class HistoryScanAdapter extends RecyclerView.Adapter <HistoryScanAdapter.ScanViewHolder> {
 
     List<HistoryScanItem> scanItemList;
     Bitmap bitmap;
     Context context;
 
-    public HistoryScanAdaper(Context context) {
+    public HistoryScanAdapter(Context context) {
         this.context = context;
     }
 
@@ -91,14 +73,14 @@ public class HistoryScanAdaper extends RecyclerView.Adapter <HistoryScanAdaper.S
                 Intent intent = new Intent(context, Result.class);
                 String valueType = historyScanItem.getTypeScan();
                 switch (valueType) {
-                    case "QRcode":
+                    case "QRCode":
                         intent.putExtra("value", historyScanItem.getResult());
                         if(historyScanItem.getTitle().equals("Wifi")) {
                             intent.putExtra("ssid", historyScanItem.getContent());
                             intent.putExtra("password", historyScanItem.getPassword());
                             intent.putExtra("security", historyScanItem.getSecurity());
                         }
-                        intent.putExtra("type", "QRcode");
+                        intent.putExtra("type", "QRCode");
                         intent.putExtra("type_qr", historyScanItem.getTypeScan());
                         break;
                     case "Code_128":
@@ -123,6 +105,7 @@ public class HistoryScanAdaper extends RecyclerView.Adapter <HistoryScanAdaper.S
         int sizeWidth = 660;
         int sizeHeight = 264;
 
+
         Hashtable hints = new Hashtable();
         hints.put(EncodeHintType.MARGIN, 1);
         hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
@@ -130,7 +113,7 @@ public class HistoryScanAdaper extends RecyclerView.Adapter <HistoryScanAdaper.S
         BitMatrix matrix = null;
         String type = content;
         switch (type) {
-            case "QRcode":
+            case "QRCode":
                 matrix = new MultiFormatWriter().encode(result, BarcodeFormat.QR_CODE, sizeWidth, sizeWidth, hints);
                 break;
             case "EAN_13":
@@ -148,7 +131,7 @@ public class HistoryScanAdaper extends RecyclerView.Adapter <HistoryScanAdaper.S
             case "Code_128":
                 matrix = new MultiFormatWriter().encode(result, BarcodeFormat.CODE_128, sizeWidth, sizeHeight, hints);
                 break;
-            case "Code_2of5":
+            case "Code_ITF":
                 matrix = new MultiFormatWriter().encode(result, BarcodeFormat.ITF, sizeWidth, sizeHeight, hints);
                 break;
             case "Code_39":
@@ -187,7 +170,7 @@ public class HistoryScanAdaper extends RecyclerView.Adapter <HistoryScanAdaper.S
             super(itemView);
             txtTitle = itemView.findViewById(R.id.title_history_item);
             txtContent = itemView.findViewById(R.id.infor_history_item);
-            imgQr = itemView.findViewById(R.id.container_img_qr_history);
+            imgQr = itemView.findViewById(R.id.qr_image_history_item);
             layoutItem = itemView.findViewById(R.id.history_recycleview_item);
         }
     }

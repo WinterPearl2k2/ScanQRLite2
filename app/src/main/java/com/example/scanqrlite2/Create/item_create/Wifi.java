@@ -17,6 +17,8 @@ import android.widget.RadioGroup;
 
 import com.example.scanqrlite2.FullScreen;
 import com.example.scanqrlite2.HideKeyboard;
+import com.example.scanqrlite2.History.History_Menu.HistoryCreateItem;
+import com.example.scanqrlite2.History.History_Menu.database.CreateDatabase;
 import com.example.scanqrlite2.R;
 import com.example.scanqrlite2.Result;
 
@@ -168,7 +170,12 @@ public class Wifi extends AppCompatActivity {
         result.putExtra("security", security);
         result.putExtra("type", "Wifi");
         result.putExtra("type_qr", "QRCode");
-        startActivity(result);
+
+//        HistoryCreateItem createItem = new HistoryCreateItem("Wifi",ssid, value);
+//        createItem.setPassword(password);
+//        createItem.setSecurity(security);
+//        CreateDatabase.getInstance(Wifi.this).createItemDAO().insertItem(createItem);
+//        startActivity(result);
     }
 
     private void notifyError(int checkIsEmpty) {
