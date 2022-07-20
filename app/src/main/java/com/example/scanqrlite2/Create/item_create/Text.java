@@ -53,7 +53,7 @@ public class Text extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(edtText.toString().trim().length() < 1)
-                    edtText.setError("Please enter your content");
+                    edtText.setError(getString(R.string.please_enter_your_content));
             }
         });
 

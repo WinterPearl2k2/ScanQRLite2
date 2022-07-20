@@ -73,10 +73,11 @@
     <string name="open_chplay">打开频道播放</string>
     <string name="report_bugs_and_tell_us">报告错误并告诉我们改进</string>
     <string name="dialog_feedback">感谢您使用该软件。\n如果您还有任何问题，请告诉我们。\n</string>
-    <string name="helps">Helps</string>
+    <string name="helps">帮助</string>
     <string name="no">否</string>
     <string name="yes">是</string>
     <string name="version">"版本: "</string>
-    <string name="search_product">Search product</string>
+    <string name="search_product">产品搜索</string>
     <string name="save_success">保存成功</string>
+    <string name="please_enter_your_content">请输入您的内容</string>
 </resources>

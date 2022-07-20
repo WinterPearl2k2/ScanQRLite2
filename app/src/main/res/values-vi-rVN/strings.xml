@@ -80,4 +80,5 @@
     <string name = "version">" Phiên bản: "</string>
     <string name="search_product">Tìm kiếm san phẩm</string>
     <string name="save_success">Lưu thành công</string>
+    <string name="please_enter_your_content">Vui lòng nhập nội dung</string>
 </resources>

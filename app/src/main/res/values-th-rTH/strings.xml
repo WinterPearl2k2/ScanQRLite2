@@ -73,11 +73,12 @@
     <string name="thank_you">ขอขอบคุณสำหรับการโหวตแอป</string>
     <string name="open_chplay">เปิด CHPlay</string>
     <string name="report_bugs_and_tell_us">รายงานจุดบกพร่องและแจ้งให้เราปรับปรุง</string>
-    <string name="helps">Helps</string>
+    <string name="helps">ช่วย</string>
     <string name="dialog_feedback">ขอขอบคุณที่ใช้ซอฟต์แวร์นี้\nหากคุณมีคำถามเพิ่มเติม โปรดแจ้งให้เราทราบ\n</string>
     <string name="no">ไม่</string>
     <string name="yes">ใช่</string>
     <string name="version">"เวอร์ชัน: "</string>
-    <string name="search_product">Search product</string>
+    <string name="search_product">ค้นหาสินค้า</string>
     <string name="save_success">บันทึกความสำเร็จ</string>
+    <string name="please_enter_your_content">กรุณาใส่เนื้อหาของคุณ</string>
 </resources>

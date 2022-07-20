@@ -32,7 +32,7 @@ public class URL extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_url);
         ORM();
-        createWifi();
+        createURL();
         backLayout();
     }
 
@@ -45,11 +45,11 @@ public class URL extends AppCompatActivity {
         return super.dispatchTouchEvent(ev);
     }
 
-    private void createWifi() {if(edtURL.getText().toString().trim().length() == 0) {
+    private void createURL() {if(edtURL.getText().toString().trim().length() == 0) {
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                edtURL.setError("Please enter your link");
+                edtURL.setError(getText(R.string.please_enter_your_link));
             }
         });
     }

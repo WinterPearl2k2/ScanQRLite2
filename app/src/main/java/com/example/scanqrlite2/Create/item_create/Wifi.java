@@ -173,12 +173,12 @@ public class Wifi extends AppCompatActivity {
 
     private void notifyError(int checkIsEmpty) {
         if(checkIsEmpty == 3) {
-            edtNetworkName.setError("Account not be blank");
-            edtNetworkPass.setError("Password please enter more than 8 character");
+            edtNetworkName.setError(getString(R.string.account_not_be_blank));
+            edtNetworkPass.setError(getString(R.string.password_please_enter_more_than_8_character));
         } else if(checkIsEmpty == 2) {
-            edtNetworkName.setError("Account not be blank");
+            edtNetworkName.setError(getString(R.string.account_not_be_blank));
         } else if (checkIsEmpty == 1) {
-            edtNetworkPass.setError("Password please enter more than 8 character");
+            edtNetworkPass.setError(getString(R.string.password_please_enter_more_than_8_character));
         }
     }
 

@@ -74,10 +74,11 @@
     <string name="open_chplay">CHPlay 열기</string>
     <string name="report_bugs_and_tell_us">버그를 보고하고 개선 사항을 알려주세요</string>
     <string name="dialog_feedback">소프트웨어를 사용해 주셔서 감사합니다.\n추가 질문이 있으면 알려주세요.\n</string>
-    <string name="helps">Helps</string>
+    <string name="helps">도움</string>
     <string name="no">아니요</string>
     <string name="yes">예</string>
     <string name="version">"버전: "</string>
-    <string name="search_product">Search product</string>
+    <string name="search_product">제품 검색</string>
     <string name="save_success">성공을 구하다</string>
+    <string name="please_enter_your_content">귀하의 콘텐츠를 입력하십시오</string>
 </resources>

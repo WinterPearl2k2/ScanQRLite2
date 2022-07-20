@@ -426,17 +426,17 @@ public class Result extends AppCompatActivity {
             case "QRCode":
                 switch (type) {
                     case "Text":
-                        txtTitleResult.setText("Text");
+                        txtTitleResult.setText(R.string.text);
                         imgResult.setImageResource(R.drawable.logo_text);
                         getShowResult(type);
                         break;
                     case "URL":
-                        txtTitleResult.setText("URL");
+                        txtTitleResult.setText(R.string.url);
                         imgResult.setImageResource(R.drawable.logo_url);
                         getShowResult(type);
                         break;
                     case "Wifi":
-                        txtTitleResult.setText("Wifi");
+                        txtTitleResult.setText(R.string.wifi);
                         ssid = result.getStringExtra("ssid");
                         password = result.getStringExtra("password");
                         if(result.getStringExtra("security").equals("nopass"))
@@ -451,7 +451,7 @@ public class Result extends AppCompatActivity {
             case "Code_128":
             case "Code_39":
             case "Code_ITF":
-                txtTitleResult.setText("Text");
+                txtTitleResult.setText(R.string.text);
                 imgResult.setImageResource(R.drawable.logo_text);
                 getShowResult(type);
                 break;
@@ -459,7 +459,7 @@ public class Result extends AppCompatActivity {
             case "EAN_8":
             case "UPC_A":
             case "UPC_E":
-                txtTitleResult.setText("Product");
+                txtTitleResult.setText(R.string.search_product);
                 imgResult.setImageResource(R.drawable.ic_logo_product);
                 getShowResult(type);
                 break;
