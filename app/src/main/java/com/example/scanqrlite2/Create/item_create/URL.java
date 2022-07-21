@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 
 import com.example.scanqrlite2.FullScreen;
 import com.example.scanqrlite2.HideKeyboard;
+import com.example.scanqrlite2.History.History_Menu.HistoryCreateItem;
+import com.example.scanqrlite2.History.History_Menu.database.CreateDatabase;
 import com.example.scanqrlite2.R;
 import com.example.scanqrlite2.Result;
 
@@ -86,6 +88,9 @@ public class URL extends AppCompatActivity {
                             result.putExtra("value", editable.toString());
                             result.putExtra("type", "URL");
                             result.putExtra("type_qr", "QRCode");
+                            HistoryCreateItem createItem = new HistoryCreateItem("URL", editable.toString(),
+                                    editable.toString());
+                            CreateDatabase.getInstance(URL.this).createItemDAO().insertItem(createItem);
                             startActivity(result);
                         }
                     });

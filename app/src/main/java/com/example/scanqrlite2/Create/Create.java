@@ -2,6 +2,7 @@ package com.example.scanqrlite2.Create;
 
 import android.content.Intent;
 import android.os.Bundle;
+import com.example.scanqrlite2.Language;
 
 import androidx.fragment.app.Fragment;
 
@@ -18,10 +19,13 @@ import com.example.scanqrlite2.R;
 
 public class Create extends Fragment {
     LinearLayout btnWifi, btnUrl, btnText;
+    Language language;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        language = new Language(getContext());
+        language.Language();
         View view = inflater.inflate(R.layout.fragment_create, container, false);
         ORM(view);
         createWifi();

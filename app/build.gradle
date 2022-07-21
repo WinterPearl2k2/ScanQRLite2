@@ -60,6 +60,7 @@ dependencies {
 
     implementation 'com.github.ome450901:SimpleRatingBar:1.5.1'
     implementation "androidx.room:room-runtime:2.4.2"
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
     annotationProcessor "androidx.room:room-compiler:2.4.2"
     implementation "com.github.skydoves:powermenu:2.2.0"
     implementation 'com.github.donkingliang:ConsecutiveScroller:4.6.1'

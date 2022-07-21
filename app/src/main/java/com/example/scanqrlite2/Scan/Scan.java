@@ -55,6 +55,8 @@ import com.example.scanqrlite2.R;
 import com.example.scanqrlite2.Result;
 import com.example.scanqrlite2.Setting.Setting;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.example.scanqrlite2.History.History_Menu.HistoryScanItem;
+import com.example.scanqrlite2.History.History_Menu.database.ScanDatabase;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -80,7 +82,7 @@ public class Scan extends Fragment{
     ExecutorService cameraExecutor;
     ListenableFuture<ProcessCameraProvider> listenableFuture;
     ImageAnalysis.Analyzer analyzer;
-
+    private boolean checkWifi = false;
     private FrameLayout layoutScan;
     private RelativeLayout layoutPermisson;
     private Button btnPermisson;
@@ -302,53 +304,13 @@ public class Scan extends Fragment{
                         type = "URL";
                         break;
                     case Barcode.TYPE_WIFI:
-                        content = value;
+                        content = barcode.getWifi().getSsid();
                         ssid = barcode.getWifi().getSsid();
                         password = barcode.getWifi().getPassword();
                         security = getSecurity(barcode.getWifi().getEncryptionType());
                         type = "Wifi";
+                        checkWifi=true;
                         break;
-//                    case Barcode.TYPE_PHONE:
-//                        Toast.makeText(getActivity(), barcode.getPhone().getNumber(), Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case Barcode.TYPE_EMAIL:
-//                        Toast.makeText(getActivity(), barcode.getEmail().getAddress()
-//                                + "\n" + barcode.getEmail().getSubject()
-//                                + "\n" + barcode.getEmail().getBody(), Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case Barcode.TYPE_SMS:
-//                        Toast.makeText(getActivity(), barcode.getSms().getPhoneNumber() + "\n"
-//                                + barcode.getSms().getMessage(), Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case Barcode.TYPE_CALENDAR_EVENT:
-//                        Toast.makeText(getActivity(), barcode.getCalendarEvent().getSummary()
-//                                + "\n" + barcode.getCalendarEvent().getStart().getHours() + ":"
-//                                 + barcode.getCalendarEvent().getStart().getMinutes() + ", "
-//                                + barcode.getCalendarEvent().getStart().getDay() + " / "
-//                                + month(barcode.getCalendarEvent().getStart().getMonth()) + " / "
-//                                 + barcode.getCalendarEvent().getStart().getYear()
-//                                + "\n" + barcode.getCalendarEvent().getEnd().getHours() + ":"
-//                                + barcode.getCalendarEvent().getEnd().getMinutes() + ", "
-//                                 + barcode.getCalendarEvent().getEnd().getDay() + " / "
-//                                 + month(barcode.getCalendarEvent().getEnd().getMonth()) + " / "
-//                                 + barcode.getCalendarEvent().getEnd().getYear()
-//                                + "\n" + barcode.getCalendarEvent().getLocation()
-//                                + "\n" + barcode.getCalendarEvent().getDescription(), Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case Barcode.TYPE_CONTACT_INFO:
-//                        Toast.makeText(getActivity(), barcode.getContactInfo().getName().getFormattedName()
-//                                + "\n" + barcode.getContactInfo().getPhones().get(1).getNumber()
-//                                + "\n" + barcode.getContactInfo().getPhones().get(0).getNumber()
-//                                + "\n" + barcode.getContactInfo().getPhones().get(2).getNumber()
-//                                + "\n" + barcode.getContactInfo().getEmails().get(0).getAddress()
-//                                + "\n" + barcode.getContactInfo().getUrls().get(0)
-//                                + "\n" + barcode.getContactInfo().getTitle()
-//                                + "\n" + Arrays.toString(barcode.getContactInfo().getAddresses().get(0).getAddressLines().clone()), Toast.LENGTH_SHORT).show();
-//                        break;
-//                    case Barcode.TYPE_GEO:
-//                        Toast.makeText(getActivity(), barcode.getGeoPoint().getLat() + "\n"
-//                                + barcode.getGeoPoint().getLng(), Toast.LENGTH_SHORT).show();
-//                        break;
                     default:
                         return false;
                 }
@@ -393,9 +355,16 @@ public class Scan extends Fragment{
                         return false;
                 }
             }
-            toResult(type, content, typeQR);
+            toResult(type, value, typeQR);
             if(doCopy())
                 copyTextToClipboard(value);
+            HistoryScanItem historyScanItem = new HistoryScanItem(type, content, value);
+            historyScanItem.setTypeScan(typeQR);
+            if(checkWifi) {
+                historyScanItem.setSecurity(security);
+                historyScanItem.setPassword(password);
+            }
+            ScanDatabase.getInstance(getContext()).scanItemDAO().insertItem(historyScanItem);
             Vibrate();
             Beep();
             onPause();

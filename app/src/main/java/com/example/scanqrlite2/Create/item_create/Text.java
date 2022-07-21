@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.content.Context;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -17,6 +18,9 @@ import android.widget.LinearLayout;
 
 import com.example.scanqrlite2.FullScreen;
 import com.example.scanqrlite2.HideKeyboard;
+
+import com.example.scanqrlite2.History.History_Menu.HistoryCreateItem;
+import com.example.scanqrlite2.History.History_Menu.database.CreateDatabase;
 import com.example.scanqrlite2.R;
 import com.example.scanqrlite2.Result;
 
@@ -90,6 +94,9 @@ public class Text extends AppCompatActivity {
                             result.putExtra("value", editable.toString());
                             result.putExtra("type", "Text");
                             result.putExtra("type_qr", "QRCode");
+                            HistoryCreateItem createItem = new HistoryCreateItem("Text", editable.toString(),
+                                    editable.toString());
+                            CreateDatabase.getInstance(Text.this).createItemDAO().insertItem(createItem);
                             startActivity(result);
                         }
                     });
