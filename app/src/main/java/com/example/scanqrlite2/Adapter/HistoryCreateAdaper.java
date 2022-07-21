@@ -6,48 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.net.Uri;
-import android.os.Build;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.scanqrlite2.R;
 
 import com.example.scanqrlite2.History.History_Menu.HistoryCreateItem;
 import com.example.scanqrlite2.Result;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
-import com.skydoves.powermenu.CircularEffect;
-import com.skydoves.powermenu.OnMenuItemClickListener;
-import com.skydoves.powermenu.PowerMenu;
-import com.skydoves.powermenu.PowerMenuItem;
-
-import java.util.HashMap;
-import java.util.Hashtable;
-import java.util.List;
-import java.util.Map;
 
 import java.util.List;
 
@@ -72,9 +43,6 @@ public class HistoryCreateAdaper extends RecyclerView.Adapter<HistoryCreateAdape
 
     public  void onBindViewHolder (@NonNull CreateViewHolder holder, int position){
 
-//        Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(), R.anim.anim_scale);
-//        holder.itemView.startAnimation(animation);
-
         HistoryCreateItem historyCreateItem = createItemList.get(position);
         if(historyCreateItem == null) {
             return;
@@ -82,11 +50,7 @@ public class HistoryCreateAdaper extends RecyclerView.Adapter<HistoryCreateAdape
 
         holder.txtTitle.setText(historyCreateItem.getTitle());
         holder.txtContent.setText(historyCreateItem.getContent());
-        try {
-            holder.imgQr.setImageBitmap(CreateImage(historyCreateItem.getResult()));
-        } catch (WriterException e) {
-            e.printStackTrace();
-        }
+        holder.imgQr.setImageResource(CreateImage(holder.txtTitle.getText().toString()));
 
         holder.layoutItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,8 +62,8 @@ public class HistoryCreateAdaper extends RecyclerView.Adapter<HistoryCreateAdape
                     intent.putExtra("password", historyCreateItem.getPassword());
                     intent.putExtra("security", historyCreateItem.getSecurity());
                 }
-                intent.putExtra("type", "QRCode");
-                intent.putExtra("type_barcode", "QRCode");
+                intent.putExtra("type", holder.txtTitle.getText().toString());
+                intent.putExtra("type_qr", "QRCode");
                 context.startActivity(intent);
             }
         });
@@ -107,29 +71,17 @@ public class HistoryCreateAdaper extends RecyclerView.Adapter<HistoryCreateAdape
     }
 
 
-    private Bitmap CreateImage(String content) throws WriterException {
-        int sizeWidth = 660;
-        int sizeHeight = 264;
-
-        Hashtable hints = new Hashtable();
-        hints.put(EncodeHintType.MARGIN, 1);
-        hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
-
-        BitMatrix matrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, sizeWidth, sizeWidth, hints);
-        int width = matrix.getWidth();
-        int height = matrix.getHeight();
-        int[] pixel = new int[width * height];
-        for(int i = 0; i < height; i++) {
-            for(int j = 0; j < width; j++) {
-                if (matrix.get(j, i))
-                    pixel[i * width + j] = 0xff000000;
-                else
-                    pixel[i * width + j] = 0xffffffff;
-            }
+    private int CreateImage(String content){
+        switch (content){
+            case "Wifi":
+                return R.drawable.ic_img_wifi_circle;
+            case "URL":
+                return R.drawable.ic_img_url_circle;
+            case "Text":
+                return R.drawable.ic_img_text_circle;
+            default:
+                return R.drawable.ic_img_text_circle;
         }
-        bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        bitmap.setPixels(pixel, 0, width, 0 , 0, width, height);
-        return bitmap;
     }
 
     @Override

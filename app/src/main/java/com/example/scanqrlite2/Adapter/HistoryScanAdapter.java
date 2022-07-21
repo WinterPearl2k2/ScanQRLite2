@@ -60,12 +60,7 @@ public class HistoryScanAdapter extends RecyclerView.Adapter <HistoryScanAdapter
 
         holder.txtTitle.setText(historyScanItem.getTitle());
         holder.txtContent.setText(historyScanItem.getContent());
-
-        try {
-            holder.imgQr.setImageBitmap(CreateImage(historyScanItem.getResult(), historyScanItem.getTypeScan()));
-        } catch (WriterException e) {
-            e.printStackTrace();
-        }
+        holder.imgQr.setImageResource(CreateImage(holder.txtTitle.getText().toString()));
 
         holder.layoutItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,8 +75,8 @@ public class HistoryScanAdapter extends RecyclerView.Adapter <HistoryScanAdapter
                             intent.putExtra("password", historyScanItem.getPassword());
                             intent.putExtra("security", historyScanItem.getSecurity());
                         }
-                        intent.putExtra("type", "QRCode");
-                        intent.putExtra("type_qr", historyScanItem.getTypeScan());
+                        intent.putExtra("type", holder.txtTitle.getText().toString());
+                        intent.putExtra("type_qr", "QRCode");
                         break;
                     case "Code_128":
                     case "Code_39":
@@ -91,8 +86,8 @@ public class HistoryScanAdapter extends RecyclerView.Adapter <HistoryScanAdapter
                     case "UPC_A":
                     case "UPC_E":
                         intent.putExtra("value", historyScanItem.getResult());
-                        intent.putExtra("type", "Barcode");
-                        intent.putExtra("type_qr", historyScanItem.getTypeScan());
+                        intent.putExtra("type", holder.txtTitle.getText().toString());
+                        intent.putExtra("type_qr", "QRCode");
                         break;
                 }
 
@@ -101,59 +96,19 @@ public class HistoryScanAdapter extends RecyclerView.Adapter <HistoryScanAdapter
         });
     }
 
-    private Bitmap CreateImage(String result, String content) throws WriterException {
-        int sizeWidth = 660;
-        int sizeHeight = 264;
-
-
-        Hashtable hints = new Hashtable();
-        hints.put(EncodeHintType.MARGIN, 1);
-        hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
-
-        BitMatrix matrix = null;
-        String type = content;
-        switch (type) {
-            case "QRCode":
-                matrix = new MultiFormatWriter().encode(result, BarcodeFormat.QR_CODE, sizeWidth, sizeWidth, hints);
-                break;
-            case "EAN_13":
-                matrix = new MultiFormatWriter().encode(result, BarcodeFormat.EAN_13, sizeWidth, sizeHeight, hints);
-                break;
-            case "EAN_8":
-                matrix = new MultiFormatWriter().encode(result, BarcodeFormat.EAN_8, sizeWidth, sizeHeight, hints);
-                break;
-            case "UPC_A":
-                matrix = new MultiFormatWriter().encode(result, BarcodeFormat.UPC_A, sizeWidth, sizeHeight, hints);
-                break;
-            case "UPC_E":
-                matrix = new MultiFormatWriter().encode(result, BarcodeFormat.UPC_E, sizeWidth, sizeHeight, hints);
-                break;
-            case "Code_128":
-                matrix = new MultiFormatWriter().encode(result, BarcodeFormat.CODE_128, sizeWidth, sizeHeight, hints);
-                break;
-            case "Code_ITF":
-                matrix = new MultiFormatWriter().encode(result, BarcodeFormat.ITF, sizeWidth, sizeHeight, hints);
-                break;
-            case "Code_39":
-                matrix = new MultiFormatWriter().encode(result, BarcodeFormat.CODE_39, sizeWidth, sizeHeight, hints);
-                break;
+    private int CreateImage(String content){
+        switch (content){
+            case "Wifi":
+                return R.drawable.ic_img_wifi_circle;
+            case "URL":
+                return R.drawable.ic_img_url_circle;
+            case "Text":
+                return R.drawable.ic_img_text_circle;
+            case "Product":
+                return R.drawable.ic_img_product_circle;
+            default:
+                return R.drawable.ic_img_text_circle;
         }
-
-        int width = matrix.getWidth();
-        int height = matrix.getHeight();
-        int[] pixel = new int[width * height];
-        for(int i = 0; i < height; i++) {
-            for(int j = 0; j < width; j++) {
-                if (matrix.get(j, i))
-                    pixel[i * width + j] = 0xff000000;
-                else
-                    pixel[i * width + j] = 0xffffffff;
-            }
-        }
-        bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-        bitmap.setPixels(pixel, 0, width, 0 , 0, width, height);
-
-        return bitmap;
     }
 
     @Override

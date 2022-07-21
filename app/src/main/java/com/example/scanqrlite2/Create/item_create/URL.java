@@ -88,7 +88,7 @@ public class URL extends AppCompatActivity {
                             result.putExtra("value", editable.toString());
                             result.putExtra("type", "URL");
                             result.putExtra("type_qr", "QRCode");
-                            HistoryCreateItem createItem = new HistoryCreateItem("Text", editable.toString(),
+                            HistoryCreateItem createItem = new HistoryCreateItem("URL", editable.toString(),
                                     editable.toString());
                             CreateDatabase.getInstance(URL.this).createItemDAO().insertItem(createItem);
                             startActivity(result);
