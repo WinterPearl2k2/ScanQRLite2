@@ -85,7 +85,7 @@ public class Scan extends Fragment{
     ListenableFuture<ProcessCameraProvider> listenableFuture;
     ImageAnalysis.Analyzer analyzer;
     private boolean checkWifi = false;
-
+    Language language;
     AdView adView;
     AdRequest request;
 
@@ -96,6 +96,8 @@ public class Scan extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+       language = new Language(getContext());
+        language.Language();
         View view = inflater.inflate(R.layout.fragment_scan, container, false);
         ORM(view);
         scanByGallery();
@@ -178,6 +180,7 @@ public class Scan extends Fragment{
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        language.Language();
         switch (requestCode) {
             case 101:
                 if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -254,6 +257,7 @@ public class Scan extends Fragment{
     private void flashSwitch(Camera camera) {
         camera.getCameraControl().enableTorch(false);
         btnFlash.setText(R.string.flash_off);
+        language.Language();
         btnFlash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -529,7 +533,6 @@ public class Scan extends Fragment{
                 .addOnSuccessListener(new OnSuccessListener<List<Barcode>>() {
                     @Override
                     public void onSuccess(List<Barcode> barcodes) {
-                        Language language = new Language(getContext());
                         language.Language();
                         if(barcodes.isEmpty()) {
                             Toast.makeText(getActivity(), R.string.qr_barcode_not_found, Toast.LENGTH_SHORT).show();
