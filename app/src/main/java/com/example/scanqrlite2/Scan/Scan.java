@@ -532,10 +532,10 @@ public class Scan extends Fragment{
                         Language language = new Language(getContext());
                         language.Language();
                         if(barcodes.isEmpty()) {
-                            Toast.makeText(getActivity(), "hihi", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), R.string.qr_barcode_not_found, Toast.LENGTH_SHORT).show();
                         } else {
                             if(!readerBarcodeData(barcodes))
-                                Toast.makeText(getActivity(), "hihi", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getActivity(), R.string.qr_barcode_not_found, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

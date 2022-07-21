@@ -233,12 +233,16 @@ public class Result extends AppCompatActivity {
         btnCoppy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clipData = ClipData.newPlainText("label", content);
-                clipboardManager.setPrimaryClip(clipData);
-                Toast.makeText(Result.this, R.string.copy_success, Toast.LENGTH_SHORT).show();
+                coppy(content);
             }
         });
+    }
+
+    private void coppy(String mContent) {
+        ClipboardManager clipboardManager = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clipData = ClipData.newPlainText("label", mContent);
+        clipboardManager.setPrimaryClip(clipData);
+        Toast.makeText(Result.this, R.string.copy_success, Toast.LENGTH_SHORT).show();
     }
 
     private void searchProduct() {
@@ -325,15 +329,15 @@ public class Result extends AppCompatActivity {
                     }
                 } else {
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(Result.this);
-                    alertDialog.setTitle("Các thiết bị Android 10 cần kết nối Wifi một cách thủ công")
-                            .setMessage("Chuyển hướng đến mạng wifi \n Mật khẩu của bạn đã được sao chép, ấn OK để chuyển hướng đến Wifi")
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    alertDialog.setTitle(R.string.android_10_need)
+                            .setMessage(R.string.Redirect)
+                            .setPositiveButton(R.string.oke, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
-                                    coppyToClipboard();
+                                    coppy(password);
                                     startActivity(new Intent("android.settings.panel.action.INTERNET_CONNECTIVITY"));
                                 }
-                            }).setNegativeButton("Huỷ", new DialogInterface.OnClickListener() {
+                            }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.dismiss();
@@ -565,7 +569,7 @@ public class Result extends AppCompatActivity {
             case "EAN_8":
             case "UPC_A":
             case "UPC_E":
-                txtTitleResult.setText(R.string.search_product);
+                txtTitleResult.setText(R.string.product);
                 imgResult.setImageResource(R.drawable.ic_logo_product);
                 getShowResult(type);
                 break;
