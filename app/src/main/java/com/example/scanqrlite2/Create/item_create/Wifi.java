@@ -16,8 +16,6 @@ import android.widget.RadioGroup;
 
 import com.example.scanqrlite2.FullScreen;
 import com.example.scanqrlite2.HideKeyboard;
-import com.example.scanqrlite2.History.History_Menu.HistoryCreateItem;
-import com.example.scanqrlite2.History.History_Menu.database.CreateDatabase;
 import com.example.scanqrlite2.R;
 import com.example.scanqrlite2.Result;
 
@@ -177,22 +175,17 @@ public class Wifi extends AppCompatActivity {
         result.putExtra("security", security);
         result.putExtra("type", "Wifi");
         result.putExtra("type_qr", "QRCode");
-
-//        HistoryCreateItem createItem = new HistoryCreateItem("Wifi",ssid, value);
-//        createItem.setPassword(password);
-//        createItem.setSecurity(security);
-//        CreateDatabase.getInstance(Wifi.this).createItemDAO().insertItem(createItem);
-//        startActivity(result);
+        startActivity(result);
     }
 
     private void notifyError(int checkIsEmpty) {
         if(checkIsEmpty == 3) {
-            edtNetworkName.setError(getString(R.string.account_not_be_blank));
-            edtNetworkPass.setError(getString(R.string.password_please_enter_more_than_8_character));
+            edtNetworkName.setError("Account not be blank");
+            edtNetworkPass.setError("Password please enter more than 8 character");
         } else if(checkIsEmpty == 2) {
-            edtNetworkName.setError(getString(R.string.account_not_be_blank));
+            edtNetworkName.setError("Account not be blank");
         } else if (checkIsEmpty == 1) {
-            edtNetworkPass.setError(getString(R.string.password_please_enter_more_than_8_character));
+            edtNetworkPass.setError("Password please enter more than 8 character");
         }
     }
 

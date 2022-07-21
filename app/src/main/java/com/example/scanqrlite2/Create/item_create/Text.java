@@ -90,11 +90,11 @@ public class Text extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             Intent result = new Intent(Text.this, Result.class);
-                            result.putExtra("value", editable.toString());
+                            result.putExtra("value", editable.toString().trim());
                             result.putExtra("type", "Text");
                             result.putExtra("type_qr", "QRCode");
-                            HistoryCreateItem createItem = new HistoryCreateItem("Text", editable.toString(),
-                                    editable.toString());
+                            HistoryCreateItem createItem = new HistoryCreateItem("Text", editable.toString().trim(),
+                                    editable.toString().trim());
                             CreateDatabase.getInstance(Text.this).createItemDAO().insertItem(createItem);
                             startActivity(result);
                         }

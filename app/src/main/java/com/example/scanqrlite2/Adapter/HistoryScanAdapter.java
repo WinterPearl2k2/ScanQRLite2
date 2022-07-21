@@ -85,9 +85,13 @@ public class HistoryScanAdapter extends RecyclerView.Adapter <HistoryScanAdapter
                     case "Code_ITF":
                     case "UPC_A":
                     case "UPC_E":
+                    case "AZTEC":
+                    case "DATA_MATRIX":
+                    case "CODABAR":
+                    case "PDF417":
                         intent.putExtra("value", historyScanItem.getResult());
                         intent.putExtra("type", holder.txtTitle.getText().toString());
-                        intent.putExtra("type_qr", "QRCode");
+                        intent.putExtra("type_qr", historyScanItem.getTypeScan());
                         break;
                 }
 

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 
@@ -78,7 +79,10 @@ public class Result extends AppCompatActivity {
         language.Language();
         getSupportActionBar().hide();
         screen = new FullScreen(Result.this);
-        screen.changeFullScreen(1);
+        if(AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_NO)
+            screen.changeFullScreen(1);
+        else
+            screen.changeFullScreen(0);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_result_generator);
         ORM();
@@ -549,6 +553,10 @@ public class Result extends AppCompatActivity {
             case "Code_39":
             case "Code_93":
             case "Code_ITF":
+            case "AZTEC":
+            case "DATA_MATRIX":
+            case "CODABAR":
+            case "PDF417":
                 txtTitleResult.setText(R.string.text);
                 imgResult.setImageResource(R.drawable.logo_text);
                 getShowResult(type);
