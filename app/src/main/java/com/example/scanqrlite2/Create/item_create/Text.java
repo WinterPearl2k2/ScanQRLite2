@@ -21,6 +21,7 @@ import com.example.scanqrlite2.HideKeyboard;
 
 import com.example.scanqrlite2.History.History_Menu.HistoryCreateItem;
 import com.example.scanqrlite2.History.History_Menu.database.CreateDatabase;
+import com.example.scanqrlite2.Language;
 import com.example.scanqrlite2.R;
 import com.example.scanqrlite2.Result;
 
@@ -29,9 +30,12 @@ public class Text extends AppCompatActivity {
     private LinearLayout btnBack;
     private EditText edtText;
     private Button btnCreate;
+    private Language language;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        language = new Language(this);
+        language.Language();
         getSupportActionBar().hide();
         screen = new FullScreen(Text.this);
         screen.changeFullScreen(1);
@@ -52,6 +56,7 @@ public class Text extends AppCompatActivity {
     }
 
     private void createText() {
+        language.Language();
         if(edtText.getText().toString().trim().length() == 0) {
             btnCreate.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -74,6 +79,7 @@ public class Text extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
+                language.Language();
                 if(editable.toString().trim().length() < 1) {
                     btnCreate.setTextColor(getResources().getColor(R.color.brown));
                     btnCreate.setBackgroundResource(R.drawable.cus_create);

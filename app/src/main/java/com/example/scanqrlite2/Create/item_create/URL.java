@@ -17,6 +17,7 @@ import com.example.scanqrlite2.FullScreen;
 import com.example.scanqrlite2.HideKeyboard;
 import com.example.scanqrlite2.History.History_Menu.HistoryCreateItem;
 import com.example.scanqrlite2.History.History_Menu.database.CreateDatabase;
+import com.example.scanqrlite2.Language;
 import com.example.scanqrlite2.R;
 import com.example.scanqrlite2.Result;
 
@@ -25,9 +26,12 @@ public class URL extends AppCompatActivity {
     LinearLayout btnBack;
     private EditText edtURL;
     private Button btnCreate;
+    private Language language;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        language = new Language(this);
+        language.Language();
         getSupportActionBar().hide();
         screen = new FullScreen(URL.this);
         screen.changeFullScreen(1);
@@ -48,6 +52,7 @@ public class URL extends AppCompatActivity {
     }
 
     private void createURL() {
+        language.Language();
         if(edtURL.getText().toString().trim().length() == 0) {
             btnCreate.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -16,6 +16,9 @@ import android.widget.RadioGroup;
 
 import com.example.scanqrlite2.FullScreen;
 import com.example.scanqrlite2.HideKeyboard;
+import com.example.scanqrlite2.History.History_Menu.HistoryCreateItem;
+import com.example.scanqrlite2.History.History_Menu.database.CreateDatabase;
+import com.example.scanqrlite2.Language;
 import com.example.scanqrlite2.R;
 import com.example.scanqrlite2.Result;
 
@@ -26,12 +29,14 @@ public class Wifi extends AppCompatActivity {
     Button btnCreate;
     RadioGroup rdgSecurity;
     RadioButton rdbWPA, rdbWEP, rdbNone;
-
+    private Language language;
     String ssid, password, value, security;
     boolean isNone = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        language = new Language(this);
+        language.Language();
         getSupportActionBar().hide();
         screen = new FullScreen(Wifi.this);
         screen.changeFullScreen(1);
@@ -120,6 +125,7 @@ public class Wifi extends AppCompatActivity {
     }
 
     private void handleCreate(boolean isNone) {
+
         if(isNone) {
             value = "WIFI:T:" + security + ";S:" + ssid + ";P:" + password + ";H:false";
             if(checkIsEmpty() != 0) {
@@ -167,6 +173,7 @@ public class Wifi extends AppCompatActivity {
     }
 
     private void toResult(boolean isNone) {
+        language.Language();
         Intent result = new Intent(Wifi.this, Result.class);
         result.putExtra("value", value);
         result.putExtra("ssid", ssid);
@@ -175,6 +182,10 @@ public class Wifi extends AppCompatActivity {
         result.putExtra("security", security);
         result.putExtra("type", "Wifi");
         result.putExtra("type_qr", "QRCode");
+        HistoryCreateItem createItem = new HistoryCreateItem("Wifi", ssid, value);
+        createItem.setPassword(password);
+        createItem.setSecurity(security);
+        CreateDatabase.getInstance(Wifi.this).createItemDAO().insertItem(createItem);
         startActivity(result);
     }
 

@@ -526,6 +526,7 @@ public class Result extends AppCompatActivity {
     }
 
     private void showResult() {
+        language.Language();
         getResult();
         switch (typeQR) {
             case "QRCode":
@@ -577,6 +578,7 @@ public class Result extends AppCompatActivity {
     }
 
     private void getShowResult(String type) {
+        language.Language();
         if(type.equals("Text")) {
             resultText.setVisibility(View.VISIBLE);
             txtContentText.setText(content != null ? content : "");
