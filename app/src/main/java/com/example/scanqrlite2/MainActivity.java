@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                         viewPager.setCurrentItem(3, false);
                         break;
                 }
+                language.Language();
                 return false;
             }
         });
@@ -118,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                         type = 0;
                         break;
                 }
+                language.Language();
                 SharedPreferences.Editor preferences = getSharedPreferences("fullscr", MODE_PRIVATE).edit();
                 preferences.putInt("fullscr", type);
                 fullScreen = new FullScreen(MainActivity.this);

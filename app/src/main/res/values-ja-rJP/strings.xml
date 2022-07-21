@@ -81,4 +81,10 @@
     <string name="search_product">製品を検索</string>
     <string name="save_success">成功を保存</string>
     <string name="please_enter_your_content">コンテンツを入力してください</string>
+    <string name="qr_barcode_not_found">QR/バーコードが見つかりません</string>
+    <string name="product">製品</string>
+    <string name="android_10_need">Android10デバイスは手動でWifiに接続する必要があります</string>
+    <string name="oke">おけ</string>
+    <string name="cancel">キャンセル</string>
+    <string name="Redirect">Wi-Fiネットワークにリダイレクトします.\\n パスワードがコピーされました,OK を押してWifiにリダイレクトします</string>
 </resources>

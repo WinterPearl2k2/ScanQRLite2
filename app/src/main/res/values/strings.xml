@@ -80,4 +80,10 @@
     <string name="search_product">Search product</string>
     <string name="save_success">Save success</string>
     <string name="please_enter_your_content">Please enter your content</string>
+    <string name="qr_barcode_not_found">QR/Barcode not found</string>
+    <string name="product">Product</string>
+    <string name="android_10_need">Android 10 devices need to connect to Wifi manually</string>
+    <string name="oke">Oke</string>
+    <string name="cancel">Cancel</string>
+    <string name="Redirect">Redirect to wifi network.\nYour password has been copied, press OK to redirect to Wifi</string>
 </resources>

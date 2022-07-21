@@ -81,4 +81,10 @@
     <string name="search_product">ค้นหาสินค้า</string>
     <string name="save_success">บันทึกความสำเร็จ</string>
     <string name="please_enter_your_content">กรุณาใส่เนื้อหาของคุณ</string>
+    <string name="qr_barcode_not_found">ไม่พบ QR/บาร์โค้ด</string>
+    <string name="product">ผลิตภัณฑ์</string>
+    <string name="android_10_need">อุปกรณ์ Android 10 จำเป็นต้องเชื่อมต่อกับ Wifi ด้วยตนเอง</string>
+    <string name="oke">โอเค</string>
+    <string name="cancel">ยกเลิก</string>
+    <string name="Redirect">เปลี่ยนเส้นทางไปยังเครือข่าย wifi.\\nคัดลอกรหัสผ่านของคุณแล้ว กดตกลงเพื่อเปลี่ยนเส้นทางไปยัง Wifi</string>
 </resources>

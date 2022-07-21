@@ -80,4 +80,10 @@
     <string name="search_product">产品搜索</string>
     <string name="save_success">保存成功</string>
     <string name="please_enter_your_content">请输入您的内容</string>
+    <string name="qr_barcode_not_found">未找到二维码/条形码</string>
+    <string name="product">产品</string>
+    <string name="android_10_need">Android 10 设备需要手动连接 Wifi</string>
+    <string name="oke">好</string>
+    <string name="cancel">取消</string>
+    <string name="Redirect">重定向到wifi网络.\\n您的密码已被复制，请按 OK 重定向到 Wifi</string>
 </resources>

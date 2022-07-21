@@ -81,4 +81,10 @@
     <string name="search_product">Tìm kiếm san phẩm</string>
     <string name="save_success">Lưu thành công</string>
     <string name="please_enter_your_content">Vui lòng nhập nội dung</string>
+    <string name="qr_barcode_not_found">"Không tìm thấy QR / mã vạch "</string>
+    <string name="product">Sản phẩm</string>
+    <string name="android_10_need">Các thiết bị Android 10 cần kết nối với Wifi theo cách thủ công</string>
+    <string name="oke">Đồng ý</string>
+    <string name="cancel">Hủy</string>
+    <string name="Redirect">Chuyển hướng đến mạng wifi.\\nMật khẩu của bạn đã được sao chép, ấn OK để chuyển hướng đến Wifi</string>
 </resources>
