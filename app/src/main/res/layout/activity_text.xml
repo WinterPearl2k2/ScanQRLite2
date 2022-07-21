@@ -87,6 +87,7 @@
                     android:id="@+id/edt_text"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:maxHeight="300dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="30dp"
@@ -94,7 +95,9 @@
                     android:hint="@string/Add_a_text"
                     android:inputType="textMultiLine"
                     android:padding="15dp"
-                    android:textColorHint="@color/text_color_1" />
+                    android:maxLength="2952"
+                    android:textColorHint="@color/text_color_1"
+                    android:scrollbars="vertical"/>
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton

@@ -54,6 +54,8 @@ import android.widget.Toast;
 import com.example.scanqrlite2.R;
 import com.example.scanqrlite2.Result;
 import com.example.scanqrlite2.Setting.Setting;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.example.scanqrlite2.History.History_Menu.HistoryScanItem;
 import com.example.scanqrlite2.History.History_Menu.database.ScanDatabase;
@@ -83,6 +85,10 @@ public class Scan extends Fragment{
     ListenableFuture<ProcessCameraProvider> listenableFuture;
     ImageAnalysis.Analyzer analyzer;
     private boolean checkWifi = false;
+
+    AdView adView;
+    AdRequest request;
+
     private FrameLayout layoutScan;
     private RelativeLayout layoutPermisson;
     private Button btnPermisson;
@@ -96,7 +102,27 @@ public class Scan extends Fragment{
         handleImage();
         openCamera();
         checkPermission();
+        showAds();
         return view;
+    }
+
+    private void showAds() {
+        request = new AdRequest.Builder().build();
+        adView.loadAd(request);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(adView != null)
+            adView.pause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(adView != null)
+            adView.destroy();
     }
 
     private void checkPermission() {
@@ -111,19 +137,6 @@ public class Scan extends Fragment{
                 handlePermisson();
             }
         });
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
-//            != PackageManager.PERMISSION_GRANTED)
-//                changeLayout(2);
-//            else
-//                changeLayout(1);
-//        }else
-//            changeLayout(1);
     }
 
     private void handlePermisson() {
@@ -261,8 +274,8 @@ public class Scan extends Fragment{
         InputImage inputImage = InputImage.fromMediaImage(image1, image.getImageInfo().getRotationDegrees());
         BarcodeScannerOptions options = new BarcodeScannerOptions.Builder()
                 .setBarcodeFormats(Barcode.FORMAT_QR_CODE,
-                        Barcode.FORMAT_AZTEC,
-                        Barcode.FORMAT_CODE_128,
+                        Barcode.FORMAT_AZTEC, Barcode.FORMAT_DATA_MATRIX,
+                        Barcode.FORMAT_CODE_128, Barcode.FORMAT_PDF417,
                         Barcode.FORMAT_CODE_93,Barcode.FORMAT_EAN_8,Barcode.FORMAT_EAN_13
                         ,Barcode.FORMAT_CODE_39,Barcode.FORMAT_ALL_FORMATS
                         ,Barcode.FORMAT_CODABAR,Barcode.FORMAT_ITF,Barcode.FORMAT_UPC_A,Barcode.FORMAT_UPC_E).build();
@@ -331,6 +344,11 @@ public class Scan extends Fragment{
                         content = value;
                         type = "Text";
                         break;
+                    case Barcode.FORMAT_CODE_93:
+                        typeQR = "Code_93";
+                        content = value;
+                        type = "Text";
+                        break;
                     case Barcode.FORMAT_EAN_13:
                         typeQR = "EAN_13";
                         content = value;
@@ -350,6 +368,26 @@ public class Scan extends Fragment{
                         typeQR = "UPC_E";
                         content = value;
                         type = "Product";
+                        break;
+                    case Barcode.FORMAT_AZTEC:
+                        typeQR = "AZTEC";
+                        content = value;
+                        type = "Text";
+                        break;
+                    case Barcode.FORMAT_DATA_MATRIX:
+                        typeQR = "DATA_MATRIX";
+                        content = value;
+                        type = "Text";
+                        break;
+                    case Barcode.FORMAT_CODABAR:
+                        typeQR = "CODABAR";
+                        content = value;
+                        type = "Text";
+                        break;
+                    case Barcode.FORMAT_PDF417:
+                        typeQR = "PDF417";
+                        content = value;
+                        type = "Text";
                         break;
                     default:
                         return false;
@@ -430,7 +468,7 @@ public class Scan extends Fragment{
         else if (encryptionType == 3)
             return "WEP";
         else
-            return "None";
+            return "nopass";
     }
 
     private void scanByGallery() {
@@ -481,8 +519,8 @@ public class Scan extends Fragment{
     private void scanBarcodeGallery(InputImage inputImage) {
         BarcodeScannerOptions options = new BarcodeScannerOptions.Builder()
                 .setBarcodeFormats(Barcode.FORMAT_QR_CODE,
-                        Barcode.FORMAT_AZTEC,
-                        Barcode.FORMAT_CODE_128,
+                        Barcode.FORMAT_AZTEC, Barcode.FORMAT_DATA_MATRIX,
+                        Barcode.FORMAT_CODE_128, Barcode.FORMAT_PDF417,
                         Barcode.FORMAT_CODE_93,Barcode.FORMAT_EAN_8,Barcode.FORMAT_EAN_13
                         ,Barcode.FORMAT_CODE_39,Barcode.FORMAT_ALL_FORMATS
                         ,Barcode.FORMAT_CODABAR,Barcode.FORMAT_ITF,Barcode.FORMAT_UPC_A,Barcode.FORMAT_UPC_E).build();
@@ -579,6 +617,10 @@ public class Scan extends Fragment{
     @Override
     public void onResume() {
         super.onResume();
+
+        if(adView != null)
+            adView.resume();
+
         try {
             processCameraProvider = listenableFuture.get();
         } catch (ExecutionException e) {
@@ -596,5 +638,6 @@ public class Scan extends Fragment{
         layoutScan = view.findViewById(R.id.layout_scan);
         layoutPermisson = view.findViewById(R.id.layout_permisson);
         btnPermisson = view.findViewById(R.id.btn_permisson);
+        adView = view.findViewById(R.id.ads_scan);
     }
 }

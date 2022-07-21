@@ -47,14 +47,15 @@ public class URL extends AppCompatActivity {
         return super.dispatchTouchEvent(ev);
     }
 
-    private void createURL() {if(edtURL.getText().toString().trim().length() == 0) {
-        btnCreate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                edtURL.setError(getText(R.string.please_enter_your_link));
-            }
-        });
-    }
+    private void createURL() {
+        if(edtURL.getText().toString().trim().length() == 0) {
+            btnCreate.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    edtURL.setError(getText(R.string.please_enter_your_link));
+                }
+            });
+        }
 
         edtURL.addTextChangedListener(new TextWatcher() {
             @Override
@@ -70,22 +71,22 @@ public class URL extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable editable) {
                 if(editable.toString().trim().length() == 0) {
-                    btnCreate.setTextColor(getResources().getColor(R.color.primaryTextColor));
+                    btnCreate.setTextColor(getResources().getColor(R.color.brown));
                     btnCreate.setBackgroundResource(R.drawable.cus_create);
                     btnCreate.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            edtURL.setError("Please enter your content");
+                            edtURL.setError(getText(R.string.please_enter_your_link));
                         }
                     });
                 } else {
-                    btnCreate.setTextColor(getResources().getColor(R.color.white));
+                    btnCreate.setTextColor(getResources().getColor(R.color.au_white));
                     btnCreate.setBackgroundResource(R.drawable.cus_create_allow);
                     btnCreate.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
                             Intent result = new Intent(URL.this, Result.class);
-                            result.putExtra("value", editable.toString());
+                            result.putExtra("value", editable.toString().trim());
                             result.putExtra("type", "URL");
                             result.putExtra("type_qr", "QRCode");
                             HistoryCreateItem createItem = new HistoryCreateItem("URL", editable.toString(),

@@ -6,7 +6,6 @@ import com.example.scanqrlite2.Language;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +15,14 @@ import com.example.scanqrlite2.Create.item_create.Text;
 import com.example.scanqrlite2.Create.item_create.URL;
 import com.example.scanqrlite2.Create.item_create.Wifi;
 import com.example.scanqrlite2.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 public class Create extends Fragment {
     LinearLayout btnWifi, btnUrl, btnText;
     Language language;
+    AdRequest request;
+    AdView adView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,7 +34,34 @@ public class Create extends Fragment {
         createWifi();
         createURL();
         createText();
+        showAds();
         return view;
+    }
+
+    private void showAds() {
+        request = new AdRequest.Builder().build();
+        adView.loadAd(request);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(adView != null)
+            adView.resume();
+    }
+
+    @Override
+    public void onStart() {
+        if(adView != null)
+            adView.pause();
+        super.onStart();
+    }
+
+    @Override
+    public void onDestroy() {
+        if(adView != null)
+            adView.destroy();
+        super.onDestroy();
     }
 
     private void createText() {
@@ -71,5 +101,6 @@ public class Create extends Fragment {
         btnWifi = view.findViewById(R.id.btn_create_wifi);
         btnUrl = view.findViewById(R.id.btn_create_url);
         btnText = view.findViewById(R.id.btn_create_text);
+        adView = view.findViewById(R.id.ads_create);
     }
 }

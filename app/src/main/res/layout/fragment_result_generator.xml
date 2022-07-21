@@ -152,7 +152,7 @@
                                     android:layout_marginLeft="2dp"
                                     android:gravity="right"
                                     android:text="content"
-                                    android:textColor="#000000"
+                                    android:textColor="@color/black"
                                     android:textSize="16sp" />
                             </LinearLayout>
 
@@ -180,7 +180,7 @@
                                     android:layout_marginLeft="2dp"
                                     android:gravity="right"
                                     android:text="content"
-                                    android:textColor="#000000"
+                                    android:textColor="@color/black"
                                     android:textSize="16sp" />
                             </LinearLayout>
 
@@ -208,7 +208,7 @@
                                     android:layout_marginLeft="2dp"
                                     android:gravity="right"
                                     android:text="content"
-                                    android:textColor="#000000"
+                                    android:textColor="@color/black"
                                     android:textSize="16sp" />
                             </LinearLayout>
                         </LinearLayout>
@@ -231,7 +231,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:gravity="center"
                                 android:text="content"
-                                android:textColor="#000000"
+                                android:textColor="@color/black"
                                 android:textSize="16sp" />
                         </LinearLayout>
 
@@ -253,8 +253,8 @@
                                 android:layout_marginLeft="2dp"
                                 android:gravity="center"
                                 android:text="content"
-                                android:textColor="#000000"
-                                android:textSize="16sp" />
+                                android:textColor="@color/black"
+                                android:textSize="16sp"/>
                         </LinearLayout>
 
                         <LinearLayout
@@ -275,7 +275,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:gravity="center"
                                 android:text="content"
-                                android:textColor="#000000"
+                                android:textColor="@color/black"
                                 android:textSize="16sp" />
                         </LinearLayout>
 
@@ -291,13 +291,32 @@
                 </RelativeLayout>
             </ScrollView>
 
+            <RelativeLayout
+                android:id="@+id/container_ads_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/frame_content_result"
+                android:background="@color/primaryBackground"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <com.google.android.gms.ads.AdView
+                    xmlns:ads="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/ads_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    ads:adSize="BANNER"
+                    ads:adUnitId="@string/banner_ad_unit_id" />
+            </RelativeLayout>
+
             <LinearLayout
                 android:id="@+id/frame_btn_feature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/frame_content_result"
+                android:layout_below="@+id/container_ads_result"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/frame_content_result">
@@ -307,7 +326,7 @@
                     android:layout_width="52dp"
                     android:layout_height="52dp"
                     android:layout_margin="5dp"
-                    ads:cardBackgroundColor="@color/white"
+                    ads:cardBackgroundColor="@color/btnCreate"
                     app:cardCornerRadius="10dp">
 
                     <ImageView
@@ -325,7 +344,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginBottom="5dp"
-                    ads:cardBackgroundColor="@color/white"
+                    ads:cardBackgroundColor="@color/btnCreate"
                     app:cardCornerRadius="10dp">
 
                     <ImageView
@@ -340,7 +359,7 @@
                     android:layout_width="52dp"
                     android:layout_height="52dp"
                     android:layout_margin="5dp"
-                    ads:cardBackgroundColor="@color/white"
+                    ads:cardBackgroundColor="@color/btnCreate"
                     app:cardCornerRadius="10dp">
 
                     <ImageView
@@ -359,6 +378,7 @@
                 android:layout_centerInParent="true"
                 android:layout_marginTop="20dp"
                 android:elevation="5dp"
+                android:background="@color/au_white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frame_btn_feature">
@@ -367,8 +387,7 @@
                     android:id="@+id/image_qr"
                     android:layout_width="188dp"
                     android:layout_height="188dp"
-                    android:layout_gravity="center"
-                    android:background="@color/white" />
+                    android:layout_gravity="center"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -379,7 +398,7 @@
                 android:layout_below="@+id/qr_code"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
-                android:gravity="center"
+                android:gravity="center|center_horizontal"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -390,7 +409,6 @@
                     android:id="@+id/btn_goto_url"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
-                    android:layout_marginLeft="30dp"
                     android:background="@drawable/background_button_blue"
                     android:gravity="center"
                     android:minWidth="130dp"
@@ -400,7 +418,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/Go_to_url"
-                        android:textColor="@color/white"
+                        android:textColor="@color/au_white"
                         android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -409,7 +427,6 @@
                     android:id="@+id/btn_search_product"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
-                    android:layout_marginLeft="30dp"
                     android:background="@drawable/background_button_blue"
                     android:gravity="center"
                     android:minWidth="130dp"
@@ -421,7 +438,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:text="@string/search_product"
-                        android:textColor="@color/white"
+                        android:textColor="@color/au_white"
                         android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>
@@ -430,7 +447,6 @@
                     android:id="@+id/btn_connect_wifi"
                     android:layout_width="wrap_content"
                     android:layout_height="48dp"
-                    android:layout_marginLeft="30dp"
                     android:background="@drawable/background_button_blue"
                     android:gravity="center"
                     android:minWidth="130dp"
@@ -440,7 +456,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/connect_wifi"
-                        android:textColor="@color/white"
+                        android:textColor="@color/au_white"
                         android:textSize="20sp"
                         android:textStyle="bold" />
                 </LinearLayout>

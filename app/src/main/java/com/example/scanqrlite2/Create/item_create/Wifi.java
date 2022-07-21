@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -59,6 +58,9 @@ public class Wifi extends AppCompatActivity {
         ssid = edtNetworkName.getText().toString().trim();
         password = edtNetworkPass.getText().toString().trim();
         security = getSecurity();
+        ssid = edtNetworkName.getText().toString().trim();
+        password = edtNetworkPass.getText().toString().trim();
+        handleCheckSecurity();
 
         btnCreate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,33 +78,14 @@ public class Wifi extends AppCompatActivity {
         TextWatcher textWatcher = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 ssid = edtNetworkName.getText().toString().trim();
                 password = edtNetworkPass.getText().toString().trim();
-                rdgSecurity.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                        switch (i) {
-                            case R.id.rdb_wep:
-                                isNone = true;
-                                edtNetworkPass.setEnabled(true);
-                                break;
-                            case R.id.rdb_wpa:
-                                isNone = true;
-                                edtNetworkPass.setEnabled(true);
-                                break;
-                            case R.id.rdb_none:
-                                isNone = false;
-                                edtNetworkPass.setEnabled(false);
-                                break;
-                        }
-                        security = getSecurity();
-                        handleCreate(isNone);
-                    }
-                });
+                handleCheckSecurity();
                 security = getSecurity();
                 handleCreate(isNone);
             }
@@ -112,6 +95,30 @@ public class Wifi extends AppCompatActivity {
             }
         };
         return textWatcher;
+    }
+
+    private void handleCheckSecurity() {
+        rdgSecurity.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i) {
+                    case R.id.rdb_wep:
+                        isNone = true;
+                        edtNetworkPass.setEnabled(true);
+                        break;
+                    case R.id.rdb_wpa:
+                        isNone = true;
+                        edtNetworkPass.setEnabled(true);
+                        break;
+                    case R.id.rdb_none:
+                        isNone = false;
+                        edtNetworkPass.setEnabled(false);
+                        break;
+                }
+                security = getSecurity();
+                handleCreate(isNone);
+            }
+        });
     }
 
     private void handleCreate(boolean isNone) {
@@ -127,7 +134,7 @@ public class Wifi extends AppCompatActivity {
                     }
                 });
             } else {
-                btnCreate.setTextColor(getResources().getColor(R.color.white));
+                btnCreate.setTextColor(getResources().getColor(R.color.au_white));
                 btnCreate.setBackgroundResource(R.drawable.cus_create_allow);
                 btnCreate.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -149,7 +156,7 @@ public class Wifi extends AppCompatActivity {
                     }
                 });
             } else {
-                btnCreate.setTextColor(getResources().getColor(R.color.white));
+                btnCreate.setTextColor(getResources().getColor(R.color.au_white));
                 btnCreate.setBackgroundResource(R.drawable.cus_create_allow);
                 btnCreate.setOnClickListener(new View.OnClickListener() {
                     @Override

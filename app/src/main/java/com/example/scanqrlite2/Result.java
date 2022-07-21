@@ -2,6 +2,7 @@ package com.example.scanqrlite2;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
@@ -12,6 +13,7 @@ import android.content.ClipboardManager;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -24,6 +26,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.text.method.ScrollingMovementMethod;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -34,6 +37,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.scanqrlite2.Language;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -60,6 +65,9 @@ public class Result extends AppCompatActivity {
     TextView txtTitleResult;
     TextView txtContentText, txtContentURL, txtContentProduct, txtSSID, txtPass, txtSecurity;
     Bitmap bitmap;
+    AdView adView;
+    AdRequest request;
+
     Intent result;
     Language language;
     String ssid, password, security, content, type, typeQR;
@@ -81,9 +89,36 @@ public class Result extends AppCompatActivity {
         toURL();
         coppyToClipboard();
         searchProduct();
-        searchGoogle();
+        search();
         saveImage();
         shareContent();
+        showAds();
+    }
+
+    private void showAds() {
+        request = new AdRequest.Builder().build();
+        adView.loadAd(request);
+    }
+
+    @Override
+    protected void onStart() {
+        if(adView != null)
+            adView.pause();
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(adView != null)
+            adView.resume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(adView != null)
+            adView.destroy();
     }
 
     private void shareContent() {
@@ -153,16 +188,41 @@ public class Result extends AppCompatActivity {
         editor.commit();
     }
 
-    private void searchGoogle() {
+    private void search() {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent search = new Intent(Intent.ACTION_VIEW);
-                search.setData(Uri.parse("https://www.google.com/search?q=" + content));
+                handleSearch(search);
                 startActivityForResult(search, SEARCH);
                 btnSearch.setEnabled(false);
             }
         });
+    }
+
+    private void handleSearch(Intent search) {
+        SharedPreferences prefSearch = getSharedPreferences("search", MODE_PRIVATE);
+        String typeSearch = prefSearch.getString("search", "Google");
+        switch (typeSearch) {
+            case "Google":
+                search.setData(Uri.parse("https://www.google.com/search?q=" + content));
+                break;
+            case "Yandex":
+                search.setData(Uri.parse("https://yandex.com/search/?text=" + content));
+                break;
+            case "CocCoc":
+                search.setData(Uri.parse("https://coccoc.com/search?query=" + content));
+                break;
+            case "Yahoo":
+                search.setData(Uri.parse("https://www.search.yahoo.com/search?p=" + content));
+                break;
+            case "Bing":
+                search.setData(Uri.parse("https://www.bing.com/search?q=" + content));
+                break;
+            case "DuckDuckGo":
+                search.setData(Uri.parse("https://duckduckgo.com/?q=" + content));
+                break;
+        }
     }
 
     private void coppyToClipboard() {
@@ -181,9 +241,9 @@ public class Result extends AppCompatActivity {
         btnSearchProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent search = new Intent(Intent.ACTION_VIEW);
-                search.setData(Uri.parse("https://www.google.com/search?q=" + content));
-                startActivityForResult(search, SEARCH_PRODUCT);
+                Intent searchProduct = new Intent(Intent.ACTION_VIEW);
+                handleSearch(searchProduct);
+                startActivityForResult(searchProduct, SEARCH_PRODUCT);
                 btnSearchProduct.setEnabled(false);
             }
         });
@@ -243,19 +303,38 @@ public class Result extends AppCompatActivity {
                     startActivityForResult(wifi, CONNECT_WIFI);
 
                     btnConnectWifi.setEnabled(false);
-                } else {
-                    if (password.length() != 0) {
-                        WifiNetworkSuggestion.Builder builder = new WifiNetworkSuggestion.Builder();
-                        builder.setSsid(ssid);
-                        builder.setWpa2Passphrase(password);
-                        WifiNetworkSuggestion suggestion = builder.build();
-                        List<WifiNetworkSuggestion> list = new ArrayList<WifiNetworkSuggestion>();
-                        list.add(suggestion);
-                        wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-                        wifiManager.removeNetworkSuggestions(new ArrayList<WifiNetworkSuggestion>());
-                        wifiManager.addNetworkSuggestions(list);
+                } else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q){
+                    if(security.equals("None")) {
+                        startActivity(new Intent("android.settings.panel.action.INTERNET_CONNECTIVITY"));
+                    }else {
+                        if (password.length() != 0) {
+                            WifiNetworkSuggestion.Builder builder = new WifiNetworkSuggestion.Builder();
+                            builder.setSsid(ssid);
+                            builder.setWpa2Passphrase(password);
+                            WifiNetworkSuggestion suggestion = builder.build();
+                            List<WifiNetworkSuggestion> list = new ArrayList<WifiNetworkSuggestion>();
+                            list.add(suggestion);
+                            wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                            wifiManager.removeNetworkSuggestions(new ArrayList<WifiNetworkSuggestion>());
+                            wifiManager.addNetworkSuggestions(list);
+                        }
                     }
-                    startActivity(new Intent("android.settings.panel.action.INTERNET_CONNECTIVITY"));
+                } else {
+                    AlertDialog.Builder alertDialog = new AlertDialog.Builder(Result.this);
+                    alertDialog.setTitle("Các thiết bị Android 10 cần kết nối Wifi một cách thủ công")
+                            .setMessage("Chuyển hướng đến mạng wifi \n Mật khẩu của bạn đã được sao chép, ấn OK để chuyển hướng đến Wifi")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    coppyToClipboard();
+                                    startActivity(new Intent("android.settings.panel.action.INTERNET_CONNECTIVITY"));
+                                }
+                            }).setNegativeButton("Huỷ", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.dismiss();
+                                }
+                            }).show();
                 }
             }
         });
@@ -330,8 +409,9 @@ public class Result extends AppCompatActivity {
     }
 
     private Bitmap CreateQR(String content) throws WriterException {
-        int sizeWidth = 600;
-        int sizeHeight = 264;
+        int sizeQR = 500;
+        int sizeWidth = 664;
+        int sizeHeight = 204;
 
         Hashtable hints = new Hashtable();
         hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
@@ -340,13 +420,28 @@ public class Result extends AppCompatActivity {
         BitMatrix matrix = null;
         switch (typeQR) {
             case "QRCode":
-                matrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, sizeWidth, sizeWidth, hints);
+                matrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, sizeQR, sizeQR, hints);
+                break;
+            case "AZTEC":
+                matrix = new MultiFormatWriter().encode(content, BarcodeFormat.AZTEC, sizeQR, sizeQR, hints);
+                break;
+            case "DATA_MATRIX":
+                matrix = new MultiFormatWriter().encode(content, BarcodeFormat.DATA_MATRIX, sizeQR, sizeQR, hints);
+                break;
+            case "CODABAR":
+                matrix = new MultiFormatWriter().encode(content, BarcodeFormat.CODABAR, sizeWidth, sizeHeight, hints);
+                break;
+            case "PDF417":
+                matrix = new MultiFormatWriter().encode(content, BarcodeFormat.PDF_417, sizeWidth, sizeHeight, hints);
                 break;
             case "Code_128":
                 matrix = new MultiFormatWriter().encode(content, BarcodeFormat.CODE_128, sizeWidth, sizeHeight, hints);
                 break;
             case "Code_39":
                 matrix = new MultiFormatWriter().encode(content, BarcodeFormat.CODE_39, sizeWidth, sizeHeight, hints);
+                break;
+            case "Code_93":
+                matrix = new MultiFormatWriter().encode(content, BarcodeFormat.CODE_93, sizeWidth, sizeHeight, hints);
                 break;
             case "Code_ITF":
                 matrix = new MultiFormatWriter().encode(content, BarcodeFormat.ITF, sizeWidth, sizeHeight, hints);
@@ -418,6 +513,8 @@ public class Result extends AppCompatActivity {
         txtPass = findViewById(R.id.content_pass);
         txtSecurity = findViewById(R.id.content_security);
         txtContentProduct = findViewById(R.id.content_product);
+
+        adView = findViewById(R.id.ads_result);
     }
 
     private void showResult() {
@@ -450,6 +547,7 @@ public class Result extends AppCompatActivity {
                 break;
             case "Code_128":
             case "Code_39":
+            case "Code_93":
             case "Code_ITF":
                 txtTitleResult.setText(R.string.text);
                 imgResult.setImageResource(R.drawable.logo_text);

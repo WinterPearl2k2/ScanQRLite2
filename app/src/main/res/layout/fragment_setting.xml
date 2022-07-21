@@ -36,10 +36,12 @@
                 android:id="@+id/list_item_1"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
-                android:layout_centerHorizontal="true"
                 android:layout_below="@+id/txt_general_setting"
+                android:layout_centerHorizontal="true"
                 android:background="@drawable/cus_list_setting"
                 android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:weightSum="7">
 
                 <LinearLayout
@@ -52,11 +54,13 @@
                     android:background="@drawable/cus_item_setting"
                     android:orientation="horizontal"
                     android:weightSum="10">
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/txt_beep"
                             android:layout_width="match_parent"
@@ -65,14 +69,15 @@
                             android:gravity="center_vertical"
                             android:letterSpacing="0.05"
                             android:text="@string/beep"
-                            android:textColor="@color/text_color"
+                            android:textColor="@color/cus_text"
                             android:textSize="20sp" />
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginTop="-3dp"
                             android:fontFamily="@font/font_regular"
                             android:gravity="center_vertical"
-                            android:layout_marginTop="-3dp"
                             android:letterSpacing="0.05"
                             android:text="@string/beep_when_the_scan_is_successful"
                             android:textColor="@color/text_color_1"
@@ -108,6 +113,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:orientation="vertical">
+
                         <TextView
                             android:id="@+id/txt_vibrate"
                             android:layout_width="match_parent"
@@ -116,14 +122,15 @@
                             android:gravity="center_vertical"
                             android:letterSpacing="0.05"
                             android:text="@string/vibrate"
-                            android:textColor="@color/text_color"
+                            android:textColor="@color/cus_text"
                             android:textSize="20sp" />
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginTop="-3dp"
                             android:fontFamily="@font/font_regular"
                             android:gravity="center_vertical"
-                            android:layout_marginTop="-3dp"
                             android:letterSpacing="0.05"
                             android:text="@string/vibrate_when_the_scan_is_successful"
                             android:textColor="@color/text_color_1"
@@ -164,7 +171,7 @@
                         android:gravity="center_vertical"
                         android:letterSpacing="0.05"
                         android:text="@string/auto_copy"
-                        android:textColor="@color/text_color"
+                        android:textColor="@color/cus_text"
                         android:textSize="20sp" />
 
                     <androidx.appcompat.widget.SwitchCompat
@@ -196,7 +203,7 @@
                         android:gravity="center_vertical"
                         android:letterSpacing="0.05"
                         android:text="@string/search_engine"
-                        android:textColor="@color/text_color"
+                        android:textColor="@color/cus_text"
                         android:textSize="20sp" />
 
                     <TextView
@@ -234,7 +241,7 @@
                         android:gravity="center_vertical"
                         android:letterSpacing="0.05"
                         android:text="@string/change_language"
-                        android:textColor="@color/text_color"
+                        android:textColor="@color/cus_text"
                         android:textSize="20sp" />
 
                     <TextView
@@ -270,7 +277,7 @@
                         android:gravity="center_vertical"
                         android:letterSpacing="0.05"
                         android:text="@string/dark_mode"
-                        android:textColor="@color/text_color"
+                        android:textColor="@color/cus_text"
                         android:textSize="20sp" />
 
                     <androidx.appcompat.widget.SwitchCompat
@@ -298,6 +305,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:orientation="vertical">
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -306,14 +314,15 @@
                             android:letterSpacing="0.05"
                             android:splitMotionEvents="false"
                             android:text="@string/rate_us"
-                            android:textColor="@color/text_color"
+                            android:textColor="@color/cus_text"
                             android:textSize="20sp" />
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginTop="-3dp"
                             android:fontFamily="@font/font_regular"
                             android:gravity="center_vertical"
-                            android:layout_marginTop="-3dp"
                             android:letterSpacing="0.05"
                             android:text="@string/rating_boost_your_app"
                             android:textColor="@color/text_color_1"
@@ -347,15 +356,16 @@
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/cus_list_setting"
                 android:orientation="vertical"
+                android:paddingTop="10dp"
                 android:weightSum="2">
 
                 <LinearLayout
                     android:id="@+id/btn_feedback"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:layout_marginLeft="23dp"
                     android:layout_marginRight="23dp"
+                    android:layout_weight="1"
                     android:background="@drawable/cus_item_setting"
                     android:orientation="horizontal">
 
@@ -369,18 +379,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="2"
+                            android:fontFamily="@font/font_regular"
                             android:gravity="center_vertical"
                             android:letterSpacing="0.05"
                             android:text="@string/feedback"
-                            android:textColor="@color/text_color"
-                            android:fontFamily="@font/font_regular"
+                            android:textColor="@color/cus_text"
                             android:textSize="20sp" />
+
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:layout_marginTop="-3dp"
                             android:fontFamily="@font/font_regular"
                             android:gravity="center_vertical"
-                            android:layout_marginTop="-3dp"
                             android:letterSpacing="0.05"
                             android:text="@string/report_bugs_and_tell_us"
                             android:textColor="@color/text_color_1"
@@ -402,13 +413,13 @@
                         android:id="@+id/txt_version"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:paddingBottom="5dp"
                         android:layout_weight="3"
+                        android:fontFamily="@font/font_regular"
                         android:gravity="center_vertical"
                         android:letterSpacing="0.05"
+                        android:paddingBottom="5dp"
                         android:text="@string/version"
-                        android:textColor="@color/text_color"
-                        android:fontFamily="@font/font_regular"
+                        android:textColor="@color/cus_text"
                         android:textSize="20sp" />
                 </LinearLayout>
             </LinearLayout>
@@ -424,17 +435,18 @@
         android:elevation="5dp"
         android:paddingTop="30dp"
         android:background="@color/primaryShrinePink">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/skyBlueLight"
             android:elevation="5dp"
+            android:fontFamily="@font/firasansextracondensed_black"
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
             android:paddingTop="10dp"
             android:paddingRight="20dp"
             android:paddingBottom="10dp"
-            android:fontFamily="@font/firasansextracondensed_black"
             android:text="@string/tittle_setting"
             android:textColor="@color/black"
             android:textSize="25dp"

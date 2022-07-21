@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/btnCreate"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
@@ -12,10 +13,10 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:layout_toLeftOf="@id/clickX_btn"
+        android:fontFamily="@font/font_regular"
         android:text="@string/rating_boost_your_app"
         android:textColor="@color/black"
         android:textSize="17sp"
-        android:fontFamily="@font/font_regular"
         android:textStyle="normal" />
 
     <ImageButton
@@ -23,9 +24,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:paddingRight="20dp"
         android:layout_marginTop="12dp"
         android:background="@null"
+        android:paddingRight="20dp"
         android:src="@drawable/ic_union" />
 
     <ImageView
@@ -36,6 +37,7 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:background="@android:color/transparent"
         android:src="@drawable/icon_smile" />
 
     <com.willy.ratingbar.ScaleRatingBar
@@ -73,7 +75,7 @@
                 android:id="@+id/btn_rating_close"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@android:color/transparent"
                 android:gravity="left|center_vertical"
                 android:paddingLeft="20dp"
                 android:paddingTop="15dp"
@@ -87,7 +89,7 @@
                 android:id="@+id/btn_rating_vote_again"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@android:color/transparent"
                 android:gravity="left|center_vertical"
                 android:paddingLeft="20dp"
                 android:paddingTop="15dp"
@@ -110,7 +112,7 @@
                 android:id="@+id/btn_rating_vote"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@android:color/transparent"
                 android:gravity="right|center_vertical"
                 android:paddingTop="15dp"
                 android:paddingRight="20dp"
@@ -125,7 +127,7 @@
                 android:id="@+id/btn_rating_open_CHplay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@android:color/transparent"
                 android:gravity="right|center_vertical"
                 android:paddingTop="15dp"
                 android:paddingRight="20dp"
@@ -141,7 +143,7 @@
                 android:id="@+id/btn_rating_feedback"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:background="@android:color/transparent"
                 android:gravity="right|center_vertical"
                 android:paddingTop="15dp"
                 android:paddingRight="20dp"

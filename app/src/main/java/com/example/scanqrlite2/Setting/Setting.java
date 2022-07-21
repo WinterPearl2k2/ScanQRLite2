@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
@@ -163,6 +164,49 @@ public class Setting extends Fragment {
         editor.commit();
     }
 
+
+
+    private void DarkMode(){
+        SharedPreferences darkmode = getActivity().getSharedPreferences("dark_mode", Context.MODE_PRIVATE);
+        boolean check = darkmode.getBoolean("dark_mode", false);
+        if(check) {
+            swDarkmode.setChecked(true);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            swDarkmode.setChecked(false);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+
+        swDarkmode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkOpen(swDarkmode, darkmode, "dark_mode");
+            }
+        });
+
+        btnDarkmode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkOpen(swDarkmode, darkmode, "dark_mode");
+            }
+        });
+    }
+
+    private void checkOpen(SwitchCompat swDarkmode, SharedPreferences darkmode, String key) {
+        SharedPreferences.Editor editor = darkmode.edit();
+        boolean check = darkmode.getBoolean(key, false);
+        if(check) {
+            swDarkmode.setChecked(false);
+            editor.putBoolean(key, false);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        } else {
+            swDarkmode.setChecked(true);
+            editor.putBoolean(key, true);
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        }
+        editor.commit();
+    }
+
     private  void ChangeSearch(){
         BottomSheetDialog sheetDialog = new BottomSheetDialog(getActivity());
         SharedPreferences preferences = getContext().getSharedPreferences("search", Context.MODE_PRIVATE);
@@ -254,7 +298,7 @@ public class Setting extends Fragment {
     private void ChangeLanguage() {
         BottomSheetDialog sheetDialog = new BottomSheetDialog(getActivity());
         SharedPreferences preferences = getContext().getSharedPreferences("language", Context.MODE_PRIVATE);
-        View view2= LayoutInflater.from(getActivity()).inflate(R.layout.dialog_language, null);
+        View view2 = LayoutInflater.from(getActivity()).inflate(R.layout.dialog_language, null);
         String Language = preferences.getString("language", "English");
         Log.e("TAG1:",Language);
 
@@ -358,9 +402,6 @@ public class Setting extends Fragment {
         getActivity().recreate();
     }
 
-    private void DarkMode(){
-
-    }
     private void RateUs() {
         btnRate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -394,7 +435,7 @@ public class Setting extends Fragment {
             @Override
             public void onClick(View view) {
                 if(rtRating.getRating() >= 5f) {
-                    imgRating.setImageResource(R.drawable.img_love);
+                    imgRating.setImageResource(R.drawable.img_happy);
                     txtTitleRating.setText(R.string.thank_you);
                     btnRatingClose.setVisibility(View.VISIBLE);
                     btnRatingOpenChplay.setVisibility(View.VISIBLE);
@@ -410,7 +451,7 @@ public class Setting extends Fragment {
                     rtRating.setScrollable(false);
                     rtRating.setClickable(false);
                 } else if(rtRating.getRating() > 0f && rtRating.getRating() <= 4f) {
-                    imgRating.setImageResource(R.drawable.icon_cry);
+                    imgRating.setImageResource(R.drawable.img_cry);
                     txtTitleRating.setText(R.string.report_bugs_and_let_us);
                     btnRatingVoteAgain.setVisibility(View.VISIBLE);
                     btnRatingClose.setVisibility(View.GONE);
