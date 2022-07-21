@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="au_white">#FFFFFFFF</color>
+    <color name="stocke_img">#000000</color>
 
     <color name="btnNav">#FF000000</color>
     <color name="unBtnNav">#FF000000</color>

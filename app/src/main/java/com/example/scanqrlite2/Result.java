@@ -26,6 +26,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.text.method.ScrollingMovementMethod;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -35,6 +36,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
@@ -61,6 +64,8 @@ public class Result extends AppCompatActivity {
     TextView txtTitleResult;
     TextView txtContentText, txtContentURL, txtContentProduct, txtSSID, txtPass, txtSecurity;
     Bitmap bitmap;
+    AdView adView;
+    AdRequest request;
 
     Intent result;
     String ssid, password, security, content, type, typeQR;
@@ -83,6 +88,33 @@ public class Result extends AppCompatActivity {
         search();
         saveImage();
         shareContent();
+        showAds();
+    }
+
+    private void showAds() {
+        request = new AdRequest.Builder().build();
+        adView.loadAd(request);
+    }
+
+    @Override
+    protected void onStart() {
+        if(adView != null)
+            adView.pause();
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(adView != null)
+            adView.resume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(adView != null)
+            adView.destroy();
     }
 
     private void shareContent() {
@@ -268,18 +300,21 @@ public class Result extends AppCompatActivity {
 
                     btnConnectWifi.setEnabled(false);
                 } else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.Q){
-                    if (password.length() != 0) {
-                        WifiNetworkSuggestion.Builder builder = new WifiNetworkSuggestion.Builder();
-                        builder.setSsid(ssid);
-                        builder.setWpa2Passphrase(password);
-                        WifiNetworkSuggestion suggestion = builder.build();
-                        List<WifiNetworkSuggestion> list = new ArrayList<WifiNetworkSuggestion>();
-                        list.add(suggestion);
-                        wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-                        wifiManager.removeNetworkSuggestions(new ArrayList<WifiNetworkSuggestion>());
-                        wifiManager.addNetworkSuggestions(list);
+                    if(security.equals("None")) {
+                        startActivity(new Intent("android.settings.panel.action.INTERNET_CONNECTIVITY"));
+                    }else {
+                        if (password.length() != 0) {
+                            WifiNetworkSuggestion.Builder builder = new WifiNetworkSuggestion.Builder();
+                            builder.setSsid(ssid);
+                            builder.setWpa2Passphrase(password);
+                            WifiNetworkSuggestion suggestion = builder.build();
+                            List<WifiNetworkSuggestion> list = new ArrayList<WifiNetworkSuggestion>();
+                            list.add(suggestion);
+                            wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                            wifiManager.removeNetworkSuggestions(new ArrayList<WifiNetworkSuggestion>());
+                            wifiManager.addNetworkSuggestions(list);
+                        }
                     }
-                    startActivity(new Intent("android.settings.panel.action.INTERNET_CONNECTIVITY"));
                 } else {
                     AlertDialog.Builder alertDialog = new AlertDialog.Builder(Result.this);
                     alertDialog.setTitle("Các thiết bị Android 10 cần kết nối Wifi một cách thủ công")
@@ -370,8 +405,9 @@ public class Result extends AppCompatActivity {
     }
 
     private Bitmap CreateQR(String content) throws WriterException {
-        int sizeWidth = 600;
-        int sizeHeight = 264;
+        int sizeQR = 500;
+        int sizeWidth = 664;
+        int sizeHeight = 204;
 
         Hashtable hints = new Hashtable();
         hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
@@ -380,13 +416,28 @@ public class Result extends AppCompatActivity {
         BitMatrix matrix = null;
         switch (typeQR) {
             case "QRCode":
-                matrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, sizeWidth, sizeWidth, hints);
+                matrix = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, sizeQR, sizeQR, hints);
+                break;
+            case "AZTEC":
+                matrix = new MultiFormatWriter().encode(content, BarcodeFormat.AZTEC, sizeQR, sizeQR, hints);
+                break;
+            case "DATA_MATRIX":
+                matrix = new MultiFormatWriter().encode(content, BarcodeFormat.DATA_MATRIX, sizeQR, sizeQR, hints);
+                break;
+            case "CODABAR":
+                matrix = new MultiFormatWriter().encode(content, BarcodeFormat.CODABAR, sizeWidth, sizeHeight, hints);
+                break;
+            case "PDF417":
+                matrix = new MultiFormatWriter().encode(content, BarcodeFormat.PDF_417, sizeWidth, sizeHeight, hints);
                 break;
             case "Code_128":
                 matrix = new MultiFormatWriter().encode(content, BarcodeFormat.CODE_128, sizeWidth, sizeHeight, hints);
                 break;
             case "Code_39":
                 matrix = new MultiFormatWriter().encode(content, BarcodeFormat.CODE_39, sizeWidth, sizeHeight, hints);
+                break;
+            case "Code_93":
+                matrix = new MultiFormatWriter().encode(content, BarcodeFormat.CODE_93, sizeWidth, sizeHeight, hints);
                 break;
             case "Code_ITF":
                 matrix = new MultiFormatWriter().encode(content, BarcodeFormat.ITF, sizeWidth, sizeHeight, hints);
@@ -458,6 +509,8 @@ public class Result extends AppCompatActivity {
         txtPass = findViewById(R.id.content_pass);
         txtSecurity = findViewById(R.id.content_security);
         txtContentProduct = findViewById(R.id.content_product);
+
+        adView = findViewById(R.id.ads_result);
     }
 
     private void showResult() {
@@ -490,7 +543,12 @@ public class Result extends AppCompatActivity {
                 break;
             case "Code_128":
             case "Code_39":
+            case "Code_93":
             case "Code_ITF":
+            case "AZTEC":
+            case "DATA_MATRIX":
+            case "CODABAR":
+            case "PDF417":
                 txtTitleResult.setText("Text");
                 imgResult.setImageResource(R.drawable.logo_text);
                 getShowResult(type);

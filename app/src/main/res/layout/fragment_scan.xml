@@ -78,47 +78,64 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:weightSum="2"
                 android:background="@drawable/cus_background_scan">
 
-                <TextView
-                    android:id="@+id/btn_gallery"
-                    android:layout_weight="1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="35dp"
-                    android:background="@drawable/cus_btn_scan"
-                    android:gravity="center"
-                    android:minWidth="150dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:text="@string/gallery"
-                    android:textColor="@color/cus_text"
-                    android:textSize="20sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/btn_fash"
-                    android:layout_weight="1"
+                    <TextView
+                        android:id="@+id/btn_gallery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/cus_btn_scan"
+                        android:gravity="center"
+                        android:minWidth="150dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/gallery"
+                        android:textColor="@color/cus_text"
+                        android:textSize="20sp" />
+
+                    <androidx.appcompat.widget.AppCompatCheckBox
+                        android:id="@+id/btn_fash"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginRight="50dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/cus_btn_scan"
+                        android:button="@android:color/transparent"
+                        android:gravity="center"
+                        android:minWidth="150dp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="@string/flash_off"
+                        android:textColor="@color/cus_text"
+                        android:textSize="20sp" />
+                </LinearLayout>
+                <com.google.android.gms.ads.AdView
+                    xmlns:ads="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/ads_scan"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="10dp"
                     android:layout_width="wrap_content"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="35dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="50dp"
-                    android:layout_marginBottom="35dp"
-                    android:background="@drawable/cus_btn_scan"
-                    android:button="@android:color/transparent"
-                    android:gravity="center"
-                    android:minWidth="150dp"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    android:text="@string/flash_off"
-                    android:textColor="@color/cus_text"
-                    android:textSize="20sp" />
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    ads:adSize="BANNER"
+                    ads:adUnitId="@string/banner_ad_unit_id" />
             </LinearLayout>
+
         </FrameLayout>
 
         <RelativeLayout
@@ -126,7 +143,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone"
-            android:background="@drawable/cus_background_scan">
+            android:background="@color/primaryBackground">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -149,7 +166,7 @@
                 android:letterSpacing="0.1"
                 android:stateListAnimator="@null"
                 android:text="@string/allow_permission"
-                android:textColor="@color/white"
+                android:textColor="@color/au_white"
                 android:textAllCaps="true"
                 android:textSize="18sp"
                 android:textStyle="bold" />

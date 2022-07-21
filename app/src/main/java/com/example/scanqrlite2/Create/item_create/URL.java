@@ -84,7 +84,7 @@ public class URL extends AppCompatActivity {
                         @Override
                         public void onClick(View view) {
                             Intent result = new Intent(URL.this, Result.class);
-                            result.putExtra("value", editable.toString());
+                            result.putExtra("value", editable.toString().trim());
                             result.putExtra("type", "URL");
                             result.putExtra("type_qr", "QRCode");
                             startActivity(result);
