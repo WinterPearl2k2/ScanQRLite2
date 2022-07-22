@@ -325,6 +325,7 @@ public class Result extends AppCompatActivity {
                             wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
                             wifiManager.removeNetworkSuggestions(new ArrayList<WifiNetworkSuggestion>());
                             wifiManager.addNetworkSuggestions(list);
+                            startActivity(new Intent("android.settings.panel.action.INTERNET_CONNECTIVITY"));
                         }
                     }
                 } else {

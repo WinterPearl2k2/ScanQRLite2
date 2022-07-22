@@ -268,6 +268,7 @@ public class Scan extends Fragment{
                     camera.getCameraControl().enableTorch(false);
                     btnFlash.setText(R.string.flash_off);
                 }
+                language.Language();
             }
         });
     }
