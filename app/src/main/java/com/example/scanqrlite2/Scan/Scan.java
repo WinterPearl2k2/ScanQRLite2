@@ -262,13 +262,14 @@ public class Scan extends Fragment{
             @Override
             public void onClick(View view) {
                 if(btnFlash.isChecked()) {
+                    language.Language();
                     camera.getCameraControl().enableTorch(true);
                     btnFlash.setText(R.string.flash_on);
                 } else {
+                    language.Language();
                     camera.getCameraControl().enableTorch(false);
                     btnFlash.setText(R.string.flash_off);
                 }
-                language.Language();
             }
         });
     }

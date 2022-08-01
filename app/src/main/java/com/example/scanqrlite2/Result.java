@@ -130,9 +130,17 @@ public class Result extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent share = new Intent(Intent.ACTION_SEND);
-                share.setType("text/plain");
-                share.putExtra(Intent.EXTRA_TEXT, content);
-                startActivityForResult(share, SHARE);
+                if(Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                    share.setType("text/plain");
+                    share.putExtra(Intent.EXTRA_TEXT, content);
+                    startActivityForResult(share, SHARE);
+                } else {
+                    String path = MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, "Share image", null);
+                    Uri img = Uri.parse(path);
+                    share.setType("image/jpeg");
+                    share.putExtra(Intent.EXTRA_STREAM, img);
+                    startActivityForResult(Intent.createChooser(share, "share img"), SHARE);
+                }
                 btnShare.setEnabled(false);
             }
         });
@@ -143,14 +151,14 @@ public class Result extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(ActivityCompat.checkSelfPermission(Result.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                != PackageManager.PERMISSION_GRANTED) {
+                        != PackageManager.PERMISSION_GRANTED) {
                     if(getFromPer(Result.this, "ALLOWED")) {
                         Intent save = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-                        Uri uri = Uri.fromParts("pakage", getPackageName(), null);
+                        Uri uri = Uri.fromParts("package", getPackageName(), null);
                         save.setData(uri);
                         startActivityForResult(save, 104);
                     } else {
-                        ActivityCompat.requestPermissions(Result.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 103);
+                        ActivityCompat.requestPermissions(Result.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 105);
                     }
                 } else {
                     handleSaving();
@@ -181,12 +189,12 @@ public class Result extends AppCompatActivity {
     }
 
     private boolean getFromPer(Result result, String allowed) {
-        SharedPreferences preferences = getSharedPreferences("save_img", MODE_PRIVATE);
-        return preferences.getBoolean("save_img", false);
+        SharedPreferences preferences = getSharedPreferences(allowed, MODE_PRIVATE);
+        return preferences.getBoolean(allowed, false);
     }
 
     public static void saveToPres(Context context, String key, Boolean allowed) {
-        SharedPreferences preferences = context.getSharedPreferences("save_img", MODE_PRIVATE);
+        SharedPreferences preferences = context.getSharedPreferences(key, MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean(key, allowed);
         editor.commit();
@@ -390,7 +398,7 @@ public class Result extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
-            case 103:
+            case 105:
                 if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     handleSaving();
                     break;

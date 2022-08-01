@@ -24,8 +24,8 @@
 
             <ImageView
                 android:id="@+id/qr_image_history_item"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:scaleType="fitXY"
                 android:background="@android:color/transparent" />

@@ -12,7 +12,6 @@ public class FullScreen {
     }
 
     public void changeFullScreen(int type) {
-
         if (type == 0) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 activity.getWindow().getDecorView().setSystemUiVisibility(

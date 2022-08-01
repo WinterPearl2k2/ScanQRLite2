@@ -199,10 +199,12 @@ public class Setting extends Fragment {
             swDarkmode.setChecked(false);
             editor.putBoolean(key, false);
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+//            getActivity().setTheme(R.style.DarkTheme);
         } else {
             swDarkmode.setChecked(true);
             editor.putBoolean(key, true);
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+//            getActivity().setTheme(R.style.LightTheme);
         }
         editor.commit();
     }
